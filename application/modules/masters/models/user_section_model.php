@@ -3,17 +3,20 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class User_section_model extends CI_Model {
+class User_section_model extends CI_Model
+{
 
     private $table_name = 'erp_user_sections';
     private $module_table = 'erp_user_modules';
 
-    function __construct() {
+    function __construct()
+    {
         parent::__construct();
         $this->load->database();
     }
 
-    function insert_user_section($data) {
+    function insert_user_section($data)
+    {
         if ($this->db->insert($this->table_name, $data)) {
             $insert_id = $this->db->insert_id();
             return $insert_id;
@@ -21,7 +24,8 @@ class User_section_model extends CI_Model {
         return FALSE;
     }
 
-    function update_user_section($data, $id) {
+    function update_user_section($data, $id)
+    {
         $data['updated_date'] = date('Y-m-d H:i:s');
         $this->db->where('id', $id);
         if ($this->db->update($this->table_name, $data)) {
@@ -30,14 +34,16 @@ class User_section_model extends CI_Model {
         return FALSE;
     }
 
-    function delete_user_section($id, $data) {
+    function delete_user_section($id, $data)
+    {
         if ($this->db->delete($this->table_name, $data)) {
             return TRUE;
         }
         return FALSE;
     }
 
-    function get_user_section_by_id($id) {
+    function get_user_section_by_id($id)
+    {
         $this->db->select($this->table_name . '.*');
         $this->db->where($this->table_name . '.id', $id);
         $query = $this->db->get($this->table_name);
@@ -47,11 +53,14 @@ class User_section_model extends CI_Model {
         return NULL;
     }
 
-    function get_user_sections_by_module_id($id) {
+    function get_user_sections_by_module_id($id)
+    {
         $this->db->select('tab_1.id,tab_1.user_section_name,,tab_1.user_section_key,acc_view,acc_add,acc_edit,acc_delete');
         $this->db->join($this->module_table . ' AS tab_2', 'tab_2.id = tab_1.module_id', 'LEFT');
         $this->db->where('tab_1.module_id', $id);
         $this->db->where('tab_1.status', 1);
+        $key = ["manage_sku", "physical_report", "stock"];
+        $this->db->where_not_in('tab_1.user_section_key', $key);
         $query = $this->db->get($this->table_name . ' AS tab_1');
         if ($query->num_rows() > 0) {
             return $query->result_array();
@@ -59,7 +68,8 @@ class User_section_model extends CI_Model {
         return NULL;
     }
 
-    function get_all_user_sections() {
+    function get_all_user_sections()
+    {
         $this->db->select($this->table_name . '.*');
         $query = $this->db->get($this->table_name);
         if ($query->num_rows() > 0) {
@@ -68,7 +78,8 @@ class User_section_model extends CI_Model {
         return NULL;
     }
 
-    function get_all_user_sections_with_module_name() {
+    function get_all_user_sections_with_module_name()
+    {
         $this->db->select('tab_1.id,tab_1.user_section_name,tab_1.module_id,tab_1.status,tab_2.user_module_name');
         $this->db->join($this->module_table . ' AS tab_2', 'tab_2.id = tab_1.module_id', 'LEFT');
         $query = $this->db->get($this->table_name . ' AS tab_1');
@@ -78,7 +89,8 @@ class User_section_model extends CI_Model {
         return NULL;
     }
 
-    function get_all_user_sections_with_modules() {
+    function get_all_user_sections_with_modules()
+    {
         $this->db->select($this->module_table . '.*');
         $query = $this->db->get($this->module_table);
         $modules = $query->result_array();
@@ -93,7 +105,8 @@ class User_section_model extends CI_Model {
         return $user_section_arr;
     }
 
-    function is_user_section_name_available($user_section_name, $id = NULL) {
+    function is_user_section_name_available($user_section_name, $id = NULL)
+    {
         $this->db->select($this->table_name . '.id');
         $this->db->where('LCASE(user_section_name)', strtolower($user_section_name));
         if (!empty($id))
@@ -105,7 +118,8 @@ class User_section_model extends CI_Model {
         return NULL;
     }
 
-    function insert_all_user_sections() {
+    function insert_all_user_sections()
+    {
         $this->delete_all_user_sections();
 
         $module_array = array(
@@ -505,12 +519,12 @@ class User_section_model extends CI_Model {
         return FALSE;
     }
 
-    function delete_all_user_sections() {
+    function delete_all_user_sections()
+    {
         $SQL = 'TRUNCATE TABLE erp_user_sections';
         if ($this->db->query($SQL)) {
             return TRUE;
         }
         return FALSE;
     }
-
 }
