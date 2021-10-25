@@ -11,37 +11,59 @@
 <script src="<?php echo $theme_path; ?>/js/sweetalert.min.js" type="text/javascript"></script>
 
 <style type="text/css">
+    .text_right {
 
-    .text_right
-
-    {
-
-        text-align:right;
+        text-align: right;
 
 
     }
 
-    .box, .box-body, .content { padding:0; margin:0;border-radius: 0;}
+    .box,
+    .box-body,
+    .content {
+        padding: 0;
+        margin: 0;
+        border-radius: 0;
+    }
 
-    #top_heading_fix h3 {top: -57px;left: 6px;}
+    #top_heading_fix h3 {
+        top: -57px;
+        left: 6px;
+    }
 
-    #TB_overlay { z-index:20000 !important; }
+    #TB_overlay {
+        z-index: 20000 !important;
+    }
 
-    #TB_window { z-index:25000 !important; }
+    #TB_window {
+        z-index: 25000 !important;
+    }
 
-    .dialog_black{ z-index:30000 !important; }
+    .dialog_black {
+        z-index: 30000 !important;
+    }
 
-    #boxscroll22 {max-height: 291px;overflow: auto;cursor: inherit !important;}
+    #boxscroll22 {
+        max-height: 291px;
+        overflow: auto;
+        cursor: inherit !important;
+    }
 
-    .error_msg, em{color: rgb(255, 0, 0); font-size: 12px;font-weight: normal;}
+    .error_msg,
+    em {
+        color: rgb(255, 0, 0);
+        font-size: 12px;
+        font-weight: normal;
+    }
 
     .ui-datepicker td.ui-datepicker-today a {
 
-        background:#999999;
+        background: #999999;
 
     }
+
     table.dataTable tr td:first-child {
-        text-align:left !important;
+        text-align: left !important;
     }
 
     .auto-asset-search ul#country-list li:hover {
@@ -82,7 +104,7 @@
 
         border-bottom: 1px solid #f3f3f3;
 
-        width:200px;
+        width: 200px;
 
     }
 
@@ -104,7 +126,7 @@
 
         border-bottom: 1px solid #f3f3f3;
 
-        width:200px;
+        width: 200px;
 
     }
 
@@ -114,16 +136,29 @@
 
     }
 
-    .btn-info { background-color:#3db9dc;border-color: #3db9dc;color:#fff;  }
+    .btn-info {
+        background-color: #3db9dc;
+        border-color: #3db9dc;
+        color: #fff;
+    }
 
-    .btn-info:hover { background-color:#25a7cb; }
+    .btn-info:hover {
+        background-color: #25a7cb;
+    }
 
-    .round-off {border-radius:0px;}
+    .round-off {
+        border-radius: 0px;
+    }
 
-    td a.round-off.btn { border:none !important;}
+    td a.round-off.btn {
+        border: none !important;
+    }
 
-    .round-off .r-plus { position:relative; top:1px;left: 1px;}
-
+    .round-off .r-plus {
+        position: relative;
+        top: 1px;
+        left: 1px;
+    }
 </style>
 
 <?php
@@ -173,19 +208,20 @@ if (!empty($customers)) {
 
             <h4>Update Sales Invoice</h4>
 
-        </div><table class="static1" style="display: none;">
+        </div>
+        <table class="static1" style="display: none;">
 
             <tr>
 
                 <td colspan="4" style="width:70px; text-align:right;"></td>
 
-                <td colspan="5" style="text-align:right;font-weight:bold;"><input type="text" tabindex="-1" name="item_name[]" class="tax_label text_right"  style="width:100%;" ></td>
+                <td colspan="5" style="text-align:right;font-weight:bold;"><input type="text" tabindex="-1" name="item_name[]" class="tax_label text_right" style="width:100%;"></td>
 
                 <td>
 
-                    <input type="text" name="amount[]" class="totaltax text_right" tabindex="-1"  style="width:70px;" >
+                    <input type="text" name="amount[]" class="totaltax text_right" tabindex="-1" style="width:70px;">
 
-                    <input type="hidden" name="type[]" class="text_right"  value="invoice" style="width:70px;" >
+                    <input type="hidden" name="type[]" class="text_right" value="invoice" style="width:70px;">
 
                 </td>
 
@@ -203,13 +239,13 @@ if (!empty($customers)) {
 
                 <td>
 
-                    <input type="text" tabindex="8" name="model_no[]" id="model_no" class='form-align auto_customer tabwid model_no'  style="width:100%;font-weight: 600;"/>
+                    <input type="text" tabindex="8" name="model_no[]" id="model_no" class='form-align auto_customer tabwid model_no' style="width:100%;font-weight: 600;" />
 
                     <span class="error_msg"></span>
 
-                    <input type="hidden"  name="product_id[]" id="product_id" class=' tabwid form-align product_id' />
+                    <input type="hidden" name="product_id[]" id="product_id" class=' tabwid form-align product_id' />
 
-                    <input type="hidden"  name="product_type[]" id="type" class=' tabwid form-align type' />
+                    <input type="hidden" name="product_type[]" id="type" class=' tabwid form-align type' />
 
                     <div id="suggesstion-box1" class="auto-asset-search suggesstion-box1"></div>
 
@@ -225,11 +261,11 @@ if (!empty($customers)) {
                         if (isset($category) && !empty($category)) {
 
                             foreach ($category as $val) {
-                                ?>
+                        ?>
 
                                 <option value='<?php echo $val['cat_id'] ?>'><?php echo $val['categoryName'] ?></option>
 
-                                <?php
+                        <?php
                             }
                         }
                         ?>
@@ -242,25 +278,25 @@ if (!empty($customers)) {
 
                 <td class="action-btn-align">
 
-                    <input type="hidden"  class='form-align  tabwid model_no_extra'  style="width:100%"/>
+                    <input type="hidden" class='form-align  tabwid model_no_extra' style="width:100%" />
 
-                    <input type="text"  tabindex="-1"   name='unit[]' style="width:70px;" class="unit" />
+                    <input type="text" tabindex="-1" name='unit[]' style="width:70px;" class="unit" />
 
                 </td>
 
-                <td> <select  name='brand[]' tabindex="-1" class='brand_id'  style="display:none;">
+                <td> <select name='brand[]' tabindex="-1" class='brand_id' style="display:none;">
 
-                        <option >Select</option>
+                        <option>Select</option>
 
                         <?php
                         if (isset($brand) && !empty($brand)) {
 
                             foreach ($brand as $val) {
-                                ?>
+                        ?>
 
                                 <option value='<?php echo $val['id'] ?>'><?php echo $val['brands'] ?></option>
 
-                                <?php
+                        <?php
                             }
                         }
                         ?>
@@ -271,9 +307,10 @@ if (!empty($customers)) {
 
                     <div class="col-xs-8">
 
-                        <input type="text"  tabindex="8"  name='quantity[]' style="width:70px;" class="qty " id="qty"/></div>
+                        <input type="text" tabindex="8" name='quantity[]' style="width:70px;" class="qty " id="qty" />
+                    </div>
 
-                    <div class="col-xs-4"> <span class="label label-success stock_qty" > 0 </span></div>
+                    <!-- <div class="col-xs-4"> <span class="label label-success stock_qty" > 0 </span></div> -->
 
                     <span class="error_msg"></span>
 
@@ -281,7 +318,7 @@ if (!empty($customers)) {
 
                 <td>
 
-                    <input type="text" tabindex="8" name='per_cost[]' style="width:70px;" class="selling_price percost " id="price"/>
+                    <input type="text" tabindex="8" name='per_cost[]' style="width:70px;" class="selling_price percost " id="price" />
 
                     <span class="error_msg"></span>
 
@@ -289,11 +326,11 @@ if (!empty($customers)) {
 
                 <td class="action-btn-align">
 
-                    <input type="text" tabindex="-1"  style="width:70px;" class="gross" />
+                    <input type="text" tabindex="-1" style="width:70px;" class="gross" />
 
                 </td>
 
-<!--                <td>
+                <!--                <td>
 
                     <input type="text"  name='discount[]' style="width:70px;" class="discount" />
 
@@ -301,19 +338,19 @@ if (!empty($customers)) {
 
                 <td class="action-btn-align cgst_td">
 
-                    <input type="text"  tabindex="-1"    name='tax[]' style="width:70px;" class="pertax" />
+                    <input type="text" tabindex="-1" name='tax[]' style="width:70px;" class="pertax" />
 
                 </td>
 
                 <td class="action-btn-align sgst_td">
 
-                    <input type="text"   tabindex="-1"   name='gst[]' style="width:70px;" class="gst" />
+                    <input type="text" tabindex="-1" name='gst[]' style="width:70px;" class="gst" />
 
                 </td>
 
                 <td class="action-btn-align igst_td">
 
-                    <input type="text"   tabindex="-1"   name='igst[]' style="width:70px;" class="igst wid50"  />
+                    <input type="text" tabindex="-1" name='igst[]' style="width:70px;" class="igst wid50" />
 
                 </td>
 
@@ -333,11 +370,11 @@ if (!empty($customers)) {
         if (isset($quotation) && !empty($quotation)) {
 
             foreach ($quotation as $val) {
-                ?>
+        ?>
 
-                <form  action="<?php echo $this->config->item('base_url'); ?>sales/update_invoice" method="post" class=" panel-body">
+                <form action="<?php echo $this->config->item('base_url'); ?>sales/update_invoice" method="post" class=" panel-body">
 
-                    <input type="hidden" name="quotation[q_id]" value="<?php echo trim($val['q_id']); ?>"  />
+                    <input type="hidden" name="quotation[q_id]" value="<?php echo trim($val['q_id']); ?>" />
 
                     <input type="hidden" id="firm" name="quotation[firm_id]" value="<?php echo $val['firm_id']; ?>" />
 
@@ -351,7 +388,7 @@ if (!empty($customers)) {
 
                         <tr>
 
-                            <td colspan="2"><span  class="tdhead">TO,</span>
+                            <td colspan="2"><span class="tdhead">TO,</span>
 
                                 <div><b><?php echo $val['store_name']; ?></b></div>
 
@@ -363,7 +400,7 @@ if (!empty($customers)) {
 
                             </td>
 
-                            <td class="action-btn-align"> <img src="<?= $theme_path; ?>/images/logo.png" alt="Chain Logo" width="125px" ></td>
+                            <td class="action-btn-align"> <img src="<?= $theme_path; ?>/images/logo.png" alt="Chain Logo" width="125px"></td>
 
                             <td colspan="2"></td>
 
@@ -371,9 +408,9 @@ if (!empty($customers)) {
 
                         <tr>
 
-                            <td><span  class="tdhead">Invoice NO :</span> </td>
+                            <td><span class="tdhead">Invoice NO :</span> </td>
 
-                            <td><span  class="tdhead"> <?php echo $val['inv_id']; ?> </span></td>
+                            <td><span class="tdhead"> <?php echo $val['inv_id']; ?> </span></td>
 
                             <td><span class="tdhead">Section :</span></td>
 
@@ -385,11 +422,11 @@ if (!empty($customers)) {
 
                             <tr>
 
-                                <td class="first_td1"><span  class="tdhead">Customer:</span></td>
+                                <td class="first_td1"><span class="tdhead">Customer:</span></td>
 
-                                <td><span  class="tdhead"> <?php echo $val['store_name']; ?> </span></td>
+                                <td><span class="tdhead"> <?php echo $val['store_name']; ?> </span></td>
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <!--                                <td>
+                                <!--                                <td>
 
 
 
@@ -403,14 +440,14 @@ if (!empty($customers)) {
 
 
                                     foreach ($customer as $cus) {
-                                        ?>
+                                ?>
 
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         <option value="<?php echo $cus['id']; ?>"> <?php echo $cus['store_name']; ?> </option>
 
                                         <?php
                                     }
                                 }
-                                ?>
+                                        ?>
 
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             </select>
 
@@ -426,17 +463,17 @@ if (!empty($customers)) {
 
                         <tr>
 
-                            <td class="first_td1"><span  class="tdhead">Bill Type :</span></td>
+                            <td class="first_td1"><span class="tdhead">Bill Type :</span></td>
 
-                            <td><input type="radio" tabindex="1" class="receiver" value="cash"  name="quotation[bill_type]" <?php echo ($val['customer_type'] == '1' || $val['customer_type'] == '3') ? 'checked' : '' ?>/>Cash Sale
+                            <td><input type="radio" tabindex="1" class="receiver" value="cash" name="quotation[bill_type]" <?php echo ($val['customer_type'] == '1' || $val['customer_type'] == '3') ? 'checked' : '' ?> />Cash Sale
 
-                                <input type="radio" tabindex="1" class="receiver" value="credit" name="quotation[bill_type]" <?php echo ($val['customer_type'] == '2' || $val['customer_type'] == '4') ? 'checked' : '' ?>/>Credit Sale<br>
+                                <input type="radio" tabindex="1" class="receiver" value="credit" name="quotation[bill_type]" <?php echo ($val['customer_type'] == '2' || $val['customer_type'] == '4') ? 'checked' : '' ?> />Credit Sale<br>
 
                                 <span id="type1" class="error_msg"></span>
 
                             </td>
 
-                            <td class="first_td1"><span  class="tdhead">Reference NO :</span>  </td>
+                            <td class="first_td1"><span class="tdhead">Reference NO :</span> </td>
 
                             <td><?php echo $val['q_no']; ?></td>
 
@@ -446,7 +483,7 @@ if (!empty($customers)) {
 
                             <td>
 
-                                <span  class="tdhead"> Customer Po :</span>
+                                <span class="tdhead"> Customer Po :</span>
 
 
 
@@ -454,13 +491,13 @@ if (!empty($customers)) {
 
                             <td>
 
-                                <input type="text" tabindex="2" name="quotation[customer_po]" class="form-control required" style="width:200px; display: inline" id="customer_po" value="<?php echo $val['customer_po']; ?> "/>
+                                <input type="text" tabindex="2" name="quotation[customer_po]" class="form-control required" style="width:200px; display: inline" id="customer_po" value="<?php echo $val['customer_po']; ?> " />
 
                                 <span class="error_msg"></span>
 
                             </td>
 
-                            <td class="first_td"><span  class="tdhead">GSTIN NO :</span></td>
+                            <td class="first_td"><span class="tdhead">GSTIN NO :</span></td>
 
                             <td><?php echo $val['tin']; ?></td>
 
@@ -470,7 +507,7 @@ if (!empty($customers)) {
 
                         <tr>
 
-                            <td  class="first_td1"><span  class="tdhead">Delivery Status :</span>
+                            <td class="first_td1"><span class="tdhead">Delivery Status :</span>
 
 
 
@@ -480,7 +517,7 @@ if (!empty($customers)) {
 
                                 <?php $delivery_status = array('delivered', 'partially_delivered', 'pending'); ?>
 
-                                <select tabindex="3" name="quotation[delivery_status]"  class="form-control required" id="delivery_status" style="width:170px;"  >
+                                <select tabindex="3" name="quotation[delivery_status]" class="form-control required" id="delivery_status" style="width:170px;">
 
                                     <option value="">Select</option>
 
@@ -498,11 +535,11 @@ if (!empty($customers)) {
 
                                                 $selected = '';
                                             }
-                                            ?>
+                                    ?>
 
                                             <option <?php echo $selected; ?> value="<?php echo $status; ?>"> <?php echo ucwords(str_replace("_", " ", $status)); ?> </option>
 
-                                            <?php
+                                    <?php
                                         }
                                     }
                                     ?>
@@ -515,19 +552,19 @@ if (!empty($customers)) {
 
                             <td>
 
-                                <span  class="tdhead"> Date :</span>
+                                <span class="tdhead"> Date :</span>
 
                             </td>
 
-                            <td><input type="text" tabindex="5" class="form-control required datepicker" name="quotation[created_date]"  style="width:200px; display: inline" value="<?php echo $val['created_date']; ?> "/>
+                            <td><input type="text" tabindex="5" class="form-control required datepicker" name="quotation[created_date]" style="width:200px; display: inline" value="<?php echo $val['created_date']; ?> " />
 
                                 <span class="error_msg"></span>
 
                             </td>
 
-                        <input type="hidden"  name="customer[id]" id="customer_id" class='id_customer form-align tabwid' value="<?php echo $val['customer']; ?>" />
+                            <input type="hidden" name="customer[id]" id="customer_id" class='id_customer form-align tabwid' value="<?php echo $val['customer']; ?>" />
 
-                        <input type="hidden"  name="pc_id" id="pc_id" class='id_customer form-align tabwid' value="<?php echo $val['id']; ?>" />
+                            <input type="hidden" name="pc_id" id="pc_id" class='id_customer form-align tabwid' value="<?php echo $val['id']; ?>" />
 
 
 
@@ -535,13 +572,13 @@ if (!empty($customers)) {
 
                         <tr>
 
-                            <td class="first_td"><span  class="tdhead">Sales Man :</span></td>
+                            <td class="first_td"><span class="tdhead">Sales Man :</span></td>
 
                             <td>
 
-                                <select tabindex="4" name='quotation[sales_man]' class="form-control class_req"  style="width:50%">
+                                <select tabindex="4" name='quotation[sales_man]' class="form-control class_req" style="width:50%">
 
-                                    <option >Select</option>
+                                    <option>Select</option>
 
                                     <?php
                                     if (isset($sales_man) && !empty($sales_man)) {
@@ -555,11 +592,11 @@ if (!empty($customers)) {
 
                                                 $selected = '';
                                             }
-                                            ?>
+                                    ?>
 
                                             <option value='<?php echo $val['id'] ?>'><?php echo $val['sales_man_name'] ?></option>
 
-                                            <?php
+                                    <?php
                                         }
                                     }
                                     ?>
@@ -586,13 +623,13 @@ if (!empty($customers)) {
 
                                 <td width="3%" class="first_td1">S.No</td>
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       <!--<td width="15%" class="first_td1">Category</td>-->
+                                <!--<td width="15%" class="first_td1">Category</td>-->
 
                                 <td width="30%" class="first_td1">Product Name</td>
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <!--<td width="15%" class="first_td1">Model No</td>-->
+                                <!--<td width="15%" class="first_td1">Model No</td>-->
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <!--<td width="10%" class="first_td1">Brand</td>-->
+                                <!--<td width="10%" class="first_td1">Brand</td>-->
 
                                 <td width="5%" class="first_td1 action-btn-align">Unit</td>
 
@@ -602,7 +639,7 @@ if (!empty($customers)) {
 
                                 <td width="4%" class="first_td1 action-btn-align">Total</td>
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <!--<td width="7%" class="first_td1 action-btn-align proimg-wid">Discount %</td>-->
+                                <!--<td width="7%" class="first_td1 action-btn-align proimg-wid">Discount %</td>-->
 
                                 <td width="5%" class="first_td1 action-btn-align proimg-wid">CGST %</td>
 
@@ -612,17 +649,17 @@ if (!empty($customers)) {
                                 if ($gst_type != '') {
 
                                     if ($gst_type == 31) {
-                                        ?>
+                                ?>
 
-                                        <td  width="5%" class="first_td1 action-btn-align proimg-wid" >SGST%</td>
+                                        <td width="5%" class="first_td1 action-btn-align proimg-wid">SGST%</td>
 
                                     <?php } else { ?>
 
-                                        <td  width="5%" class="first_td1 action-btn-align proimg-wid" >IGST%</td>
+                                        <td width="5%" class="first_td1 action-btn-align proimg-wid">IGST%</td>
 
 
 
-                                        <?php
+                                <?php
                                     }
                                 }
                                 ?>
@@ -656,7 +693,7 @@ if (!empty($customers)) {
 
                                 foreach ($quotation_details as $vals) {
 
-                                    $cgst1 = ($vals['tax'] / 100 ) * ($vals['per_cost'] * $vals['quantity']);
+                                    $cgst1 = ($vals['tax'] / 100) * ($vals['per_cost'] * $vals['quantity']);
 
                                     $gst_type = $quotation[0]['state_id'];
 
@@ -666,10 +703,10 @@ if (!empty($customers)) {
 
 
 
-                                            $sgst1 = ($vals['gst'] / 100 ) * ($vals['per_cost'] * $vals['quantity']);
+                                            $sgst1 = ($vals['gst'] / 100) * ($vals['per_cost'] * $vals['quantity']);
                                         } else {
 
-                                            $sgst1 = ($vals['igst'] / 100 ) * ($vals['per_cost'] * $vals['quantity']);
+                                            $sgst1 = ($vals['igst'] / 100) * ($vals['per_cost'] * $vals['quantity']);
                                         }
                                     }
 
@@ -696,15 +733,15 @@ if (!empty($customers)) {
                                             $round_off_minus = 0;
                                         }
                                     }
-//                                    if ($quotation[0]['delivery_status'] == 'delivered') {
-//                                        $quantity = $vals['customer_exists_qty'];
-//                                    } else {
-//                                        $quantity = $vals['quantity'];
-//                                    }
-//                                    if ($val['advance'] != '') {
-//                                        $net_total = $val['net_total'] - $val['advance'];
-//                                    }
-                                    ?>
+                                    //                                    if ($quotation[0]['delivery_status'] == 'delivered') {
+                                    //                                        $quantity = $vals['customer_exists_qty'];
+                                    //                                    } else {
+                                    //                                        $quantity = $vals['quantity'];
+                                    //                                    }
+                                    //                                    if ($val['advance'] != '') {
+                                    //                                        $net_total = $val['net_total'] - $val['advance'];
+                                    //                                    }
+                            ?>
 
                                     <tr class="tr_<?php echo $vals['product_id']; ?>">
 
@@ -716,17 +753,17 @@ if (!empty($customers)) {
 
                                         <td>
 
-                                            <input type="text"  name="model_no[]" tabindex="6" id="model_no" class='form-align auto_customer tabwid model_no required' value="<?php echo $vals['product_name']; ?>" style="width:100%;font-weight: 600;"/>
+                                            <input type="text" name="model_no[]" tabindex="6" id="model_no" class='form-align auto_customer tabwid model_no required' value="<?php echo $vals['product_name']; ?>" style="width:100%;font-weight: 600;" />
 
                                             <span class="error_msg"></span>
 
-                                            <input type="hidden"  name="product_id[]" id="product_id" class='product_id tabwid form-align' value="<?php echo $vals['product_id']; ?>" />
+                                            <input type="hidden" name="product_id[]" id="product_id" class='product_id tabwid form-align' value="<?php echo $vals['product_id']; ?>" />
 
-                                            <input type="hidden"  name="product_type[]" id="type" class=' tabwid form-align type'value="<?php echo $vals['type']; ?>"  />
+                                            <input type="hidden" name="product_type[]" id="type" class=' tabwid form-align type' value="<?php echo $vals['type']; ?>" />
 
                                             <div id="suggesstion-box1" class="auto-asset-search suggesstion-box1"></div>
 
-                                            <select id="brand_id" tabindex="-1" name='brand[]' class='brand_id' id="brand_id"  style="display:none;">
+                                            <select id="brand_id" tabindex="-1" name='brand[]' class='brand_id' id="brand_id" style="display:none;">
 
                                                 <option value='<?php echo $vals['id'] ?>'> <?php echo $vals['brands'] ?> </option>
 
@@ -734,11 +771,11 @@ if (!empty($customers)) {
                                                 if (isset($brand) && !empty($brand)) {
 
                                                     foreach ($brand as $valss) {
-                                                        ?>
+                                                ?>
 
                                                         <option value='<?php echo $valss['id'] ?>'> <?php echo $valss['brands'] ?></option>
 
-                                                        <?php
+                                                <?php
                                                     }
                                                 }
                                                 ?>
@@ -747,7 +784,7 @@ if (!empty($customers)) {
 
                                         </td>
 
-                                        <td style="display:none;" >
+                                        <td style="display:none;">
 
                                             <select id='cat_id' tabindex="-1" style="display:none;" class='static_style' name='categoty[]'>
 
@@ -759,11 +796,11 @@ if (!empty($customers)) {
                                                 if (isset($category) && !empty($category)) {
 
                                                     foreach ($category as $va) {
-                                                        ?>
+                                                ?>
 
                                                         <option value='<?php echo $va['cat_id'] ?>'><?php echo $va['categoryName'] ?></option>
 
-                                                        <?php
+                                                <?php
                                                     }
                                                 }
                                                 ?>
@@ -776,9 +813,9 @@ if (!empty($customers)) {
 
                                         <td class="action-btn-align">
 
-                                            <input type="hidden" class='form-align tabwid model_no_extra' value="<?php echo $vals['model_no']; ?>" style="width:100%"/>
+                                            <input type="hidden" class='form-align tabwid model_no_extra' value="<?php echo $vals['model_no']; ?>" style="width:100%" />
 
-                                            <input type="text"   tabindex="-1"  name='unit[]' style="width:70px;" value="<?php echo $vals['unit']; ?>" class="unit" />
+                                            <input type="text" tabindex="-1" name='unit[]' style="width:70px;" value="<?php echo $vals['unit']; ?>" class="unit" />
 
                                         </td>
 
@@ -786,12 +823,12 @@ if (!empty($customers)) {
 
                                             <td>
 
-                                                <input type="hidden"     name='available_quantity[]' style="width:70px;" class="code form-control colournamedup tabwid form-align " value="<?php echo $vals['stock'][0]['quantity'] ?>" readonly="readonly"/>
+                                                <input type="hidden" name='available_quantity[]' style="width:70px;" class="code form-control colournamedup tabwid form-align " value="<?php echo $vals['stock'][0]['quantity'] ?>" readonly="readonly" />
 
 
-                                                <div class="col-xs-8">   <input type="text"   tabindex="6"  name='quantity[]' style="width:70px;margin-top: 2px;" class="qty required" value="<?php echo $vals['quantity'] ?>"/></div>
+                                                <div class="col-xs-8"> <input type="text" tabindex="6" name='quantity[]' style="width:70px;margin-top: 2px;" class="qty required" value="<?php echo $vals['quantity'] ?>" /></div>
 
-                                                <div class="col-xs-4"> <span class="label label-success stock_qty" > <?php echo $vals['stock'][0]['quantity'] ?> </span></div>
+                                                <!-- <div class="col-xs-4"> <span class="label label-success stock_qty" > <?php echo $vals['stock'][0]['quantity'] ?> </span></div> -->
 
 
 
@@ -801,11 +838,12 @@ if (!empty($customers)) {
 
                                         <?php } else { ?>
 
-                                            <td><div class="avl_qty"></div>
+                                            <td>
+                                                <div class="avl_qty"></div>
 
-                                                <div class="col-xs-8">    <input type="text"   tabindex="6"  name='quantity[]' style="width:70px;" class="qty required" value="<?php echo $vals['quantity'] ?>"/></div>
+                                                <div class="col-xs-8"> <input type="text" tabindex="6" name='quantity[]' style="width:70px;" class="qty required" value="<?php echo $vals['quantity'] ?>" /></div>
 
-                                                <div class="col-xs-4"> <span class="label label-success stock_qty" > 0 </span></div>
+                                                <!-- <div class="col-xs-4"> <span class="label label-success stock_qty" > 0 </span></div> -->
 
                                                 <span class="error_msg"></span>
 
@@ -815,7 +853,7 @@ if (!empty($customers)) {
 
                                         <td>
 
-                                            <input type="text" tabindex="6" name='per_cost[]' style="width:70px;" class="selling_price percost required"value="<?php echo $vals['per_cost'] ?>" />
+                                            <input type="text" tabindex="6" name='per_cost[]' style="width:70px;" class="selling_price percost required" value="<?php echo $vals['per_cost'] ?>" />
 
                                             <span class="error_msg"></span>
 
@@ -827,7 +865,7 @@ if (!empty($customers)) {
 
                                         </td>
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <!--                                        <td>
+                                        <!--                                        <td>
 
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             <input type="text"  name='discount[]' style="width:70px;" class="discount" value="<?php echo $vals['discount']; ?>" />
 
@@ -835,7 +873,7 @@ if (!empty($customers)) {
 
                                         <td>
 
-                                            <input maxlength="8" type="text" tabindex="-1"  name='tax[]' style="width:70px;" class="pertax" value="<?php echo $vals['tax']; ?>" />
+                                            <input maxlength="8" type="text" tabindex="-1" name='tax[]' style="width:70px;" class="pertax" value="<?php echo $vals['tax']; ?>" />
 
                                         </td>
 
@@ -845,7 +883,7 @@ if (!empty($customers)) {
                                         if ($gst_type != '') {
 
                                             if ($gst_type == 31) {
-                                                ?>
+                                        ?>
 
                                                 <td>
 
@@ -861,7 +899,7 @@ if (!empty($customers)) {
 
                                                 </td>
 
-                                                <?php
+                                        <?php
                                             }
                                         }
                                         ?>
@@ -870,140 +908,140 @@ if (!empty($customers)) {
 
                                         <td>
 
-                                            <input type="text" tabindex="-1" style="width:70px;" name='sub_total[]' readonly="readonly" class="subtotal text_right" value="<?php echo $vals['sub_total'] ?>"/>
+                                            <input type="text" tabindex="-1" style="width:70px;" name='sub_total[]' readonly="readonly" class="subtotal text_right" value="<?php echo $vals['sub_total'] ?>" />
 
                                         </td>
 
-                                <input type="hidden" value = "<?php echo $vals['del_id']; ?>" class="del_id"/>
+                                        <input type="hidden" value="<?php echo $vals['del_id']; ?>" class="del_id" />
 
-                                <td width="2%" class="action-btn-align"><a id='delete_label' value = "<?php echo $vals['del_id']; ?>" class="del btn btn-default btn-xs"><span class="glyphicon glyphicon-trash"></span></a></td>
+                                        <td width="2%" class="action-btn-align"><a id='delete_label' value="<?php echo $vals['del_id']; ?>" class="del btn btn-default btn-xs"><span class="glyphicon glyphicon-trash"></span></a></td>
 
-                                </tr>
+                                    </tr>
 
-                                <?php
-                                $i++;
+                            <?php
+                                    $i++;
+                                }
                             }
-                        }
-                        ?>
+                            ?>
 
                         </tbody>
 
                         <tbody>
 
-                        <td colspan="3" style="width:70px; text-align:right !important;">Total</td>
+                            <td colspan="3" style="width:70px; text-align:right !important;">Total</td>
 
-                        <td><input type="text"  tabindex="-1" name="quotation[total_qty]" readonly="readonly" value="<?php echo $val['total_qty']; ?>" class="total_qty" style="width:70px; margin-left:10px;" id="total" /></td>
+                            <td><input type="text" tabindex="-1" name="quotation[total_qty]" readonly="readonly" value="<?php echo $val['total_qty']; ?>" class="total_qty" style="width:70px; margin-left:10px;" id="total" /></td>
 
-                        <td colspan="4" style="text-align:right;">Sub Total</td>
+                            <td colspan="4" style="text-align:right;">Sub Total</td>
 
-                        <td><input type="text" name="quotation[subtotal_qty]" tabindex="-1" readonly="readonly" value="<?php echo $val['subtotal_qty']; ?>"  class="final_sub_total text_right" style="width:70px;" /><input type="hidden" class="temp_sub_total" value="" /></td>
+                            <td><input type="text" name="quotation[subtotal_qty]" tabindex="-1" readonly="readonly" value="<?php echo $val['subtotal_qty']; ?>" class="final_sub_total text_right" style="width:70px;" /><input type="hidden" class="temp_sub_total" value="" /></td>
 
 
 
-                        <td></td>
+                            <td></td>
 
                         </tbody>
 
                         <tbody>
 
-                        <td colspan="8" style="text-align:right !important;">Advance Amount</td>
+                            <td colspan="8" style="text-align:right !important;">Advance Amount</td>
 
-                        <td><input type="text" name="advance" tabindex="-1" readonly="readonly" value="<?php echo (!empty($val['advance'])) ? $val['advance'] : 0; ?>"  class="advance text_right" style="width:70px;" /></td>
+                            <td><input type="text" name="advance" tabindex="-1" readonly="readonly" value="<?php echo (!empty($val['advance'])) ? $val['advance'] : 0; ?>" class="advance text_right" style="width:70px;" /></td>
 
-                        <td></td>
+                            <td></td>
 
                         </tbody>
 
                         <tbody class="addtional">
 
-                        <td colspan="8" style="text-align:right !important;">Round Off ( - )<br>
+                            <td colspan="8" style="text-align:right !important;">Round Off ( - )<br>
 
-                            <!--                            <div class="switch switch-blue">
+                                <!--                            <div class="switch switch-blue">
 
                                                             <input type="radio" class="switch-input" name="view" value="week" id="week" checked>
 
                                                             <label for="week" class="switch-label switch-label-<?php
-                            if ($round_off_plus > 0) {
+                                                                                                                if ($round_off_plus > 0) {
 
-                                echo "off";
-                            } else {
+                                                                                                                    echo "off";
+                                                                                                                } else {
 
-                                echo "on";
-                            }
-                            ?> r-plus">+</label>
+                                                                                                                    echo "on";
+                                                                                                                }
+                                                                                                                ?> r-plus">+</label>
 
                                                             <input type="radio" class="switch-input" name="view" value="month" id="month">
 
                                                             <label for="month" class="switch-label switch-label-<?php
-                            if ($round_off_minus > 0) {
+                                                                                                                if ($round_off_minus > 0) {
 
-                                echo "off";
-                            } else {
+                                                                                                                    echo "off";
+                                                                                                                } else {
 
-                                echo "on";
-                            }
-                            ?> r-minus">-</label>
+                                                                                                                    echo "on";
+                                                                                                                }
+                                                                                                                ?> r-minus">-</label>
 
                                                             <span class="switch-selection"></span>
 
                                                         </div> -->
 
-                        </td>
+                            </td>
 
-                        <td><input type="text" name="quotation[round_off]" tabindex="-1" value="<?php echo $val['round_off']; ?>"  class="round_off text_right" style="width:70px;" readonly />
+                            <td><input type="text" name="quotation[round_off]" tabindex="-1" value="<?php echo $val['round_off']; ?>" class="round_off text_right" style="width:70px;" readonly />
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <!--                            <input type="hidden" name="temp_round_off_plus" class="temp_round_off_plus"  value="<?php echo $round_off_plus; ?>"  />
+                                <!--                            <input type="hidden" name="temp_round_off_plus" class="temp_round_off_plus"  value="<?php echo $round_off_plus; ?>"  />
 
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     <input type="hidden" name="temp_round_off_minus" class="temp_round_off_minus"  value="<?php echo $round_off_minus; ?>"  />-->
 
-                        </td>
+                            </td>
 
-                        <td></td>
+                            <td></td>
 
                         </tbody>
 
                         <tbody class="additional">
 
-                        <td colspan="3" style="text-align:right !important;">CGST:</td>
+                            <td colspan="3" style="text-align:right !important;">CGST:</td>
 
-                        <td><input tabindex="-1" type="text"  value="<?php echo $val['cgst']; ?>"  readonly class="add_cgst text_right" style="width:70px;" /></td>
+                            <td><input tabindex="-1" type="text" value="<?php echo $val['cgst']; ?>" readonly class="add_cgst text_right" style="width:70px;" /></td>
 
-                        <?php
-                        $gst_type = $quotation[0]['state_id'];
+                            <?php
+                            $gst_type = $quotation[0]['state_id'];
 
-                        if ($gst_type != '') {
+                            if ($gst_type != '') {
 
-                            if ($gst_type == 31) {
-                                ?>
+                                if ($gst_type == 31) {
+                            ?>
 
-                                <td colspan="4" style="text-align:right;">SGST:</td>
+                                    <td colspan="4" style="text-align:right;">SGST:</td>
 
-                            <?php } else { ?>
+                                <?php } else { ?>
 
-                                <td colspan="4" style="text-align:right;">IGST:</td>
+                                    <td colspan="4" style="text-align:right;">IGST:</td>
 
-                                <?php
+                            <?php
+                                }
                             }
-                        }
-                        ?>
+                            ?>
 
-                        <td><input type="text" tabindex="-1"  value="<?php echo $val['sgst']; ?>"  readonly class="add_sgst text_right" style="width:70px;" /></td>
+                            <td><input type="text" tabindex="-1" value="<?php echo $val['sgst']; ?>" readonly class="add_sgst text_right" style="width:70px;" /></td>
 
-                        <td></td>
+                            <td></td>
 
                         </tbody>
 
                         <tbody class="addtional">
 
-                        <td colspan="3" style="text-align:right !important;">Transport Charge</td>
+                            <td colspan="3" style="text-align:right !important;">Transport Charge</td>
 
-                        <td><input type="text" tabindex="-1" name="quotation[transport]"  value="<?php echo $quotation[0]['transport']; ?>"  class="transport text_right" style="width:70px;" /></td>
+                            <td><input type="text" tabindex="-1" name="quotation[transport]" value="<?php echo $quotation[0]['transport']; ?>" class="transport text_right" style="width:70px;" /></td>
 
-                        <td colspan="4" style="text-align:right;">Labour Charge</td>
+                            <td colspan="4" style="text-align:right;">Labour Charge</td>
 
-                        <td><input type="text" tabindex="-1" name="quotation[labour]"  value="<?php echo $quotation[0]['labour']; ?>"  class="labour text_right" style="width:70px;" /></td>
+                            <td><input type="text" tabindex="-1" name="quotation[labour]" value="<?php echo $quotation[0]['labour']; ?>" class="labour text_right" style="width:70px;" /></td>
 
-                        <td></td>
+                            <td></td>
 
                         </tbody>
 
@@ -1013,9 +1051,9 @@ if (!empty($customers)) {
 
                                 <td colspan="4" style="width:70px; text-align:right;"></td>
 
-                                <td colspan="4"style="text-align:right;font-weight:bold;">Net Total</td>
+                                <td colspan="4" style="text-align:right;font-weight:bold;">Net Total</td>
 
-                                <td><input type="text" tabindex="-1" name="quotation[net_total]"  readonly="readonly"  class="final_amt text_right" style="width:70px;" value="" /></td>
+                                <td><input type="text" tabindex="-1" name="quotation[net_total]" readonly="readonly" class="final_amt text_right" style="width:70px;" value="" /></td>
 
                                 <td></td>
 
@@ -1027,7 +1065,7 @@ if (!empty($customers)) {
 
                                     <span>Remarks&nbsp;</span>
 
-                                    <input name="quotation[remarks]" tabindex="-1"  type="text" class="form-control" value="<?php echo $val['remarks']; ?>"  style="width:100%; display: inline"/>
+                                    <input name="quotation[remarks]" tabindex="-1" type="text" class="form-control" value="<?php echo $val['remarks']; ?>" style="width:100%; display: inline" />
 
                                 </td>
 
@@ -1037,23 +1075,23 @@ if (!empty($customers)) {
 
                     </table>
 
-                    <input type="hidden"  name="gst_type" id="gst_type" class="gst_type" value="<?php echo $quotation[0]['state_id']; ?>"/>
+                    <input type="hidden" name="gst_type" id="gst_type" class="gst_type" value="<?php echo $quotation[0]['state_id']; ?>" />
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <!--<input type="hidden"  name="quotation[customer]" id="customer_id" class='customer_id' value="<?php echo $val['customer']; ?>"/>-->
+                    <!--<input type="hidden"  name="quotation[customer]" id="customer_id" class='customer_id' value="<?php echo $val['customer']; ?>"/>-->
 
-                    <input type="hidden"  name="quotation[credit_days]" id="credit_days" class='credit_days' value="<?php echo $val['credit_days']; ?>"/>
+                    <input type="hidden" name="quotation[credit_days]" id="credit_days" class='credit_days' value="<?php echo $val['credit_days']; ?>" />
 
-                    <input type="hidden"  name="quotation[credit_limit]" id="c_id" class='credit_limit' value="<?php echo $val['credit_limit']; ?>"/>
+                    <input type="hidden" name="quotation[credit_limit]" id="c_id" class='credit_limit' value="<?php echo $val['credit_limit']; ?>" />
 
-                    <input type="hidden"  name="quotation[temp_credit_limit]" id="temp_credit_limit" class='temp_credit_limit' value="<?php echo $val['temp_credit_limit']; ?>"/>
+                    <input type="hidden" name="quotation[temp_credit_limit]" id="temp_credit_limit" class='temp_credit_limit' value="<?php echo $val['temp_credit_limit']; ?>" />
 
-                    <input type="hidden"  name="quotation[approved_by]" id="approved_by" class='approved_by' value="<?php echo $val['approved_by']; ?>"/>
+                    <input type="hidden" name="quotation[approved_by]" id="approved_by" class='approved_by' value="<?php echo $val['approved_by']; ?>" />
 
 
 
                     <div class="action-btn-align">
 
-                        <button class="btn btn-info " tabindex="9" id="save" > Update </button>
+                        <button class="btn btn-info " tabindex="9" id="save"> Update </button>
 
                         <a href="<?php echo $this->config->item('base_url') . 'sales/invoice_list/' ?>" class="btn btn-defaultback"><span class="glyphicon"></span> Back </a>
 
@@ -1063,7 +1101,7 @@ if (!empty($customers)) {
 
                 <br />
 
-                <?php
+        <?php
             }
         }
         ?>
@@ -1075,16 +1113,15 @@ if (!empty($customers)) {
 
 
 <script type="text/javascript">
-
     var formHasChanged = false;
 
     var submitted = false;
 
-    $('#save').live('click', function () {
+    $('#save').live('click', function() {
 
         m = 0;
 
-        $('.required').each(function () {
+        $('.required').each(function() {
 
 
 
@@ -1108,7 +1145,7 @@ if (!empty($customers)) {
 
         });
 
-        $('.required').each(function () {
+        $('.required').each(function() {
 
             this_val = $.trim($(this).val());
 
@@ -1149,17 +1186,16 @@ if (!empty($customers)) {
             $("#type1").html("");
 
         }
-        $('.qty').each(function () {
-            var qty = $(this).closest('tr').find('.stock_qty').text();
-            this_val = $.trim($(this).val());
-            if (Number(this_val) > Number(qty))
-            {
-                $(this).closest('td').find('.error_msg').text('Invalid quantity').css('display', 'inline-block');
-                m = 1;
-            } else {
-                $(this).closest('td').find('.error_msg').text("");
-            }
-        });
+        // $('.qty').each(function() {
+        //     var qty = $(this).closest('tr').find('.stock_qty').text();
+        //     this_val = $.trim($(this).val());
+        //     if (Number(this_val) > Number(qty)) {
+        //         $(this).closest('td').find('.error_msg').text('Invalid quantity').css('display', 'inline-block');
+        //         m = 1;
+        //     } else {
+        //         $(this).closest('td').find('.error_msg').text("");
+        //     }
+        // });
         if (m > 0) {
 
 
@@ -1180,9 +1216,9 @@ if (!empty($customers)) {
 
     });
 
-    $(document).ready(function () {
+    $(document).ready(function() {
 
-        $('#approve').click(function () {
+        $('#approve').click(function() {
 
             var id = '<?php echo $quotation[0]['id'] ?>';
 
@@ -1198,7 +1234,7 @@ if (!empty($customers)) {
                     data: {
                         id: id,
                     },
-                    success: function (result) {
+                    success: function(result) {
 
                         if (result == 'success') {
 
@@ -1207,7 +1243,7 @@ if (!empty($customers)) {
                                 text: "Invoice Approved!",
                                 type: "success"
 
-                            }, function () {
+                            }, function() {
 
                                 window.location = BASE_URL + "sales/invoice_list";
 
@@ -1231,19 +1267,19 @@ if (!empty($customers)) {
 
         });
 
-// var $elem = $('#scroll');
+        // var $elem = $('#scroll');
 
-//  window.csb = $elem.customScrollBar();
+        //  window.csb = $elem.customScrollBar();
 
         $('#customer_po').focus();
 
-        $("#customer_name").keyup(function () {
+        $("#customer_name").keyup(function() {
 
             $.ajax({
                 type: "GET",
                 url: "<?php echo $this->config->item('base_url'); ?>" + "quotation/get_customer",
                 data: 'q=' + $(this).val(),
-                success: function (data) {
+                success: function(data) {
 
                     $("#suggesstion-box").show();
 
@@ -1257,7 +1293,7 @@ if (!empty($customers)) {
 
         });
 
-        $('body').click(function () {
+        $('body').click(function() {
 
             $("#suggesstion-box").hide();
 
@@ -1269,9 +1305,11 @@ if (!empty($customers)) {
 
             $.ajax({
                 type: 'POST',
-                data: {firm_id: val},
+                data: {
+                    firm_id: val
+                },
                 url: '<?php echo base_url(); ?>masters/products/get_category_by_frim_id',
-                success: function (data) {
+                success: function(data) {
 
                     var result = JSON.parse(data);
 
@@ -1279,7 +1317,7 @@ if (!empty($customers)) {
 
                         option_text = '<option value="">Select Category</option>';
 
-                        $.each(result, function (key, value) {
+                        $.each(result, function(key, value) {
 
                             option_text += '<option value="' + value.cat_id + '">' + value.categoryName + '</option>';
 
@@ -1319,19 +1357,19 @@ if (!empty($customers)) {
 
 
 
-    $('#add_group').bind('keypress click', function () {
+    $('#add_group').bind('keypress click', function() {
 
         var tableBody = $(".static").find('tr').clone();
-//        var tab_index = $(".static").find('tr:last td  input.model_no').attr('tabindex');
-//        var inc_val = 1;
-//        var tab_inc = parseInt(tab_index) + parseInt(inc_val);
+        //        var tab_index = $(".static").find('tr:last td  input.model_no').attr('tabindex');
+        //        var inc_val = 1;
+        //        var tab_inc = parseInt(tab_index) + parseInt(inc_val);
 
 
         $(tableBody).closest('tr').find('.model_no,.model_no_ser,.percost,.qty').addClass('required');
 
         $('#app_table').append(tableBody);
-//        $(".static").find('tr:last td  input.model_no').attr('tabindex', tab_inc);
-//        var tab_save = parseInt(tab_inc) + parseInt(1);
+        //        $(".static").find('tr:last td  input.model_no').attr('tabindex', tab_inc);
+        //        var tab_save = parseInt(tab_inc) + parseInt(1);
         //     $("#save").attr('tabindex', '');
         if ($('#gst_type').val() != '')
 
@@ -1365,7 +1403,7 @@ if (!empty($customers)) {
 
         var i = 1;
 
-        $('#app_table tr').each(function () {
+        $('#app_table tr').each(function() {
 
             $(this).closest("tr").find('.s_no').html(i);
 
@@ -1375,7 +1413,7 @@ if (!empty($customers)) {
 
     });
 
-    $('#delete_label').live('click', function () {
+    $('#delete_label').live('click', function() {
 
         $(this).closest("tr").remove();
 
@@ -1383,17 +1421,18 @@ if (!empty($customers)) {
 
     });
 
-    $('.del').live('click', function () {
+    $('.del').live('click', function() {
 
         var del_id = $(this).closest('tr').find('.del_id').val();
 
         $.ajax({
             type: "GET",
             url: "<?php echo $this->config->item('base_url'); ?>" + "sales/delete_pc_id",
-            data: {del_id: del_id
+            data: {
+                del_id: del_id
 
             },
-            success: function (datas) {
+            success: function(datas) {
 
                 calculate_function();
 
@@ -1403,7 +1442,7 @@ if (!empty($customers)) {
 
     });
 
-    $('#add_group_service').click(function () {
+    $('#add_group_service').click(function() {
 
         var tableBody = $(".static_ser").find('tr').clone();
 
@@ -1413,7 +1452,7 @@ if (!empty($customers)) {
 
     });
 
-    $('#add_label').click(function () {
+    $('#add_label').click(function() {
 
         var tables = $(".static1").find('tr').clone();
 
@@ -1421,7 +1460,7 @@ if (!empty($customers)) {
 
     });
 
-    $('#delete_group').live('click', function () {
+    $('#delete_group').live('click', function() {
 
         $(this).closest("tr").remove();
 
@@ -1429,7 +1468,7 @@ if (!empty($customers)) {
 
         var i = 1;
 
-        $('#app_table tr').each(function () {
+        $('#app_table tr').each(function() {
 
             $(this).closest("tr").find('.s_no').html(i);
 
@@ -1445,7 +1484,7 @@ if (!empty($customers)) {
 
 
 
-    $('#delete_label').live('click', function () {
+    $('#delete_label').live('click', function() {
 
         $(this).closest("tr").remove();
 
@@ -1453,13 +1492,13 @@ if (!empty($customers)) {
 
     });
 
-    $(".remove_comments").live('click', function () {
+    $(".remove_comments").live('click', function() {
 
         $(this).closest("tr").remove();
 
         var full_total = 0;
 
-        $('.total_qty').each(function () {
+        $('.total_qty').each(function() {
 
             full_total = full_total + Number($(this).val());
 
@@ -1471,13 +1510,13 @@ if (!empty($customers)) {
 
     });
 
-    $('.qty,.percost,.pertax,.totaltax,.gst,.igst,.discount,.transport,.labour').live('keyup', function () {
+    $('.qty,.percost,.pertax,.totaltax,.gst,.igst,.discount,.transport,.labour').live('keyup', function() {
 
         calculate_function();
 
     });
 
-    $(".r-plus").on('click', function () {
+    $(".r-plus").on('click', function() {
 
         var round_off = $('.round_off').val();
 
@@ -1489,7 +1528,7 @@ if (!empty($customers)) {
 
     });
 
-    $(".r-minus").on('click', function () {
+    $(".r-minus").on('click', function() {
 
         var round_off = $('.round_off').val();
 
@@ -1523,7 +1562,7 @@ if (!empty($customers)) {
 
         var sgst = 0;
 
-        $('.qty').each(function () {
+        $('.qty').each(function() {
 
             var qty = $(this);
 
@@ -1621,7 +1660,7 @@ if (!empty($customers)) {
 
         total_item = 0;
 
-        $('.totaltax').each(function () {
+        $('.totaltax').each(function() {
 
             var totaltax = $(this);
 
@@ -1663,9 +1702,9 @@ if (!empty($customers)) {
 
 
 
-    $('.cat_id,.brand_id,.pro_class').live('change', function () {
+    $('.cat_id,.brand_id,.pro_class').live('change', function() {
 
-        $('.cat_id,.brand_id,.pro_class').live('click', function () {
+        $('.cat_id,.brand_id,.pro_class').live('click', function() {
 
             var cat_id = $(this).closest('tr').find('.cat_id').val();
 
@@ -1684,7 +1723,7 @@ if (!empty($customers)) {
                     model_no: model_no
 
                 },
-                success: function (result) {
+                success: function(result) {
 
                     this_.html(result);
 
@@ -1698,8 +1737,10 @@ if (!empty($customers)) {
 
     $(".datepicker").datepicker({
         setDate: new Date(),
-        yearRange: "-10:+100", changeMonth: true, changeYear: true,
-        onClose: function () {
+        yearRange: "-10:+100",
+        changeMonth: true,
+        changeYear: true,
+        onClose: function() {
 
             $("#app_table").find('tr:first td  input.model_no').focus();
 
@@ -1709,7 +1750,7 @@ if (!empty($customers)) {
 
 
 
-    $('#search').live('click', function () {
+    $('#search').live('click', function() {
 
         for_loading();
 
@@ -1725,7 +1766,7 @@ if (!empty($customers)) {
                 to_date: $('#to_date').val()
 
             },
-            success: function (result) {
+            success: function(result) {
 
                 for_response();
 
@@ -1735,22 +1776,22 @@ if (!empty($customers)) {
 
         });
 
-    });</script>
+    });
+</script>
 
 <script>
-
     // $(document).ready(function () {
 
 
 
-    $('body').on('keydown', '#add_quotation input.model_no', function (e) {
+    $('body').on('keydown', '#add_quotation input.model_no', function(e) {
 
         // var product_data = [<?php echo implode(',', $model_numbers_json); ?>];
 
         var _this = $(this);
 
         $('#add_quotation tbody tr input.model_no').autocomplete({
-            source: function (request, response) {
+            source: function(request, response) {
 
                 var val = _this.closest('tr input.model_no').val();
 
@@ -1762,10 +1803,13 @@ if (!empty($customers)) {
                 if ($.trim(val).length != 0) {
                     $.ajax({
                         type: 'POST',
-                        data: {firm_id: cat_id, pro: val},
+                        data: {
+                            firm_id: cat_id,
+                            pro: val
+                        },
                         async: false,
                         url: '<?php echo base_url(); ?>quotation/get_product_by_frim_id',
-                        success: function (data) {
+                        success: function(data) {
 
                             product_data = JSON.parse(data);
 
@@ -1797,7 +1841,7 @@ if (!empty($customers)) {
             minLength: 0,
             delay: 0,
             autoFocus: true,
-            select: function (event, ui) {
+            select: function(event, ui) {
 
                 this_val = $(this);
 
@@ -1809,9 +1853,13 @@ if (!empty($customers)) {
 
                 $.ajax({
                     type: 'POST',
-                    data: {model_number_id: model_number_id, c_id: cust_id, firm_id: $('#firm').val()},
+                    data: {
+                        model_number_id: model_number_id,
+                        c_id: cust_id,
+                        firm_id: $('#firm').val()
+                    },
                     url: "<?php echo $this->config->item('base_url'); ?>" + "quotation/get_product/" + cat_id,
-                    success: function (data) {
+                    success: function(data) {
 
                         var result = JSON.parse(data);
 
@@ -1893,10 +1941,10 @@ if (!empty($customers)) {
 
                                 $('#add_group').trigger('click');
                                 this_val.closest('tr').find('.qty').focus();
-//                                var tab_model = this_val.closest('tr').find('.model_no').attr('tabindex');
-//                                this_val.closest('tr').find('.qty').attr('tabindex', '');
-//                                this_val.closest('tr').find('.percost').attr('tabindex', '');
-//                                var tab_save = parseInt(tab_model) + parseInt(1);
+                                //                                var tab_model = this_val.closest('tr').find('.model_no').attr('tabindex');
+                                //                                this_val.closest('tr').find('.qty').attr('tabindex', '');
+                                //                                this_val.closest('tr').find('.percost').attr('tabindex', '');
+                                //                                var tab_save = parseInt(tab_model) + parseInt(1);
                                 //  $("#save").attr('tabindex', '');
 
                             }
@@ -1914,22 +1962,21 @@ if (!empty($customers)) {
 
 
 
-    $('.qty').live('keyup', function () {
+    // $('.qty').live('keyup', function() {
 
-        var pro_qty = $(this).val();
-        var stock_qty = $(this).closest('tr').find('.stock_qty').text();
+    //     var pro_qty = $(this).val();
+    //     var stock_qty = $(this).closest('tr').find('.stock_qty').text();
 
-        if (Number(pro_qty) > Number(stock_qty))
-        {
-            $(this).closest('td').find('.error_msg').text('Invalid quantity').css('display', 'inline-block');
-        } else {
-            $(this).closest('td').find('.error_msg').text("");
-        }
-    });
+    //     if (Number(pro_qty) > Number(stock_qty)) {
+    //         $(this).closest('td').find('.error_msg').text('Invalid quantity').css('display', 'inline-block');
+    //     } else {
+    //         $(this).closest('td').find('.error_msg').text("");
+    //     }
+    // });
 
-    $(document).ready(function () {
+    $(document).ready(function() {
 
-        $('body').on('keydown', 'input.model_no_extra', function (e) {
+        $('body').on('keydown', 'input.model_no_extra', function(e) {
 
             //var product_data = [<?php echo implode(',', $model_numbers_extra); ?>];
 
@@ -1941,10 +1988,12 @@ if (!empty($customers)) {
 
             $.ajax({
                 type: 'POST',
-                data: {firm_id: cat_id},
+                data: {
+                    firm_id: cat_id
+                },
                 async: false,
                 url: '<?php echo base_url(); ?>quotation/get_model_no_by_frim_id',
-                success: function (data) {
+                success: function(data) {
 
                     product_data = JSON.parse(data);
 
@@ -1953,7 +2002,7 @@ if (!empty($customers)) {
             });
 
             $(".model_no_extra").autocomplete({
-                source: function (request, response) {
+                source: function(request, response) {
 
                     // filter array to only entries you want to display limited to 10
 
@@ -1975,7 +2024,7 @@ if (!empty($customers)) {
                 minLength: 0,
                 delay: 0,
                 autoFill: false,
-                select: function (event, ui) {
+                select: function(event, ui) {
 
                     this_val = $(this);
 
@@ -1987,9 +2036,12 @@ if (!empty($customers)) {
 
                     $.ajax({
                         type: 'POST',
-                        data: {model_number_id: model_number_id, c_id: cust_id},
+                        data: {
+                            model_number_id: model_number_id,
+                            c_id: cust_id
+                        },
                         url: "<?php echo $this->config->item('base_url'); ?>" + "quotation/get_product/" + cat_id,
-                        success: function (data) {
+                        success: function(data) {
 
 
 
@@ -2084,9 +2136,9 @@ if (!empty($customers)) {
 
 
 
-    $(document).ready(function () {
+    $(document).ready(function() {
 
-        $('body').click(function () {
+        $('body').click(function() {
 
             $(this).closest('tr').find(".suggesstion-box1").hide();
 
@@ -2094,7 +2146,7 @@ if (!empty($customers)) {
 
     });
 
-    $('.pro_class').live('click', function () {
+    $('.pro_class').live('click', function() {
 
         $(this).closest('tr').find('.cat_id').val($(this).attr('pro_cat'));
 
@@ -2122,7 +2174,7 @@ if (!empty($customers)) {
 
     });
 
-    $('.ser_class').live('click', function () {
+    $('.ser_class').live('click', function() {
 
         $(this).closest('tr').find('.cat_id').val($(this).attr('ser_cat'));
 
@@ -2150,7 +2202,7 @@ if (!empty($customers)) {
 
     });
 
-    $(document).ready(function () {
+    $(document).ready(function() {
 
 
 
@@ -2158,25 +2210,19 @@ if (!empty($customers)) {
 
     });
 
-    $(window).bind('scannerDetectionReceive', function (event, data) {
+    $(window).bind('scannerDetectionReceive', function(event, data) {
 
         target_ele = event.target.activeElement;
 
     });
-
-
-
-
-
 </script>
 
 <script>
-
-    (function ($) {
-
+    (function($) {
 
 
-        $.fn.bootstrapSwitch = function (options) {
+
+        $.fn.bootstrapSwitch = function(options) {
 
 
 
@@ -2207,7 +2253,7 @@ if (!empty($customers)) {
 
 
 
-            return this.each(function (e) {
+            return this.each(function(e) {
 
                 var c = $(this);
 
@@ -2245,7 +2291,7 @@ if (!empty($customers)) {
 
 
 
-                on.click(function (e) {
+                on.click(function(e) {
 
                     e.preventDefault();
 
@@ -2253,7 +2299,7 @@ if (!empty($customers)) {
 
                 });
 
-                off.click(function (e) {
+                off.click(function(e) {
 
                     e.preventDefault();
 
@@ -2263,7 +2309,7 @@ if (!empty($customers)) {
 
 
 
-                $(this).hide().on('change', function () {
+                $(this).hide().on('change', function() {
 
                     applyChange(c.is(':checked'))
 
@@ -2274,20 +2320,18 @@ if (!empty($customers)) {
         };
 
     }(jQuery));
-
 </script>
 
 <script>
-
     $("[name='checkbox1'],[name='checkbox2'], [name='checkbox10']").bootstrapSwitch();
 
-    $('input').on('keypress', function () {
+    $('input').on('keypress', function() {
 
         formHasChanged = true;
 
     });
 
-    $('select').on('click', function () {
+    $('select').on('click', function() {
 
         formHasChanged = true;
 
@@ -2301,7 +2345,7 @@ if (!empty($customers)) {
 
 
 
-    $(window).bind('beforeunload', function () {
+    $(window).bind('beforeunload', function() {
 
         if (formHasChanged && !submitted) {
 
@@ -2325,7 +2369,7 @@ if (!empty($customers)) {
 
         var charCode = (evt.which) ? evt.which : evt.keyCode;
 
-        if (evt.which == 13) {//Enter key pressed
+        if (evt.which == 13) { //Enter key pressed
 
             $(".thVal").blur();
 
@@ -2349,7 +2393,7 @@ if (!empty($customers)) {
 
 
 
-    $('.pertax, .gst').on('keypress', function (event) {
+    $('.pertax, .gst').on('keypress', function(event) {
 
         this_val = $(this).val();
 
@@ -2363,7 +2407,7 @@ if (!empty($customers)) {
 
 
 
-    $('.pertax, .gst').on('keyup input', function (event) {
+    $('.pertax, .gst').on('keyup input', function(event) {
 
         this_val = $(this).val();
 
@@ -2401,11 +2445,10 @@ if (!empty($customers)) {
         }
 
     });
-    $(document).keydown(function (e) {
+    $(document).keydown(function(e) {
         var keycode = e.keyCode;
         if (keycode == 113) {
             $('#add_group').trigger('click');
         }
     });
 </script>
-

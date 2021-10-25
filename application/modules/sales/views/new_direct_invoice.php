@@ -484,7 +484,7 @@ if (!empty($customers)) {
                                     ?>
                                 </select>
                                 <div class="col-xs-8">
-                                    <input type="text" name='quantity[]' style="width:70px;" class="qty required" />
+                                    <input type="text" name='quantity[]' style="width:70px;" class="qty " />
                                 </div>
                                 <!-- <div class="col-xs-4">
                                     <span class="label label-success stock_qty"> 0 </span>
@@ -654,16 +654,16 @@ if (!empty($customers)) {
         } else {
             $("#type1").html("");
         }
-        $('.qty').each(function() {
-            var qty = $(this).closest('tr').find('.stock_qty').text();
-            this_val = $.trim($(this).val());
-            if (Number(this_val) > Number(qty)) {
-                $(this).closest('td').find('.error_msg').text('Invalid quantity').css('display', 'inline-block');
-                m = 1;
-            } else {
-                $(this).closest('td').find('.error_msg').text("");
-            }
-        });
+        // $('.qty').each(function() {
+        //     var qty = $(this).closest('tr').find('.stock_qty').text();
+        //     this_val = $.trim($(this).val());
+        //     if (Number(this_val) > Number(qty)) {
+        //         $(this).closest('td').find('.error_msg').text('Invalid quantity').css('display', 'inline-block');
+        //         m = 1;
+        //     } else {
+        //         $(this).closest('td').find('.error_msg').text("");
+        //     }
+        // });
 
         if (m > 0) {
             $('html, body').animate({
@@ -1383,17 +1383,17 @@ if (!empty($customers)) {
         }
 
     }
-    $('.qty').live('keyup', function() {
+    // $('.qty').live('keyup', function() {
 
-        var pro_qty = $(this).val();
-        var stock_qty = $(this).closest('tr').find('.stock_qty').text();
+    //     var pro_qty = $(this).val();
+    //     var stock_qty = $(this).closest('tr').find('.stock_qty').text();
 
-        if (Number(pro_qty) > Number(stock_qty)) {
-            $(this).closest('td').find('.error_msg').text('Invalid quantity').css('display', 'inline-block');
-        } else {
-            $(this).closest('td').find('.error_msg').text("");
-        }
-    });
+    //     if (Number(pro_qty) > Number(stock_qty)) {
+    //         $(this).closest('td').find('.error_msg').text('Invalid quantity').css('display', 'inline-block');
+    //     } else {
+    //         $(this).closest('td').find('.error_msg').text("");
+    //     }
+    // });
 
     $(window).bind('scannerDetectionReceive', function(event, data) {
         target_ele = event.target.activeElement;
