@@ -34,13 +34,13 @@
     <link rel="stylesheet" type="text/css" href="<?php echo $theme_path; ?>/js//sweetalert.css">
     <script src="<?php echo $theme_path; ?>/js/sweetalert.min.js" type="text/javascript"></script>
     <script type="text/javascript">
-        // var BASE_URL = "<?php // $this->config->item('base_url');              
+        // var BASE_URL = "<?php // $this->config->item('base_url');
                             ?>";
-        // var MIGRATE_URL = "<?php // $this->config->item('migrate_url');              
+        // var MIGRATE_URL = "<?php // $this->config->item('migrate_url');
                                 ?>";
         var ct_class = "<?= $this->router->class; ?>";
         var ct_method = "<?= $this->router->method; ?>";
-        // var theme_path = "<?php // $theme_path;              
+        // var theme_path = "<?php // $theme_path;
                                 ?>";
     </script>
     <link href="<?php echo $theme_path; ?>/css/components.css" rel="stylesheet" type="text/css">
@@ -285,7 +285,7 @@ if (!empty($data['todays_purchases']) && count($data['todays_purchases']) > 0) {
                         <div class="receivable-notification">
                             <div class="pull-right">
 
-                                <?php //if (($user_info[0]['role'] == 1 || $user_info[0]['role'] == 2)) {      
+                                <?php //if (($user_info[0]['role'] == 1 || $user_info[0]['role'] == 2)) {
                                 ?>
                                 <div class="btn-group btn-group-option">
                                     <?php
@@ -364,7 +364,7 @@ if (!empty($data['todays_purchases']) && count($data['todays_purchases']) > 0) {
                                         </div>
                                     </div>
                                 </div>
-                                <?php // }       
+                                <?php // }
                                 ?>
                             </div>
                         </div>
@@ -374,7 +374,7 @@ if (!empty($data['todays_purchases']) && count($data['todays_purchases']) > 0) {
                         <div class="stable-notification">
                             <div class="pull-right">
 
-                                <?php //if (($user_info[0]['role'] == 1 || $user_info[0]['role'] == 2)) {       
+                                <?php //if (($user_info[0]['role'] == 1 || $user_info[0]['role'] == 2)) {
                                 ?>
                                 <div class="btn-group btn-group-option">
                                     <?php
@@ -437,7 +437,7 @@ if (!empty($data['todays_purchases']) && count($data['todays_purchases']) > 0) {
                                         </div>
                                     </div>
                                 </div>
-                                <?php // }       
+                                <?php // }
                                 ?>
                             </div>
                         </div>
@@ -446,7 +446,7 @@ if (!empty($data['todays_purchases']) && count($data['todays_purchases']) > 0) {
                         <div class="notification">
                             <div class="pull-right">
 
-                                <?php //if (($user_info[0]['role'] == 1 || $user_info[0]['role'] == 2)) {       
+                                <?php //if (($user_info[0]['role'] == 1 || $user_info[0]['role'] == 2)) {
                                 ?>
                                 <div class="btn-group btn-group-option">
                                     <?php
@@ -508,7 +508,7 @@ if (!empty($data['todays_purchases']) && count($data['todays_purchases']) > 0) {
                                         </div>
                                     </div>
                                 </div>
-                                <?php // }       
+                                <?php // }
                                 ?>
                             </div>
                         </div>
@@ -731,14 +731,14 @@ if (!empty($data['todays_purchases']) && count($data['todays_purchases']) > 0) {
                             <li class="masters_tab6 dc_tab<?= ($cur_class == 'delivery_challan') ? 'active' : '' ?>"><a href="<?php echo $this->config->item('base_url') . 'delivery_challan/delivery_challan_list' ?>"><i class="fa fa-fw fa-money"></i><span>&nbsp;Delivery Challan</span></a>
                             </li>
                         <?php endif; ?>
-                        <?php if ($this->user_auth->is_module_allowed('budget')) : ?>
-                            <li class="masters_tab7 budget_tab<?= ($cur_class == 'budget') ? 'active' : '' ?>"><a href="<?php echo $this->config->item('base_url') . 'budget/budget_list' ?>"><i class="fa fa-fw fa-money"></i><span>&nbsp;Budget</span></a>
-                            <?php endif; ?>
-                            <?php if ($this->user_auth->is_module_allowed('cash_out_flow')) : ?>
-                            <li class="masters_tab8 cof_tab<?= ($cur_class == 'cash_out_flow') ? 'active' : '' ?>"><a href="<?php echo $this->config->item('base_url') . 'cash_out_flow/cash_out_flow_list' ?>"><i class="fa fa-fw fa-exchange"></i><span>&nbsp;Cash Out Flow</span></a>
-                            <?php endif; ?>
+                        <!-- <?php if ($this->user_auth->is_module_allowed('budget')) : ?> -->
+                        <!-- <li class="masters_tab7 budget_tab<?= ($cur_class == 'budget') ? 'active' : '' ?>"><a href="<?php echo $this->config->item('base_url') . 'budget/budget_list' ?>"><i class="fa fa-fw fa-money"></i><span>&nbsp;Budget</span></a> -->
+                        <!-- <?php endif; ?> -->
+                        <!-- <?php if ($this->user_auth->is_module_allowed('cash_out_flow')) : ?> -->
+                        <!-- <li class="masters_tab8 cof_tab<?= ($cur_class == 'cash_out_flow') ? 'active' : '' ?>"><a href="<?php echo $this->config->item('base_url') . 'cash_out_flow/cash_out_flow_list' ?>"><i class="fa fa-fw fa-exchange"></i><span>&nbsp;Cash Out Flow</span></a> -->
+                        <!-- <?php endif; ?> -->
 
-                            <!--                 <li class="<?= ($cur_class == 'service') ? 'active' : '' ?>"><a href="<?php echo $this->config->item('base_url') . 'service/service_list' ?>"><i class="glyphicon glyphicon-log-in"></i><span>&nbsp;Service and Repair</span></a>
+                        <!--                 <li class="<?= ($cur_class == 'service') ? 'active' : '' ?>"><a href="<?php echo $this->config->item('base_url') . 'service/service_list' ?>"><i class="glyphicon glyphicon-log-in"></i><span>&nbsp;Service and Repair</span></a>
                                 </li>--> <?php if ($this->user_auth->is_module_allowed('reports')) : ?>
                             <li class="masters_tab9 reports_tab<?php echo (($cur_class == 'report') && $cur_method == 'quotation_report' || $cur_method == 'purchase_report' || $cur_method == 'purchase_receipt' || $cur_method == 'purchase_receipt' || $cur_method == 'customer_based_report' || $cur_method == 'stock_report' || $cur_method == 'pc_report' || $cur_method == 'invoice_report' || $cur_method == 'gst_report' || $cur_method == 'hr_invoice_report' || $cur_method == 'payment_receipt' || $cur_class == 'outstanding_report_due_date' || $cur_class == 'outstanding_report_firm' || $cur_class == 'profit_list' || $cur_class == 'commission_report_list') ? 'active' : '' ?>"><a href="javascript: void(0)"><i class="fa fa-fw fa-bar-chart-o"></i> <span>Reports</span></a>
                                 <ul class="sub-menu report-menu">
@@ -759,16 +759,16 @@ if (!empty($data['todays_purchases']) && count($data['todays_purchases']) > 0) {
                                         <li class="<?= ($cur_method == 'customer_based_report') ? 'active' : '' ?>"><a href="<?php echo $this->config->item('base_url') . 'report/customer_based_report' ?>">Customer Based Report</a>
                                         </li>
                                     <?php endif; ?>
-                                    <?php //if ($this->user_auth->is_section_allowed('reports', 'quotation_report')):         
+                                    <?php //if ($this->user_auth->is_section_allowed('reports', 'quotation_report')):
                                     ?>
                                     <!-- <li class="<?= ($cur_method == 'shelf_life_report') ? 'active' : '' ?>"><a href="<?php echo $this->config->item('base_url') . 'report/shelf_life_report' ?>">Shelf Life Report</a>
     </li>-->
-                                    <?php //}    
+                                    <?php //}
                                     ?>
-                                    <?php if ($this->user_auth->is_section_allowed('reports', 'stock_report')) : ?>
-                                        <li class="<?= ($cur_method == 'stock_report') ? 'active' : '' ?>"><a href="<?php echo $this->config->item('base_url') . 'report/stock_report' ?>">Stock Report</a>
-                                        </li>
-                                    <?php endif; ?>
+                                    <!-- <?php if ($this->user_auth->is_section_allowed('reports', 'stock_report')) : ?> -->
+                                    <!-- <li class="<?= ($cur_method == 'stock_report') ? 'active' : '' ?>"><a href="<?php echo $this->config->item('base_url') . 'report/stock_report' ?>">Stock Report</a> -->
+                                    <!-- </li> -->
+                                    <!-- <?php endif; ?> -->
                                     <?php if ($this->user_auth->is_section_allowed('reports', 'pc_report')) : ?>
 
                                         <li class="<?= ($cur_method == 'pc_report') ? 'active' : '-' ?>"><a href="<?php echo $this->config->item('base_url') . 'report/pc_report' ?>">Sales Report</a>
@@ -778,11 +778,11 @@ if (!empty($data['todays_purchases']) && count($data['todays_purchases']) > 0) {
                                         <li class="<?= ($cur_method == 'invoice_report') ? 'active' : '' ?>"><a href="<?php echo $this->config->item('base_url') . 'report/invoice_report' ?>">Invoice Report</a>
                                         </li>
                                     <?php endif; ?>
-                                    <?php //if ($this->user_auth->is_section_allowed('reports', 'gst_report')):      
+                                    <?php //if ($this->user_auth->is_section_allowed('reports', 'gst_report')):
                                     ?>
                                     <li class="<?= ($cur_method == 'gst_report') ? 'active' : '' ?>"><a href="<?php echo $this->config->item('base_url') . 'report/gst_report' ?>">GST Return Report</a>
                                     </li>
-                                    <?php //endif;    
+                                    <?php //endif;
                                     ?>
                                     <?php if ($this->user_auth->is_section_allowed('reports', 'hr_invoice_report')) : ?>
                                         <li class="<?= ($cur_method == 'hr_invoice_report') ? 'active' : '' ?>"><a href="<?php echo $this->config->item('base_url') . 'report/hr_invoice_report' ?>">Contractor Report</a>
@@ -808,24 +808,24 @@ if (!empty($data['todays_purchases']) && count($data['todays_purchases']) > 0) {
                                             <a href="<?php echo $this->config->item('base_url') . 'report/profit_list' ?>">Profit and Loss Report</a>
                                         </li>
                                     <?php endif; ?>
-                                    <li class="<?= ($cur_method == 'stock_list_report') ? 'active' : '' ?>"><a href="<?php echo $this->config->item('base_url') . 'stock/stock_list_report' ?>">Stock Based Report</a>
-                                    </li>
-                                    <?php //if ($this->user_auth->is_section_allowed('reports', 'attendance_report')):    
-                                    ?>
-                                    <!--                                        <li class="<?= ($cur_method == 'commission_report_list') ? 'active' : '' ?>">
+                                    <!-- <li class="<?= ($cur_method == 'stock_list_report') ? 'active' : '' ?>"><a href="<?php echo $this->config->item('base_url') . 'stock/stock_list_report' ?>">Stock Based Report</a> -->
+                            </li>
+                            <?php //if ($this->user_auth->is_section_allowed('reports', 'attendance_report')):
+                            ?>
+                            <!--                                        <li class="<?= ($cur_method == 'commission_report_list') ? 'active' : '' ?>">
                                             <a href="<?php echo $this->config->item('base_url') . 'report/commission_report_list' ?>">Commission Report</a>
                                         </li>-->
-                                    <li class="<?= ($cur_method == 'sales_return_report') ? 'active' : '' ?>"><a href="<?php echo $this->config->item('base_url') . 'report/sales_return_report' ?>">Sales Return Report</a>
-                                    </li>
-                                    <?php //endif;    
-                                    ?>
-
-                                <?php endif; ?>
-
-
-                                </ul>
+                            <li class="<?= ($cur_method == 'sales_return_report') ? 'active' : '' ?>"><a href="<?php echo $this->config->item('base_url') . 'report/sales_return_report' ?>">Sales Return Report</a>
                             </li>
-                            <!--  <li class="<?php echo (($cur_class == 'attendance' || $cur_class == 'reports')) ? 'active' : '' ?>"><a href="javascript: void(0)" ><i class="fa fa-time"></i> <span>Attendance</span></a>
+                            <?php //endif;
+                            ?>
+
+                        <?php endif; ?>
+
+
+                    </ul>
+                    </li>
+                    <!--  <li class="<?php echo (($cur_class == 'attendance' || $cur_class == 'reports')) ? 'active' : '' ?>"><a href="javascript: void(0)" ><i class="fa fa-time"></i> <span>Attendance</span></a>
                                 <ul class="sub-menu attendance-menu">
 
                                     <li class="<?= ($cur_method == 'monthly_attendance') ? 'active' : '' ?>"><a href="<?php echo $this->config->item('base_url') . 'attendance/monthly_attendance' ?>">Add Monthly Attendance</a>
@@ -850,43 +850,43 @@ if (!empty($data['todays_purchases']) && count($data['todays_purchases']) > 0) {
                                 </ul>
                             </li>-->
 
-                            <?php if ($this->user_auth->is_module_allowed('attendance')) : ?>
-                                <li class=masters_tab10 attend_tab"<?= ($cur_class == 'attendance_dashboard' || $cur_class == 'settings') ? 'active' : '' ?>"><a href="<?php echo $this->config->item('base_url') . 'attendance/attendance_dashboard' ?>"><i class="fa fa-fw fa-exchange"></i><span>&nbsp;Attendance</span></a>
-                                    <?php //endif;         
-                                    ?>
-                                    <ul class="sub-menu attendance-menu">
-                                        <?php if ($this->user_auth->is_section_allowed('attendance', 'dashboard')) : ?>
-                                            <li class="<?= ($cur_method == 'dashboard') ? 'active' : '' ?>"><a href="<?php echo $this->config->item('base_url') . 'attendance/attendance_dashboard' ?>">Dashboard</a>
-                                            </li>
-                                        <?php endif; ?>
-                                        <?php if ($this->user_auth->is_section_allowed('attendance', 'monthly_reports')) : ?>
-                                            <li class="<?= ($cur_method == 'monthly_reports') ? 'active' : '' ?>"><a href="<?php echo $this->config->item('base_url') . 'attendance/reports/monthly_reports/' ?>">Monthly Report</a>
-                                            </li>
-                                        <?php endif; ?>
-                                        <?php if ($this->user_auth->is_section_allowed('attendance', 'daily_reports')) : ?>
-                                            <li class="<?= ($cur_method == 'daily_reports') ? 'active' : '' ?>"><a href="<?php echo $this->config->item('base_url') . 'attendance/daily_reports/' ?>">Daily Report</a>
-                                            </li>
-                                        <?php endif; ?>
-                                        <?php if ($this->user_auth->is_section_allowed('attendance', 'late_coming_report')) : ?>
-                                            <li class="<?= ($cur_method == 'late_coming_attendance') ? 'active' : '' ?>"><a href="<?php echo $this->config->item('base_url') . 'attendance/late_coming_attendance' ?>">Late coming report</a>
-                                            </li>
-                                        <?php endif; ?>
-                                        <?php if ($this->user_auth->is_section_allowed('attendance', 'early_going_report')) : ?>
-                                            <li class="<?= ($cur_method == 'early_going_attendance') ? 'active' : '' ?>"><a href="<?php echo $this->config->item('base_url') . 'attendance/early_going_attendance' ?>">Early going report</a>
-                                            </li>
-                                        <?php endif; ?>
-                                        <?php if ($this->user_auth->is_section_allowed('attendance', 'overtime_report')) : ?>
-                                            <li class="<?= ($cur_method == 'overtime_reports') ? 'active' : '' ?>">
-                                                <a href="<?php echo $this->config->item('base_url') . 'attendance/reports/overtime_report' ?>">Overtime Report</a>
-                                            </li>
-                                        <?php endif; ?>
-                                        <?php if ($this->user_auth->is_section_allowed('attendance', 'settings')) : ?>
-                                            <!-- <li class="<?= ($cur_method == 'departments') ? 'active' : '' ?>">
+                    <?php if ($this->user_auth->is_module_allowed('attendance')) : ?>
+                        <li class=masters_tab10 attend_tab"<?= ($cur_class == 'attendance_dashboard' || $cur_class == 'settings') ? 'active' : '' ?>"><a href="<?php echo $this->config->item('base_url') . 'attendance/attendance_dashboard' ?>"><i class="fa fa-fw fa-exchange"></i><span>&nbsp;Attendance</span></a>
+                            <?php //endif;
+                            ?>
+                            <ul class="sub-menu attendance-menu">
+                                <?php if ($this->user_auth->is_section_allowed('attendance', 'dashboard')) : ?>
+                                    <li class="<?= ($cur_method == 'dashboard') ? 'active' : '' ?>"><a href="<?php echo $this->config->item('base_url') . 'attendance/attendance_dashboard' ?>">Dashboard</a>
+                                    </li>
+                                <?php endif; ?>
+                                <?php if ($this->user_auth->is_section_allowed('attendance', 'monthly_reports')) : ?>
+                                    <li class="<?= ($cur_method == 'monthly_reports') ? 'active' : '' ?>"><a href="<?php echo $this->config->item('base_url') . 'attendance/reports/monthly_reports/' ?>">Monthly Report</a>
+                                    </li>
+                                <?php endif; ?>
+                                <?php if ($this->user_auth->is_section_allowed('attendance', 'daily_reports')) : ?>
+                                    <li class="<?= ($cur_method == 'daily_reports') ? 'active' : '' ?>"><a href="<?php echo $this->config->item('base_url') . 'attendance/daily_reports/' ?>">Daily Report</a>
+                                    </li>
+                                <?php endif; ?>
+                                <?php if ($this->user_auth->is_section_allowed('attendance', 'late_coming_report')) : ?>
+                                    <li class="<?= ($cur_method == 'late_coming_attendance') ? 'active' : '' ?>"><a href="<?php echo $this->config->item('base_url') . 'attendance/late_coming_attendance' ?>">Late coming report</a>
+                                    </li>
+                                <?php endif; ?>
+                                <?php if ($this->user_auth->is_section_allowed('attendance', 'early_going_report')) : ?>
+                                    <li class="<?= ($cur_method == 'early_going_attendance') ? 'active' : '' ?>"><a href="<?php echo $this->config->item('base_url') . 'attendance/early_going_attendance' ?>">Early going report</a>
+                                    </li>
+                                <?php endif; ?>
+                                <?php if ($this->user_auth->is_section_allowed('attendance', 'overtime_report')) : ?>
+                                    <li class="<?= ($cur_method == 'overtime_reports') ? 'active' : '' ?>">
+                                        <a href="<?php echo $this->config->item('base_url') . 'attendance/reports/overtime_report' ?>">Overtime Report</a>
+                                    </li>
+                                <?php endif; ?>
+                                <?php if ($this->user_auth->is_section_allowed('attendance', 'settings')) : ?>
+                                    <!-- <li class="<?= ($cur_method == 'departments') ? 'active' : '' ?>">
                                                                                                                                                                                                             <a href="<?php echo $this->config->item('base_url') . 'masters/biometric/departments' ?>">Departments</a>
                                                                                                                                                                                                             </li>
-                                            <?php //endif;    
+                                            <?php //endif;
                                             ?>
-                                            <?php //if ($this->user_auth->is_section_allowed('masters', 'email_settings')):      
+                                            <?php //if ($this->user_auth->is_section_allowed('masters', 'email_settings')):
                                             ?>
                                                                                                                                                                                                             <li class="<?= ($cur_method == 'designations') ? 'active' : '' ?>">
                                                                                                                                                                                                             <a href="<?php echo $this->config->item('base_url') . 'masters/biometric/designations' ?>">Designations</a>
@@ -900,16 +900,16 @@ if (!empty($data['todays_purchases']) && count($data['todays_purchases']) > 0) {
                                                                                                                                                                                                             <li class="<?= ($cur_class == 'shifts') ? 'active' : '' ?>">
                                                                                                                                                                                                             <a href="<?php echo $this->config->item('base_url') . 'masters/biometric/shifts' ?>">Shifts</a>
                                                                                                                                                                                                             </li>-->
-                                            <li class="<?= ($cur_class == 'settings') ? 'active' : '' ?>">
-                                                <a href="<?php echo $this->config->item('base_url') . 'masters/biometric/settings' ?>">Settings</a>
-                                            </li>
-                                        <?php endif; ?>
-                                    </ul>
-                                </li>
-                            <?php endif; ?>
-                            <?php if ($this->user_auth->is_module_allowed('task_manager')) : ?>
-                                <!--  <li class="masters_tab10 attend_tab"<?= ($cur_class == 'task_manager' || $cur_class == 'settings') ? 'active' : '' ?>"><a href="javascript: void(0)"><i class="fa fa-fw fa-exchange"></i><span>&nbsp;Task Manager</span></a>
-                                <?php //endif;         
+                                    <li class="<?= ($cur_class == 'settings') ? 'active' : '' ?>">
+                                        <a href="<?php echo $this->config->item('base_url') . 'masters/biometric/settings' ?>">Settings</a>
+                                    </li>
+                                <?php endif; ?>
+                            </ul>
+                        </li>
+                    <?php endif; ?>
+                    <?php if ($this->user_auth->is_module_allowed('task_manager')) : ?>
+                        <!--  <li class="masters_tab10 attend_tab"<?= ($cur_class == 'task_manager' || $cur_class == 'settings') ? 'active' : '' ?>"><a href="javascript: void(0)"><i class="fa fa-fw fa-exchange"></i><span>&nbsp;Task Manager</span></a>
+                                <?php //endif;
                                 ?>
                                     <ul class="sub-menu attendance-menu">
                                 <?php if ($this->user_auth->is_section_allowed('task_manager', 'daily_task_report')) : ?>
@@ -926,7 +926,7 @@ if (!empty($data['todays_purchases']) && count($data['todays_purchases']) > 0) {
                                 <?php endif; ?>
                                     </ul>
                                 </li>-->
-                            <?php endif; ?>
+                    <?php endif; ?>
                     </ul>
                     <input type="hidden" id="focus_inc" val="0" name="" />
                 </div>

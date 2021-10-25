@@ -1,5 +1,4 @@
 <?php $theme_path = $this->config->item('theme_locations') . $this->config->item('active_template'); ?>
-
 <script src="<?php echo $theme_path; ?>/js/jquery-1.8.2.js" type="text/javascript"></script>
 <script src="<?php echo $theme_path; ?>/js/jquery-ui-my-1.10.3.min.js"></script>
 <link rel="stylesheet" href="<?php echo $theme_path; ?>/css/bootstrap-select.css" />
@@ -146,14 +145,11 @@ if (!empty($customers)) {
 }
 ?>
 <div class="mainpanel">
-
     <div id='empty_data'></div>
-
     <div class="auto-widget">
         <!--    <p>Your Skills: <input type="text" id="skill_input"/></p>-->
     </div>
     <div class="contentpanel mb-45">
-
         <div class="media">
             <h4>Add Sales Invoice &nbsp;
                 <?php if (count($firms) == 1) { ?>
@@ -162,7 +158,6 @@ if (!empty($customers)) {
                     </div>
                 <?php } ?>
             </h4>
-
         </div>
         <table class="static" style="display: none;">
             <tr>
@@ -178,7 +173,6 @@ if (!empty($customers)) {
                 <td style="display:none;">
                     <select id='cat_id' class='cat_id static_style  form-control form-align' style="display:none;" name='categoty[]'>
                         <option value="">Select</option>
-
                     </select>
                 </td>
                 <td class="action-btn-align">
@@ -198,7 +192,6 @@ if (!empty($customers)) {
                         }
                         ?>
                     </select>
-
                     <div class="col-xs-8">
                         <input type="text" tabindex="-1" name='quantity[]' style="width:70px;" class="qty" value="" id="qty" />
                     </div>
@@ -241,7 +234,6 @@ if (!empty($customers)) {
                                     <option value="">Select</option>
                                     <?php
                                     if (isset($firms) && !empty($firms)) {
-
                                         foreach ($firms as $firm) {
                                     ?>
                                             <option value="<?php echo $firm['firm_id']; ?>"> <?php echo $firm['firm_name']; ?> </option>
@@ -259,7 +251,6 @@ if (!empty($customers)) {
                         <select onchange="Firm(this.value)" name="quotation[firm_id]" class="form-control form-align required" id="firm" readonly="" style="display:none;">
                             <?php
                             if (isset($firms) && !empty($firms)) {
-
                                 foreach ($firms as $firm) {
                             ?>
                                     <option value="<?php echo $firm['firm_id']; ?>"> <?php echo $firm['firm_name']; ?> </option>
@@ -276,7 +267,6 @@ if (!empty($customers)) {
                             <span class="error_msg"></span>
                         </div>
                     </div>
-
                     <div class="form-group">
                         <label class="col-sm-4 control-label">Customer Name <span style="color:#F00; font-style:oblique;">*</span></label>
                         <div class="col-sm-8">
@@ -287,7 +277,6 @@ if (!empty($customers)) {
                             <div id="suggesstion-box" class="auto-asset-search "></div>
                         </div>
                     </div>
-
                     <div class="form-group">
                         <label class="col-sm-4 control-label">Delivery Status<span style="color:#F00; font-style:oblique;">*</span></label>
                         <div class="col-sm-8">
@@ -296,7 +285,6 @@ if (!empty($customers)) {
                                 <option value="">Select</option>
                                 <?php
                                 if (isset($delivery_status) && !empty($delivery_status)) {
-
                                     foreach ($delivery_status as $status) {
                                 ?>
                                         <option value="<?php echo $status; ?>"> <?php echo ucwords(str_replace("_", " ", $status)); ?> </option>
@@ -356,13 +344,11 @@ if (!empty($customers)) {
                             <span class="error_msg"></span>
                         </div>
                     </div>
-
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
                         <label class="col-sm-4 control-label">Reference Name<span style="color:#F00; font-style:oblique;">*</span></label>
                         <div class="col-sm-8">
-
                             <select id='ref_class' class='nick form-align  form-control static_style class_req required' name='quotation[ref_name]' tabindex="5">
                                 <option value="">Select</option>
                                 <?php
@@ -393,14 +379,12 @@ if (!empty($customers)) {
                             <span class="error_msg"></span>
                         </div>
                     </div>
-
                     <div class="form-group">
                         <label class="col-sm-4 control-label">GSTIN NO </label>
                         <div class="col-sm-8">
                             <input type="text" name="company[tin_no]" id="tin" tabindex="-1" readonly="readonly" class="form-control form-align " />
                         </div>
                     </div>
-
                     <div class="form-group">
                         <label class="col-sm-4 control-label first_td1">Bill Type <span style="color:#F00; font-style:oblique;">*</span></label>
                         <div class="col-sm-8">
@@ -516,7 +500,6 @@ if (!empty($customers)) {
                             <td class="action-btn-align"><a id='delete_group' tabindex="-1" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash"></span></a></td>
                         </tr>
                     </tbody>
-
                     <tbody class="addtional">
                         <tr>
                             <td colspan="3" style="width:100%; text-align:right;"><b>Total</b></td>
@@ -559,7 +542,6 @@ if (!empty($customers)) {
                             <td><input type="text" name="quotation[transport]" value="" class="transport text_right" tabindex="-1" style="width:70px;" /></td>
                             <td style="text-align:right;">Labour Charge</td>
                             <td><input type="text" name="quotation[labour]" value="" class="labour text_right" tabindex="-1" style="width:70px;" /></td>
-
                             <td style="text-align:right;" class="sgst_td"> SGST </td>
                             <td style="text-align:right;" class="igst_td"> IGST </td>
                             <td><input type="text" tabindex="-1" value="" readonly class="add_sgst text_right" style="width:70px;" /></td>
@@ -593,7 +575,6 @@ if (!empty($customers)) {
             <input type="hidden" name="quotation[customer]" id="c_id" class='id_customer' />
             <input type="hidden" name="gst_type" id="gst_type" class="gst_type" />
             <input type="hidden" class='hide_prod' />
-
             <div class="action-btn-align mb-bot20">
                 <button class="btn btn-primary" name="print" value="no" id="save" tabindex="-1"><span class="glyphicon glyphicon-plus"></span>Create</button>
                 <button class="btn btn-primary" name="print" value="yes" id="save"><span class="glyphicon glyphicon-plus"></span> Save and <span class="glyphicon glyphicon-print"></span> print</button>
@@ -624,7 +605,6 @@ if (!empty($customers)) {
         var approved_by = $('#approved_by').val();
         var m = 0;
         $('.required').each(function() {
-
             var tr = $('#app_table tr').length;
             if (tr > 1) {
                 test = $(this).closest('tr td').find('input.model_no').val();
@@ -632,7 +612,6 @@ if (!empty($customers)) {
                     $(this).closest('tr').remove();
                 }
             }
-
         });
         $('.required').each(function() {
             this_val = $.trim($(this).val());
@@ -664,14 +643,12 @@ if (!empty($customers)) {
         //         $(this).closest('td').find('.error_msg').text("");
         //     }
         // });
-
         if (m > 0) {
             $('html, body').animate({
                 scrollTop: ($('.error_msg:visible').offset().top - 60)
             }, 500);
             return false;
         }
-
 
         if (m == 0) {
             var button_clik = $('#button_clik').val();
@@ -682,9 +659,7 @@ if (!empty($customers)) {
             } else {
                 return false;
             }
-
         }
-
         //        else if ((Number(net_total) > Number(credit_limit)) && (Number(temp_credit_limit) == ''))
         //        {
         //            $.ajax({
@@ -706,14 +681,11 @@ if (!empty($customers)) {
         //            return false;
         //        }
     });
-
     $(document).ready(function() {
-
         if ($('#gst_type').val() == '') {
             $('#add_quotation').find('tr td.igst_td').hide();
             $('#add_new_values').find('tr td.igst_td').hide();
         }
-
         $('#firm').trigger('change');
         $('body').on('keydown', 'input#customer_name', function(e) {
             var firm_id = $('#firm').val();
@@ -771,14 +743,12 @@ if (!empty($customers)) {
                                 //                                    $("#bill2").attr('checked', 'checked');
                                 //                                else
                                 //                                    $(".receiver").prop("checked", false);
-
                                 if (result[0].customer_type == 1 || result[0].customer_type == 3)
                                     $("#bill1").attr('checked', false);
                                 else if (result[0].customer_type == 2 || result[0].customer_type == 4)
                                     $("#bill2").attr('checked', false);
                                 else
                                     $(".receiver").prop("checked", false);
-
                                 if ($('#gst_type').val() != '') {
                                     if ($('#gst_type').val() == 31) {
                                         $('#add_quotation').find('tr td.sgst_td').show();
@@ -795,7 +765,6 @@ if (!empty($customers)) {
                     });
                     var prod_array = new Array();
                     $(".product_id").each(function() {
-
                         prod_array.push($(this).val());
                     });
                     //if (!empty(prod_array)) {
@@ -836,7 +805,6 @@ if (!empty($customers)) {
         });
     });
     $('#add_group').click(function() {
-
         var tableBody = $(".static").find('tr').clone();
         $(tableBody).closest('tr').find('.model_no,.percost,.qty').addClass('required');
         var cus_name = $('#customer_name').val();
@@ -844,7 +812,6 @@ if (!empty($customers)) {
             $(tableBody).closest('tr').find('select,input').attr("disabled", true);
         }
         $('#app_table').append(tableBody);
-
         $('#add_quotation tbody tr td:nth-child(2)').addClass('relative');
         if ($('#gst_type').val() != '') {
             if ($('#gst_type').val() == 31) {
@@ -857,7 +824,6 @@ if (!empty($customers)) {
         } else {
             $('#add_quotation').find('tr td.igst_td').hide();
         }
-
         var i = 1;
         $('#app_table tr').each(function() {
             $(this).closest("tr").find('.s_no').html(i);
@@ -919,7 +885,6 @@ if (!empty($customers)) {
             var percost = $(this).closest('tr').find('.percost');
             var pertax = $(this).closest('tr').find('.pertax');
             // var discount = $(this).closest('tr').find('.discount');
-
             var subtotal = $(this).closest('tr').find('.subtotal');
             var transport = $(this).closest('tr').find('.transport');
             var labour = $(this).closest('tr').find('.labour');
@@ -931,7 +896,6 @@ if (!empty($customers)) {
                     gst = $(this).closest('tr').find('.igst');
                 }
             }
-
             if (Number(qty.val()) != 0) {
                 tot = Number(qty.val()) * Number(percost.val());
                 $(this).closest('tr').find('.gross').val(tot);
@@ -976,7 +940,6 @@ if (!empty($customers)) {
         finals = Math.abs(finals);
         $('.final_amt').val(finals.toFixed(2));
     }
-
     $(".datepicker").datepicker({
         setDate: new Date(),
         onClose: function() {
@@ -1027,11 +990,9 @@ if (!empty($customers)) {
     // $(document).ready(function () {
     $('body').on('keydown', '#add_quotation input.model_no', function(e) {
         var _this = $(this);
-
         // var product_data = [<?php echo implode(',', $model_numbers_json); ?>];
         $('#add_quotation tbody tr input.model_no').autocomplete({
             source: function(request, response) {
-
                 var val = _this.closest('tr input.model_no').val();
                 cat_id = $('#firm').val();
                 cust_id = $('#customer_id').val();
@@ -1065,7 +1026,6 @@ if (!empty($customers)) {
             autoFocus: true,
             select: function(event, ui) {
                 this_val = $(this);
-
                 product = ui.item.value;
                 $(this).val(product);
                 model_number_id = ui.item.id;
@@ -1124,10 +1084,8 @@ if (!empty($customers)) {
                 });
             }
         });
-
     });
     // });
-
 
     $(document).ready(function() {
         $('body').on('keydown', 'input.model_no_extra', function(e) {
@@ -1172,10 +1130,8 @@ if (!empty($customers)) {
                         },
                         url: "<?php echo $this->config->item('base_url'); ?>" + "quotation/get_product/" + cat_id,
                         success: function(data) {
-
                             var result = JSON.parse(data);
                             if (result != null && result.length > 0) {
-
                                 if (result[0].quantity != null) {
                                     this_val.closest('tr').find('.stock_qty').html(result[0].quantity);
                                 } else {
@@ -1381,20 +1337,16 @@ if (!empty($customers)) {
             $('.cat_id,.model_no,.model_no_extra').val('');
             $('.model_no').attr('readonly', 'readonly');
         }
-
     }
     // $('.qty').live('keyup', function() {
-
     //     var pro_qty = $(this).val();
     //     var stock_qty = $(this).closest('tr').find('.stock_qty').text();
-
     //     if (Number(pro_qty) > Number(stock_qty)) {
     //         $(this).closest('td').find('.error_msg').text('Invalid quantity').css('display', 'inline-block');
     //     } else {
     //         $(this).closest('td').find('.error_msg').text("");
     //     }
     // });
-
     $(window).bind('scannerDetectionReceive', function(event, data) {
         target_ele = event.target.activeElement;
     });
@@ -1468,20 +1420,17 @@ if (!empty($customers)) {
      calculate_function();
      // Firm(result[0]['firm_id'], result[0]['category_id']);
      }
-
      });
      } else {
      sweetAlert("Error...", "This Product is not available!", "error");
      return false;
      }
-
      }
      });
      } else {
      sweetAlert("Error...", "This Product is not available!", "error");
      return false;
      }
-
      }
      });*/
     $('input').on('keypress', function() {
@@ -1494,7 +1443,6 @@ if (!empty($customers)) {
         if (formHasChanged && !submitted) {
             return 'Are you sure you want to leave?';
         }
-
     });
     $(document).keydown(function(e) {
         var keycode = e.keyCode;
