@@ -5,40 +5,77 @@
 <link rel="stylesheet" type="text/css" href="<?php echo $theme_path; ?>/js//sweetalert.css">
 <script src="<?php echo $theme_path; ?>/js/sweetalert.min.js" type="text/javascript"></script>
 <style type="text/css">
-    .text_right    {
-        text-align:right;
+    .text_right {
+        text-align: right;
     }
-    .box, .box-body, .content { padding:0; margin:0;border-radius: 0;}
-    #top_heading_fix h3 {top: -57px;left: 6px;}
-    #TB_overlay { z-index:20000 !important; }
-    #TB_window { z-index:25000 !important; }
-    .dialog_black{ z-index:30000 !important; }
-    #boxscroll22 {max-height: 291px;overflow: auto;cursor: inherit !important;}
-    .error_msg, em{color: rgb(255, 0, 0); font-size: 12px;font-weight: normal;}
+
+    .box,
+    .box-body,
+    .content {
+        padding: 0;
+        margin: 0;
+        border-radius: 0;
+    }
+
+    #top_heading_fix h3 {
+        top: -57px;
+        left: 6px;
+    }
+
+    #TB_overlay {
+        z-index: 20000 !important;
+    }
+
+    #TB_window {
+        z-index: 25000 !important;
+    }
+
+    .dialog_black {
+        z-index: 30000 !important;
+    }
+
+    #boxscroll22 {
+        max-height: 291px;
+        overflow: auto;
+        cursor: inherit !important;
+    }
+
+    .error_msg,
+    em {
+        color: rgb(255, 0, 0);
+        font-size: 12px;
+        font-weight: normal;
+    }
+
     .auto-asset-search ul#country-list li:hover {
         background: #c3c3c3;
         cursor: pointer;
     }
+
     .auto-asset-search ul#product-list li:hover {
         background: #c3c3c3;
         cursor: pointer;
     }
+
     .auto-asset-search ul#country-list li {
         background: #dadada;
         margin: 0;
         padding: 5px;
         border-bottom: 1px solid #f3f3f3;
     }
+
     .auto-asset-search ul#product-list li {
         background: #dadada;
         margin: 0;
         padding: 5px;
         border-bottom: 1px solid #f3f3f3;
     }
+
     ul li {
         list-style-type: none;
     }
-    #suggesstion-box{
+
+    #suggesstion-box {
         z-index: 99;
     }
 </style>
@@ -75,40 +112,40 @@ if (!empty($customers)) {
             <tr>
                 <td class="action-btn-align s_no"></td>
                 <td>
-                    <select id='cat_id' class='form-align cat_id static_style class_req form-control' style="width:100%" name='categoty[]' >
+                    <select id='cat_id' class='form-align cat_id static_style class_req form-control' style="width:100%" name='categoty[]'>
                         <option value="">Select</option>
                         <?php
                         if (isset($category) && !empty($category)) {
                             foreach ($category as $val) {
-                                ?>
+                        ?>
                                 <option value='<?php echo $val['cat_id'] ?>'><?php echo $val['categoryName'] ?></option>
-                                <?php
+                        <?php
                             }
                         }
                         ?>
                     </select>
                     <span class="error_msg"></span>
-                    <input type="hidden" style="width:100%"  class='form-align form-control tabwid model_no_extra' />
+                    <input type="hidden" style="width:100%" class='form-align form-control tabwid model_no_extra' />
                 </td>
                 <td style="display:none">
 
                 </td>
                 <td>
-                    <input type="text"  name="model_no[]" style="width:100%" id="model_no" class='form-align auto_customer tabwid model_no form-control' tabindex="1"/>
+                    <input type="text" name="model_no[]" style="width:100%" id="model_no" class='form-align auto_customer tabwid model_no form-control' tabindex="1" />
                     <span class="error_msg"></span>
-                    <input type="hidden"  name="product_id[]" id="product_id" class=' tabwid form-align product_id' />
-                    <input type="hidden"  name="type[]" id="type" class=' tabwid form-align type' />
+                    <input type="hidden" name="product_id[]" id="product_id" class=' tabwid form-align product_id' />
+                    <input type="hidden" name="type[]" id="type" class=' tabwid form-align type' />
                     <div id="suggesstion-box1" class="auto-asset-search suggesstion-box1"></div>
                 </td>
-                <td >
-                    <select  name='brand[]' tabindex="1" class="form-align form-control brand_id">
-                        <option >Select</option>
+                <td>
+                    <select name='brand[]' tabindex="1" class="form-align form-control brand_id">
+                        <option>Select</option>
                         <?php
                         if (isset($brand) && !empty($brand)) {
                             foreach ($brand as $val) {
-                                ?>
+                        ?>
                                 <option value='<?php echo $val['id'] ?>'><?php echo $val['brands'] ?></option>
-                                <?php
+                        <?php
                             }
                         }
                         ?>
@@ -116,38 +153,38 @@ if (!empty($customers)) {
                     <span class="error_msg"></span>
                 </td>
                 <td class="action-btn-align">
-                    <input type="text"   tabindex="1"  name='unit[]' style="width:70px;" class="unit" />
+                    <input type="text" tabindex="1" name='unit[]' style="width:70px;" class="unit" />
                     <span class="error_msg"></span>
                 </td>
                 <td>
-                    <input type="text"  name='available_quantity[]' style="width:70px;" class="form-control  stock_qty" value="0" readonly="readonly"/>
-                    <input type="text"  tabindex="1"  name='quantity[]' style="width:70px;" class="qty form-control" id="qty"/>
+                    <!-- <input type="text"  name='available_quantity[]' style="width:70px;" class="form-control  stock_qty" value="0" readonly="readonly"/> -->
+                    <input type="text" tabindex="1" name='quantity[]' style="width:70px;" class="qty form-control" id="qty" />
                     <span class="error_msg"></span>
                 </td>
                 <td>
-                    <input type="text"   tabindex="1"  name='per_cost[]' style="width:70px;" class="cost_price percost " id="price"/>
+                    <input type="text" tabindex="1" name='per_cost[]' style="width:70px;" class="cost_price percost " id="price" />
                     <span class="error_msg"></span>
                 </td>
                 <td class="action-btn-align">
-                    <input type="text"   tabindex="1"  style="width:70px;" class="gross" />
+                    <input type="text" tabindex="1" style="width:70px;" class="gross" />
                 </td>
                 <td>
-                    <input type="text"   tabindex="1"   name='discount[]' style="width:70px;" class="discount" />
+                    <input type="text" tabindex="1" name='discount[]' style="width:70px;" class="discount" />
                 </td>
                 <td class="action-btn-align cgst_td">
-                    <input type="text"   tabindex="1"   name='tax[]' style="width:70px;" class="pertax" />
+                    <input type="text" tabindex="1" name='tax[]' style="width:70px;" class="pertax" />
                 </td>
                 <td class="action-btn-align sgst_td">
-                    <input type="text"   tabindex="1"   name='gst[]' style="width:70px;" class="gst" />
+                    <input type="text" tabindex="1" name='gst[]' style="width:70px;" class="gst" />
                 </td>
                 <td class="action-btn-align igst_td">
-                    <input type="text"   tabindex="1"   name='igst[]' style="width:70px;" class="igst wid50"  />
+                    <input type="text" tabindex="1" name='igst[]' style="width:70px;" class="igst wid50" />
                 </td>
                 <td>
-                    <input type="text"   tabindex="1"   name='transport[]' style="width:70px;" class="transport" />
+                    <input type="text" tabindex="1" name='transport[]' style="width:70px;" class="transport" />
                 </td>
                 <td>
-                    <input type="text"   tabindex="1" style="width:70px;" name='sub_total[]' readonly="readonly" id="sub_toatl" class="subtotal text_right" />
+                    <input type="text" tabindex="1" style="width:70px;" name='sub_total[]' readonly="readonly" id="sub_toatl" class="subtotal text_right" />
                 </td>
                 <td class="action-btn-align"><a id='delete_group' class="btn-sm btn-danger"><span class="glyphicon glyphicon-trash"></span></a></td>
             </tr>
@@ -156,23 +193,23 @@ if (!empty($customers)) {
         <?php
         if (isset($po) && !empty($po)) {
             foreach ($po as $val) {
-                ?>
-                <form  method="post" class="panel-body">
+        ?>
+                <form method="post" class="panel-body">
                     <div class="row">
                         <div class="col-md-4">
 
                             <div class="form-group">
                                 <label class="col-sm-4 control-label">Firm Name</label>
                                 <div class="col-sm-8">
-                                    <select name="po[firm_id]"  class="form-control form-align" id="firm" readonly="readonly">
+                                    <select name="po[firm_id]" class="form-control form-align" id="firm" readonly="readonly">
                                         <option value="">Select</option>
                                         <?php
                                         if (isset($firms) && !empty($firms)) {
                                             foreach ($firms as $firm) {
                                                 $select = ($firm['firm_id'] == $val['firm_id']) ? 'selected' : '';
-                                                ?>
+                                        ?>
                                                 <option value="<?php echo $firm['firm_id']; ?>" <?php echo $select; ?>> <?php echo $firm['firm_name']; ?> </option>
-                                                <?php
+                                        <?php
                                             }
                                         }
                                         ?>
@@ -184,17 +221,17 @@ if (!empty($customers)) {
                             <div class="form-group">
                                 <label class="col-sm-4 control-label first_td1">PO NO</label>
                                 <div class="col-sm-8">
-                                    <input type="text"  tabindex="-1" name="po[pr_no]" class=" form-control colournamedup form-align " readonly="readonly" value="<?php echo $val['pr_no']; ?>"  id="pr_no" >
-                                    <input type="hidden"  name="po[po_no]" class="code form-control colournamedup  form-align" readonly="readonly" value="<?php echo $val['po_no']; ?>"  id="po_id">
+                                    <input type="text" tabindex="-1" name="po[pr_no]" class=" form-control colournamedup form-align " readonly="readonly" value="<?php echo $val['pr_no']; ?>" id="pr_no">
+                                    <input type="hidden" name="po[po_no]" class="code form-control colournamedup  form-align" readonly="readonly" value="<?php echo $val['po_no']; ?>" id="po_id">
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label class="col-sm-4 control-label">Supplier Name</label>
                                 <div class="col-sm-8">
-                                    <input type="text"  name="supplier[store_name]" id="customer_name" class='  form-control auto_customer form-align' value="<?php echo $val['store_name']; ?>"  readonly="readonly"/>
+                                    <input type="text" name="supplier[store_name]" id="customer_name" class='  form-control auto_customer form-align' value="<?php echo $val['store_name']; ?>" readonly="readonly" />
 
-                                    <input type="hidden"  name="supplier[id]" id="customer_id" class='form-control  id_customer form-align tabwid' value="<?php echo $val['vendor']; ?>" />
+                                    <input type="hidden" name="supplier[id]" id="customer_id" class='form-control  id_customer form-align tabwid' value="<?php echo $val['vendor']; ?>" />
                                     <div id="suggesstion-box" class="auto-asset-search"></div>
                                 </div>
                             </div>
@@ -209,16 +246,16 @@ if (!empty($customers)) {
                                         $delivery_status = array('pending');
                                     }
                                     ?>
-                                    <select name="po[delivery_status]"  class="form-control required form-align" id="delivery_status"   tabindex="1">
+                                    <select name="po[delivery_status]" class="form-control required form-align" id="delivery_status" tabindex="1">
 
                                         <?php
                                         if (isset($delivery_status) && !empty($delivery_status)) {
 
                                             foreach ($delivery_status as $status) {
                                                 $select = ($status == $val['delivery_status']) ? 'selected' : '';
-                                                ?>
+                                        ?>
                                                 <option value="<?php echo $status; ?>" <?php echo $select; ?>> <?php echo ucwords(str_replace("_", " ", $status)); ?> </option>
-                                                <?php
+                                        <?php
                                             }
                                         }
                                         ?>
@@ -233,14 +270,14 @@ if (!empty($customers)) {
                             <div class="form-group">
                                 <label class="col-sm-4 control-label first_td1">Supplier Mobile No</label>
                                 <div class="col-sm-8">
-                                    <input type="text"  name="supplier[mobil_number]" class="form-control form-align" id="customer_no" value="<?php echo $val['mobil_number']; ?>" readonly="readonly"/>
+                                    <input type="text" name="supplier[mobil_number]" class="form-control form-align" id="customer_no" value="<?php echo $val['mobil_number']; ?>" readonly="readonly" />
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label class="col-sm-4 control-label first_td1">Supplier Email ID</label>
                                 <div class="col-sm-8" id='customer_td'>
-                                    <input type="text"  name="supplier[email_id]" class=" form-control form-align " id="email_id" value="<?php echo $val['email_id']; ?>" readonly="readonly"/>
+                                    <input type="text" name="supplier[email_id]" class=" form-control form-align " id="email_id" value="<?php echo $val['email_id']; ?>" readonly="readonly" />
                                 </div>
                             </div>
 
@@ -260,16 +297,16 @@ if (!empty($customers)) {
                                         $pr_status = array('waiting');
                                     }
                                     ?>
-                                    <select name="po[pr_status]"  class="form-control required form-align" id="pr_status"   tabindex="1">
+                                    <select name="po[pr_status]" class="form-control required form-align" id="pr_status" tabindex="1">
 
                                         <?php
                                         if (isset($pr_status) && !empty($pr_status)) {
 
                                             foreach ($pr_status as $status) {
                                                 $select = ($status == $val['pr_status']) ? 'selected' : '';
-                                                ?>
-                                                <option value="<?php echo $status; ?>"<?php echo $select; ?>> <?php echo ucwords(str_replace("_", " ", $status)); ?> </option>
-                                                <?php
+                                        ?>
+                                                <option value="<?php echo $status; ?>" <?php echo $select; ?>> <?php echo ucwords(str_replace("_", " ", $status)); ?> </option>
+                                        <?php
                                             }
                                         }
                                         ?>
@@ -292,7 +329,7 @@ if (!empty($customers)) {
                                 <label class="col-sm-4 control-label">Date</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
-                                        <input type="text" tabindex="1"  class="form-align datepicker required" name="po[created_date]" placeholder="dd-mm-yyyy" value="<?= date('d-m-Y', strtotime($val['created_date'])); ?>">
+                                        <input type="text" tabindex="1" class="form-align datepicker required" name="po[created_date]" placeholder="dd-mm-yyyy" value="<?= date('d-m-Y', strtotime($val['created_date'])); ?>">
                                         <div class="input-group-addon">
                                             <i class="fa fa-calendar"></i>
                                         </div>
@@ -303,7 +340,7 @@ if (!empty($customers)) {
                             <div class="form-group">
                                 <label class="col-sm-4 control-label first_td1">Bill Type<span style="color:#F00; font-style:oblique;">*</span></label>
                                 <div class="col-sm-8">
-                                    <input type="radio" class="receiver" value="cash"  checked="<?php echo ($val['po_type'] == 'cash') ? 'checkecd' : ''; ?>" name="po[po_type]" />Cash Purchase
+                                    <input type="radio" class="receiver" value="cash" checked="<?php echo ($val['po_type'] == 'cash') ? 'checkecd' : ''; ?>" name="po[po_type]" />Cash Purchase
                                     <input type="radio" class="receiver" value="credit" checked="<?php echo ($val['po_type'] == 'credit') ? 'checkecd' : ''; ?>" name="po[po_type]" />Credit Purchase<br>
                                     <span id="type1" class="error_msg"></span>
                                 </div>
@@ -337,36 +374,36 @@ if (!empty($customers)) {
                             if (isset($po_details) && !empty($po_details)) {
                                 $i = 1;
                                 foreach ($po_details as $vals) {
-                                    ?>
+                            ?>
                                     <tr>
                                         <td class="action-btn-align s_no">
                                             <?php echo $i; ?>
                                         </td>
                                         <td>
-                                            <select id='cat_id' class='form-control cat_id static_style class_req required' name='categoty[]' style="width:100%"  >
+                                            <select id='cat_id' class='form-control cat_id static_style class_req required' name='categoty[]' style="width:100%">
                                                 <option value="">Select</option>
                                                 <?php
                                                 if (isset($category) && !empty($category)) {
                                                     foreach ($category as $va) {
                                                         $select = ($va['cat_id'] == $vals['category']) ? 'selected' : '';
-                                                        ?>
-                                                        <option value='<?php echo $va['cat_id'] ?>'<?php echo $select; ?>><?php echo $va['categoryName'] ?></option>
-                                                        <?php
+                                                ?>
+                                                        <option value='<?php echo $va['cat_id'] ?>' <?php echo $select; ?>><?php echo $va['categoryName'] ?></option>
+                                                <?php
                                                     }
                                                 }
                                                 ?>
                                             </select>
                                             <span class="error_msg"></span>
-                                            <input type="hidden" style="width:100%" class='form-control form-align  tabwid model_no_extra'   value="<?php echo $vals['model_no']; ?>" />
+                                            <input type="hidden" style="width:100%" class='form-control form-align  tabwid model_no_extra' value="<?php echo $vals['model_no']; ?>" />
                                         </td>
                                         <td style="display:none">
 
                                         </td>
                                         <td>
-                                            <input type="text"  name="model_no[]" id="model_no" style="width:100%" class='form-control form-align auto_customer tabwid model_no required' tabindex="1"  value="<?php echo $vals['product_name']; ?>" />
+                                            <input type="text" name="model_no[]" id="model_no" style="width:100%" class='form-control form-align auto_customer tabwid model_no required' tabindex="1" value="<?php echo $vals['product_name']; ?>" />
                                             <span class="error_msg"></span>
-                                            <input type="hidden"  name="product_id[]" id="product_id" class='product_id tabwid form-align' value="<?php echo $vals['product_id']; ?>" />
-                                            <input type="hidden"  name="type[]" id="type" class=' tabwid form-align type'  value="<?php echo $vals['type']; ?>"/>
+                                            <input type="hidden" name="product_id[]" id="product_id" class='product_id tabwid form-align' value="<?php echo $vals['product_id']; ?>" />
+                                            <input type="hidden" name="type[]" id="type" class=' tabwid form-align type' value="<?php echo $vals['type']; ?>" />
                                             <!--                                            <div id="suggesstion-box1" class="auto-asset-search suggesstion-box1"></div>-->
 
                                         </td>
@@ -377,9 +414,9 @@ if (!empty($customers)) {
                                                 if (isset($brand) && !empty($brand)) {
                                                     foreach ($brand as $va) {
                                                         $select = ($va['id'] == $vals['brand']) ? 'selected' : '';
-                                                        ?>
-                                                        <option value='<?php echo $va['id'] ?>'<?php echo $select; ?>><?php echo $va['brands'] ?></option>
-                                                        <?php
+                                                ?>
+                                                        <option value='<?php echo $va['id'] ?>' <?php echo $select; ?>><?php echo $va['brands'] ?></option>
+                                                <?php
                                                     }
                                                 }
                                                 ?>
@@ -387,42 +424,42 @@ if (!empty($customers)) {
                                             <span class="error_msg"></span>
                                         </td>
                                         <td class="action-btn-align">
-                                            <input type="text"   tabindex="1"  name='unit[]' style="width:70px;" class="unit" value="<?php echo $vals['unit']; ?>"/>
+                                            <input type="text" tabindex="1" name='unit[]' style="width:70px;" class="unit" value="<?php echo $vals['unit']; ?>" />
                                             <span class="error_msg"></span>
                                         </td>
                                         <td>
-                                            <input type="text"   name='available_quantity[]' style="width:70px;" class="form-control  stock_qty" readonly="readonly" value="<?php echo ($vals['stock'][0]['quantity'] != '') ? $vals['stock'][0]['quantity'] : '0'; ?>" />
-                                            <input type="text"   tabindex="1"  name='quantity[]' style="width:70px;" class="qty required form-control"  value="<?php echo $vals['quantity']; ?>" />
+                                            <!-- <input type="text"   name='available_quantity[]' style="width:70px;" class="form-control  stock_qty" readonly="readonly" value="<?php echo ($vals['stock'][0]['quantity'] != '') ? $vals['stock'][0]['quantity'] : '0'; ?>" /> -->
+                                            <input type="text" tabindex="1" name='quantity[]' style="width:70px;" class="qty required form-control" value="<?php echo $vals['quantity']; ?>" />
                                             <span class="error_msg"></span>
                                         </td>
                                         <td>
-                                            <input type="text"   tabindex="1"  name='per_cost[]' style="width:70px;" class="cost_price percost required"  value="<?php echo $vals['per_cost']; ?>" />
+                                            <input type="text" tabindex="1" name='per_cost[]' style="width:70px;" class="cost_price percost required" value="<?php echo $vals['per_cost']; ?>" />
                                             <span class="error_msg"></span>
                                         </td>
                                         <td class="action-btn-align">
-                                            <input type="text"   tabindex="1"  style="width:70px;" class="gross"   />
+                                            <input type="text" tabindex="1" style="width:70px;" class="gross" />
                                         </td>
                                         <td>
-                                            <input type="text"   tabindex="1"   name='discount[]' style="width:70px;" class="discount"  value="<?php echo $vals['discount']; ?>" />
+                                            <input type="text" tabindex="1" name='discount[]' style="width:70px;" class="discount" value="<?php echo $vals['discount']; ?>" />
                                         </td>
                                         <td class="action-btn-align cgst_td">
-                                            <input type="text"   tabindex="1"   name='tax[]' style="width:70px;" class="pertax"  value="<?php echo $vals['tax']; ?>" />
+                                            <input type="text" tabindex="1" name='tax[]' style="width:70px;" class="pertax" value="<?php echo $vals['tax']; ?>" />
                                         </td>
                                         <td class="action-btn-align sgst_td">
-                                            <input type="text"   tabindex="1"   name='gst[]' style="width:70px;" class="gst"  value="<?php echo $vals['gst']; ?>" />
+                                            <input type="text" tabindex="1" name='gst[]' style="width:70px;" class="gst" value="<?php echo $vals['gst']; ?>" />
                                         </td>
                                         <td class="action-btn-align igst_td">
-                                            <input type="text"   tabindex="1"   name='igst[]' style="width:70px;" class="igst wid50"   value="<?php echo $vals['igst']; ?>" />
+                                            <input type="text" tabindex="1" name='igst[]' style="width:70px;" class="igst wid50" value="<?php echo $vals['igst']; ?>" />
                                         </td>
                                         <td>
-                                            <input type="text"   tabindex="1"   name='transport[]' style="width:70px;" class="transport"  value="<?php echo $vals['transport']; ?>" />
+                                            <input type="text" tabindex="1" name='transport[]' style="width:70px;" class="transport" value="<?php echo $vals['transport']; ?>" />
                                         </td>
                                         <td>
-                                            <input type="text"   style="width:70px;" name='sub_total[]' readonly="readonly" class="subtotal text_right"  value="<?php echo $vals['sub_total']; ?>" />
+                                            <input type="text" style="width:70px;" name='sub_total[]' readonly="readonly" class="subtotal text_right" value="<?php echo $vals['sub_total']; ?>" />
                                         </td>
                                         <td class="action-btn-align"><a id='delete_group' class="btn-sm btn-danger"><span class="glyphicon glyphicon-trash"></span></a></td>
                                     </tr>
-                                    <?php
+                            <?php
                                     $i++;
                                 }
                             }
@@ -432,23 +469,23 @@ if (!empty($customers)) {
                         <tfoot>
                             <tr>
                                 <td colspan="7" style="width:70px; text-align:right;">Total</td>
-                                <td><input type="text"   name="po[total_qty]"  tabindex="-1" readonly="readonly" value="<?php echo $val['total_qty']; ?>" class="total_qty" style="width:70px;" id="total" /></td>
+                                <td><input type="text" name="po[total_qty]" tabindex="-1" readonly="readonly" value="<?php echo $val['total_qty']; ?>" class="total_qty" style="width:70px;" id="total" /></td>
                                 <td colspan="4" style="text-align:right;">Sub Total</td>
-                                <td><input type="text" name="po[subtotal_qty]"  tabindex="-1" readonly="readonly" value="<?php echo $val['subtotal_qty']; ?>"  class="final_sub_total text_right" style="width:70px;" /></td>
+                                <td><input type="text" name="po[subtotal_qty]" tabindex="-1" readonly="readonly" value="<?php echo $val['subtotal_qty']; ?>" class="final_sub_total text_right" style="width:70px;" /></td>
                                 <td></td>
                             </tr>
                             <tr>
                                 <td colspan="7" style="width:70px; text-align:right;"></td>
-                                <td colspan="5" style="text-align:right;font-weight:bold;"><input type="text"  name="po[tax_label]" class='tax_label text_right'    style="width:70px;" value="<?php echo $val['tax_label']; ?>"/></td>
+                                <td colspan="5" style="text-align:right;font-weight:bold;"><input type="text" name="po[tax_label]" class='tax_label text_right' style="width:70px;" value="<?php echo $val['tax_label']; ?>" /></td>
                                 <td>
-                                    <input type="text"  name="po[tax]" class='totaltax text_right'  value="<?php echo $val['tax']; ?>"  style="width:70px;" />
+                                    <input type="text" name="po[tax]" class='totaltax text_right' value="<?php echo $val['tax']; ?>" style="width:70px;" />
                                 </td>
                                 <td></td>
                             </tr>
                             <tr>
                                 <td colspan="7" style="width:70px; text-align:right;"></td>
-                                <td colspan="5"style="text-align:right;font-weight:bold;">Net Total</td>
-                                <td><input type="text"  name="po[net_total]"  readonly="readonly"  tabindex="-1" class="final_amt text_right" style="width:70px;" value="<?php echo $val['net_total']; ?>" /></td>
+                                <td colspan="5" style="text-align:right;font-weight:bold;">Net Total</td>
+                                <td><input type="text" name="po[net_total]" readonly="readonly" tabindex="-1" class="final_amt text_right" style="width:70px;" value="<?php echo $val['net_total']; ?>" /></td>
                                 <td></td>
                             </tr>
                             <tr>
@@ -467,8 +504,8 @@ if (!empty($customers)) {
                                 <label class="col-sm-4 control-label">1. Delivery Schedule</label>
                                 <div class="col-sm-8">
                                     <div>
-                                        <input type="text" class="form-control datepicker class_req borderra0 terms"  name="po[delivery_schedule]" placeholder="dd-mm-yyyy" value="<?php echo $val['delivery_schedule']; ?>">
-                                        <span id="colorpoerror" style="color:#F00;" ></span>
+                                        <input type="text" class="form-control datepicker class_req borderra0 terms" name="po[delivery_schedule]" placeholder="dd-mm-yyyy" value="<?php echo $val['delivery_schedule']; ?>">
+                                        <span id="colorpoerror" style="color:#F00;"></span>
                                     </div>
                                 </div>
                             </div>
@@ -477,7 +514,7 @@ if (!empty($customers)) {
                                 <label class="col-sm-4 control-label">3. Mode of Payment</label>
                                 <div class="col-sm-8">
                                     <div>
-                                        <input type="text"  class="form-control class_req borderra0 terms"  name="po[mode_of_payment]" value="<?php echo $val['mode_of_payment']; ?>"/>
+                                        <input type="text" class="form-control class_req borderra0 terms" name="po[mode_of_payment]" value="<?php echo $val['mode_of_payment']; ?>" />
                                     </div>
                                 </div>
                             </div>
@@ -487,8 +524,8 @@ if (!empty($customers)) {
                         </div>
                     </div>
 
-                    <input type="hidden"  name="po[supplier]" id="c_id" class='id_customer' value="<?php echo $val['vendor']; ?>"/>
-                    <input type="hidden"  name="gst_type" id="gst_type" class="gst_type" value="<?php echo $val['state_id']; ?>"/>
+                    <input type="hidden" name="po[supplier]" id="c_id" class='id_customer' value="<?php echo $val['vendor']; ?>" />
+                    <input type="hidden" name="gst_type" id="gst_type" class="gst_type" value="<?php echo $val['state_id']; ?>" />
                     <div class="action-btn-align">
 
                         <button class="btn btn-primary" id="save"> Update </button>
@@ -498,7 +535,7 @@ if (!empty($customers)) {
                 </form>
                 <br />
 
-                <?php
+        <?php
             }
         }
         ?>
@@ -508,13 +545,12 @@ if (!empty($customers)) {
 <script type="text/javascript">
     var formHasChanged = false;
     var submitted = false;
-    $('#save').live('click', function () {
+    $('#save').live('click', function() {
         m = 0;
-        $('.required').each(function () {
+        $('.required').each(function() {
 
             var tr = $('#app_table tr').length;
-            if (tr > 1)
-            {
+            if (tr > 1) {
                 test = $(this).closest('tr td').find('input.model_no').val();
                 if (test == '') {
                     $(this).closest('tr').remove();
@@ -522,7 +558,7 @@ if (!empty($customers)) {
             }
 
         });
-        $('.required').each(function () {
+        $('.required').each(function() {
             this_val = $.trim($(this).val());
             this_id = $(this).attr("id");
             this_class = $(this).attr("class");
@@ -536,12 +572,10 @@ if (!empty($customers)) {
                 $(this).closest('div .form-group').find('.error_msg').text('');
             }
         });
-        if ($('input[type=radio]:checked').length <= 0)
-        {
+        if ($('input[type=radio]:checked').length <= 0) {
             $("#type1").html("This field is required");
             m = 1;
-        } else
-        {
+        } else {
             $("#type1").html("");
         }
 
@@ -555,14 +589,12 @@ if (!empty($customers)) {
         }
     });
 
-    $(document).ready(function () {
+    $(document).ready(function() {
 
         calculate_function();
 
-        if ($('#gst_type').val() != '')
-        {
-            if ($('#gst_type').val() == 31)
-            {
+        if ($('#gst_type').val() != '') {
+            if ($('#gst_type').val() == 31) {
                 $('#add_quotation').find('tr td.sgst_td').show();
                 $('#add_quotation').find('tr td.igst_td').hide();
 
@@ -576,16 +608,16 @@ if (!empty($customers)) {
 
         // $('#firm').focus();
         //  $('#firm').trigger('change');
-        $('body').on('keydown', 'input#customer_name', function (e) {
+        $('body').on('keydown', 'input#customer_name', function(e) {
             var c_data = [<?php echo implode(',', $customers_json); ?>];
-            $("#customer_name").blur(function () {
+            $("#customer_name").blur(function() {
                 var keyEvent = $.Event("keydown");
                 keyEvent.keyCode = $.ui.keyCode.ENTER;
                 $(this).trigger(keyEvent);
                 // Stop event propagation if needed
                 return false;
             }).autocomplete({
-                source: function (request, response) {
+                source: function(request, response) {
                     // filter array to only entries you want to display limited to 10
                     var outputArray = new Array();
                     for (var i = 0; i < c_data.length; i++) {
@@ -598,13 +630,15 @@ if (!empty($customers)) {
                 minLength: 0,
                 delay: 0,
                 autoFocus: true,
-                select: function (event, ui) {
+                select: function(event, ui) {
                     cust_id = ui.item.id;
                     $.ajax({
                         type: 'POST',
-                        data: {cust_id: cust_id},
+                        data: {
+                            cust_id: cust_id
+                        },
                         url: "<?php echo $this->config->item('base_url'); ?>" + "purchase_order/get_customer/",
-                        success: function (data) {
+                        success: function(data) {
                             var result = JSON.parse(data);
                             if (result != null && result.length > 0) {
                                 $("#customer_id").val(result[0].id);
@@ -616,10 +650,8 @@ if (!empty($customers)) {
                                 $("#address1").val(result[0].address1);
                                 $("#tin").val(result[0].tin);
                                 $("#credit_days").val(result[0].credit_days);
-                                if ($('#gst_type').val() != '')
-                                {
-                                    if ($('#gst_type').val() == 31)
-                                    {
+                                if ($('#gst_type').val() != '') {
+                                    if ($('#gst_type').val() == 31) {
                                         $('#add_quotation').find('tr td.sgst_td').show();
                                         $('#add_quotation').find('tr td.igst_td').hide();
 
@@ -639,14 +671,12 @@ if (!empty($customers)) {
     });
 
 
-    $('#add_group').click(function () {
+    $('#add_group').click(function() {
         var tableBody = $(".static").find('tr').clone();
         $(tableBody).closest('tr').find('select,.model_no,.percost,.qty').addClass('required');
         $('#app_table').append(tableBody);
-        if ($('#gst_type').val() != '')
-        {
-            if ($('#gst_type').val() == 31)
-            {
+        if ($('#gst_type').val() != '') {
+            if ($('#gst_type').val() == 31) {
                 $('#add_quotation').find('tr td.sgst_td').show();
                 $('#add_quotation').find('tr td.igst_td').hide();
 
@@ -659,42 +689,41 @@ if (!empty($customers)) {
         }
 
         var i = 1;
-        $('#app_table tr').each(function () {
+        $('#app_table tr').each(function() {
             $(this).closest("tr").find('.s_no').html(i);
             i++;
         });
     });
 
-    $('#delete_group').live('click', function () {
+    $('#delete_group').live('click', function() {
         $(this).closest("tr").remove();
         calculate_function();
 
         var i = 1;
-        $('#app_table tr').each(function () {
+        $('#app_table tr').each(function() {
             $(this).closest("tr").find('.s_no').html(i);
             i++;
         });
     });
 
-    $(".remove_comments").live('click', function () {
+    $(".remove_comments").live('click', function() {
         $(this).closest("tr").remove();
         var full_total = 0;
-        $('.total_qty').each(function () {
+        $('.total_qty').each(function() {
             full_total = full_total + Number($(this).val());
         });
         $('.full_total').val(full_total);
         console.log(full_total);
     });
 
-    $('.qty,.percost,.pertax,.totaltax,.gst,.igst,.discount,.transport').live('keyup', function () {
+    $('.qty,.percost,.pertax,.totaltax,.gst,.igst,.discount,.transport').live('keyup', function() {
         calculate_function();
     });
 
-    function calculate_function()
-    {
+    function calculate_function() {
         var final_qty = 0;
         var final_sub_total = 0;
-        $('.qty').each(function () {
+        $('.qty').each(function() {
             var qty = $(this);
             var percost = $(this).closest('tr').find('.percost');
             var pertax = $(this).closest('tr').find('.pertax');
@@ -703,8 +732,7 @@ if (!empty($customers)) {
             var subtotal = $(this).closest('tr').find('.subtotal');
             var discount = $(this).closest('tr').find('.discount');
             var transport = $(this).closest('tr').find('.transport');
-            if (Number(qty.val()) != 0)
-            {
+            if (Number(qty.val()) != 0) {
                 tot = Number(qty.val()) * Number(percost.val());
                 $(this).closest('tr').find('.gross').val(tot);
                 pertax1 = Number(pertax.val() / 100) * Number(percost.val());
@@ -725,12 +753,12 @@ if (!empty($customers)) {
 
     $(".datepicker").datepicker({
         setDate: new Date(),
-        onClose: function () {
+        onClose: function() {
             $("#app_table").find('tr:first td  input.model_no').focus();
         }
     });
 
-    $('#search').live('click', function () {
+    $('#search').live('click', function() {
         for_loading();
         $.ajax({
             url: BASE_URL + "po/search_result",
@@ -743,20 +771,19 @@ if (!empty($customers)) {
                 from_date: $('#from_date').val(),
                 to_date: $('#to_date').val()
             },
-            success: function (result) {
+            success: function(result) {
                 for_response();
                 $('#result_div').html(result);
             }
         });
     });
-
 </script>
 <script>
-    $('body').on('keydown', '#add_quotation input.model_no', function (e) {
+    $('body').on('keydown', '#add_quotation input.model_no', function(e) {
         // var product_data = [<?php echo implode(',', $model_numbers_json); ?>];
         var _this = $(this);
         $('#add_quotation tbody tr input.model_no').autocomplete({
-            source: function (request, response) {
+            source: function(request, response) {
                 var val = _this.closest('tr input.model_no').val();
                 var product_data = [];
                 cat_id = $('#firm').val();
@@ -764,10 +791,13 @@ if (!empty($customers)) {
                 if ($.trim(val).length != 0) {
                     $.ajax({
                         type: 'POST',
-                        data: {firm_id: cat_id, pro: val},
+                        data: {
+                            firm_id: cat_id,
+                            pro: val
+                        },
                         async: false,
                         url: '<?php echo base_url(); ?>quotation/get_product_by_frim_id',
-                        success: function (data) {
+                        success: function(data) {
                             product_data = JSON.parse(data);
                         }
                     });
@@ -784,16 +814,19 @@ if (!empty($customers)) {
             minLength: 0,
             delay: 0,
             autoFocus: true,
-            select: function (event, ui) {
+            select: function(event, ui) {
                 this_val = $(this);
                 product = ui.item.value;
                 $(this).val(product);
                 model_number_id = ui.item.id;
                 $.ajax({
                     type: 'POST',
-                    data: {model_number_id: model_number_id, c_id: cust_id},
+                    data: {
+                        model_number_id: model_number_id,
+                        c_id: cust_id
+                    },
                     url: "<?php echo $this->config->item('base_url'); ?>" + "purchase_order/get_product/" + cat_id,
-                    success: function (data) {
+                    success: function(data) {
                         var result = JSON.parse(data);
                         if (result != null && result.length > 0) {
                             if (result[0].quantity != null) {
@@ -812,10 +845,8 @@ if (!empty($customers)) {
                             this_val.closest('tr').find('.model_no').val(result[0].product_name);
                             this_val.closest('tr').find('.model_no_extra').val(result[0].model_no);
                             this_val.closest('tr').find('.product_description').val(result[0].product_description);
-                            if ($('#gst_type').val() != '')
-                            {
-                                if ($('#gst_type').val() == 31)
-                                {
+                            if ($('#gst_type').val() != '') {
+                                if ($('#gst_type').val() == 31) {
                                     this_val.closest('tr').find('.pertax').val(result[0].cgst);
                                     this_val.closest('tr').find('.gst').val(result[0].sgst);
                                 } else {
@@ -837,23 +868,25 @@ if (!empty($customers)) {
     });
 
 
-    $('body').on('keydown', 'input.model_no_extra', function (e) {
+    $('body').on('keydown', 'input.model_no_extra', function(e) {
         // var product_data = [<?php echo implode(',', $model_numbers_extra); ?>];
         cat_id = $('#firm').val();
         cust_id = $('#customer_id').val();
         var product_data = [];
         $.ajax({
             type: 'POST',
-            data: {firm_id: cat_id},
+            data: {
+                firm_id: cat_id
+            },
             async: false,
             url: '<?php echo base_url(); ?>quotation/get_model_no_by_frim_id',
-            success: function (data) {
+            success: function(data) {
                 product_data = JSON.parse(data);
 
             }
         });
         $(".model_no_extra").autocomplete({
-            source: function (request, response) {
+            source: function(request, response) {
                 // filter array to only entries you want to display limited to 10
                 var outputArray = new Array();
                 for (var i = 0; i < product_data.length; i++) {
@@ -866,16 +899,19 @@ if (!empty($customers)) {
             minLength: 0,
             delay: 0,
             autoFill: false,
-            select: function (event, ui) {
+            select: function(event, ui) {
                 this_val = $(this);
                 product = ui.item.value;
                 $(this).val(product);
                 model_number_id = ui.item.id;
                 $.ajax({
                     type: 'POST',
-                    data: {model_number_id: model_number_id, c_id: cust_id},
+                    data: {
+                        model_number_id: model_number_id,
+                        c_id: cust_id
+                    },
                     url: "<?php echo $this->config->item('base_url'); ?>" + "purchase_order/get_product/" + cat_id,
-                    success: function (data) {
+                    success: function(data) {
                         var result = JSON.parse(data);
                         if (result != null && result.length > 0) {
                             this_val.closest('tr').find('.unit').val(result[0].unit);
@@ -889,10 +925,8 @@ if (!empty($customers)) {
                             this_val.closest('tr').find('.model_no').val(result[0].product_name);
                             this_val.closest('tr').find('.model_no_extra').val(result[0].model_no);
                             this_val.closest('tr').find('.product_description').val(result[0].product_description);
-                            if ($('#gst_type').val() != '')
-                            {
-                                if ($('#gst_type').val() == 31)
-                                {
+                            if ($('#gst_type').val() != '') {
+                                if ($('#gst_type').val() == 31) {
                                     this_val.closest('tr').find('.pertax').val(result[0].cgst);
                                     this_val.closest('tr').find('.gst').val(result[0].sgst);
                                 } else {
@@ -912,7 +946,7 @@ if (!empty($customers)) {
         });
     });
 
-    $('.pro_class').live('click', function () {
+    $('.pro_class').live('click', function() {
         $(this).closest('tr').find('.cat_id').val($(this).attr('pro_cat'));
         $(this).closest('tr').find('.pertax').val($(this).attr('pro_cgst'));
         $(this).closest('tr').find('.gst').val($(this).attr('pro_sgst'));
@@ -925,17 +959,20 @@ if (!empty($customers)) {
         $(this).closest('tr').find(".suggesstion-box1").hide();
         calculate_function();
     });
+
     function Firm(val) {
         if (val != '') {
             $.ajax({
                 type: 'POST',
-                data: {firm_id: val},
+                data: {
+                    firm_id: val
+                },
                 url: '<?php echo base_url(); ?>masters/products/get_category_by_frim_id',
-                success: function (data) {
+                success: function(data) {
                     var result = JSON.parse(data);
                     if (result != null && result.length > 0) {
                         option_text = '<option value="">Select Category</option>';
-                        $.each(result, function (key, value) {
+                        $.each(result, function(key, value) {
                             option_text += '<option value="' + value.cat_id + '">' + value.categoryName + '</option>';
                         });
                         $('.cat_id').html(option_text);
@@ -952,17 +989,22 @@ if (!empty($customers)) {
             $.ajax({
                 type: 'POST',
                 dataType: 'JSON',
-                data: {firm_id: val},
+                data: {
+                    firm_id: val
+                },
                 url: '<?php echo base_url(); ?>quotation/get_prefix_by_frim_id/',
-                success: function (data1) {
+                success: function(data1) {
                     $('#po_id').val(data1[0]['prefix']);
 
                     $.ajax({
                         type: 'POST',
                         dataType: 'JSON',
-                        data: {type: data1[0]['prefix'], code: 'PO'},
+                        data: {
+                            type: data1[0]['prefix'],
+                            code: 'PO'
+                        },
                         url: '<?php echo base_url(); ?>quotation/get_increment_id/',
-                        success: function (data2) {
+                        success: function(data2) {
                             $('#po_id').val(data2);
                             //console.log(data2);
                             var increment_id = $('#po_id').val().split("/");
@@ -981,116 +1023,115 @@ if (!empty($customers)) {
             $('.model_no,.model_no_extra').attr('readonly', 'readonly');
         }
     }
-    $(window).bind('scannerDetectionReceive', function (event, data) {
+    $(window).bind('scannerDetectionReceive', function(event, data) {
         target_ele = event.target.activeElement;
     });
 
-//    $(document).scannerDetection({
-//        timeBeforeScanTest: 200, // wait for the next character for upto 200ms
-//        startChar: [120], // Prefix character for the cabled scanner (OPL6845R)
-//        endChar: [13], // be sure the scan is complete if key 13 (enter) is detected
-//        avgTimeByChar: 40, // it's not a barcode if a character takes longer than 40ms
-//        onComplete: function (barcode, qty) {
-//            $(target_ele).val('');
-//            val = $('#app_table').find('.product_id').val();
-//            if (val == '') {
-//                $('#app_table').find('tr:first').remove();
-//            }
-//            cust_id = $('#customer_id').val();
-//            barcode = barcode;
-//            if (barcode != '' && cust_id != '') {
-//                $.ajax({
-//                    type: 'POST',
-//                    async: false,
-//                    data: {barcode: barcode, cust_id: cust_id},
-//                    url: '<?php echo base_url(); ?>sales/get_all_products/',
-//                    success: function (data) {
-//                        var result = JSON.parse(data);
-//                        if (result != null && result.length > 0) {
-//                            $.each(result, function (key, value) {
-//                                var prod_array = new Array();
-//                                $(".product_id").each(function () {
-//                                    prod_array.push($(this).val());
-//                                });
-//
-//                                if (jQuery.inArray(value.id, prod_array) > -1 && prod_array.length > 0)
-//                                {
-//                                    qty_val = $('#app_table .tr_' + value.id).find('.qty').val();
-//                                    var add = Number(qty_val) + Number(1);
-//                                    $('#app_table .tr_' + value.id).find('.qty').val(add);
-//                                    calculate_function();
-//                                } else {
-//
-//                                    var tableBody = $(".static").find('tr').clone();
-//                                    $(tableBody).closest('tr').find('select,.model_no,.model_no_ser,.percost,.qty').addClass('required');
-//                                    $('#app_table').append(tableBody);
-//                                    $(tableBody).closest('tr').find('.model_no').val(result[0]['product_name']);
-//                                    if (result[0]['product_image'] == '')
-//                                        $(tableBody).closest('tr').find('.product_image').attr('src', "<?php echo $this->config->item("base_url") . 'attachement/product/' ?>" + result[0]['product_image']);
-//                                    else
-//                                        $(tableBody).closest('tr').find('.product_image').attr('src', "<?php echo $this->config->item("base_url") . 'attachement/product/no-img.gif' ?>");
-//                                    $(tableBody).closest('tr').find('.product_description').val(result[0]['product_description']);
-//                                    $(tableBody).closest('tr').find('.qty').val('1');
-//                                    $(tableBody).closest('tr').addClass('tr_' + result[0]['id']);
-//                                    $(tableBody).closest('tr').find('.product_id').val(result[0]['id']);
-//                                    $(tableBody).closest('tr').find('.selling_price').val(result[0]['selling_price']);
-//                                    $(tableBody).closest('tr').find('.type').val(result[0]['type']);
-//
-//                                    $(tableBody).closest('tr').find('.discount').val(result[0]['discount']);
-//                                    $(tableBody).closest('tr').find('.brand_id').val(result[0]['brand_id']);
-//                                    $(tableBody).closest('tr').find('.unit').val(result[0]['unit']);
-//                                    $(tableBody).closest('tr').find('.cat_id').val(result[0]['category_id']);
-//                                    $(tableBody).closest('tr').find('.model_no').val(result[0]['product_name']);
-//                                    $(tableBody).closest('tr').find('.model_no_extra').val(result[0]['model_no']);
-//                                    if ($('#gst_type').val() != '')
-//                                    {
-//                                        if ($('#gst_type').val() == 31)
-//                                        {
-//                                            $(tableBody).closest('tr').find('.pertax').val(result[0]['cgst']);
-//                                            $(tableBody).closest('tr').find('.gst').val(result[0]['sgst']);
-//                                        } else {
-//                                            $(tableBody).closest('tr').find('.pertax').val(result[0]['cgst']);
-//                                            $(tableBody).closest('tr').find('.igst').val(result[0]['igst']);
-//
-//                                        }
-//                                    }
-//                                    calculate_function();
-//                                    // Firm(result[0]['firm_id'], result[0]['category_id']);
-//                                }
-//
-//                            });
-//
-//                        } else {
-//                            sweetAlert("Error...", "This Product is not available!", "error");
-//                            return false;
-//                        }
-//
-//                    }
-//                });
-//            } else {
-//                sweetAlert("Error...", "This Product is not available!", "error");
-//                return false;
-//            }
-//
-//        }
-//    });
+    //    $(document).scannerDetection({
+    //        timeBeforeScanTest: 200, // wait for the next character for upto 200ms
+    //        startChar: [120], // Prefix character for the cabled scanner (OPL6845R)
+    //        endChar: [13], // be sure the scan is complete if key 13 (enter) is detected
+    //        avgTimeByChar: 40, // it's not a barcode if a character takes longer than 40ms
+    //        onComplete: function (barcode, qty) {
+    //            $(target_ele).val('');
+    //            val = $('#app_table').find('.product_id').val();
+    //            if (val == '') {
+    //                $('#app_table').find('tr:first').remove();
+    //            }
+    //            cust_id = $('#customer_id').val();
+    //            barcode = barcode;
+    //            if (barcode != '' && cust_id != '') {
+    //                $.ajax({
+    //                    type: 'POST',
+    //                    async: false,
+    //                    data: {barcode: barcode, cust_id: cust_id},
+    //                    url: '<?php echo base_url(); ?>sales/get_all_products/',
+    //                    success: function (data) {
+    //                        var result = JSON.parse(data);
+    //                        if (result != null && result.length > 0) {
+    //                            $.each(result, function (key, value) {
+    //                                var prod_array = new Array();
+    //                                $(".product_id").each(function () {
+    //                                    prod_array.push($(this).val());
+    //                                });
+    //
+    //                                if (jQuery.inArray(value.id, prod_array) > -1 && prod_array.length > 0)
+    //                                {
+    //                                    qty_val = $('#app_table .tr_' + value.id).find('.qty').val();
+    //                                    var add = Number(qty_val) + Number(1);
+    //                                    $('#app_table .tr_' + value.id).find('.qty').val(add);
+    //                                    calculate_function();
+    //                                } else {
+    //
+    //                                    var tableBody = $(".static").find('tr').clone();
+    //                                    $(tableBody).closest('tr').find('select,.model_no,.model_no_ser,.percost,.qty').addClass('required');
+    //                                    $('#app_table').append(tableBody);
+    //                                    $(tableBody).closest('tr').find('.model_no').val(result[0]['product_name']);
+    //                                    if (result[0]['product_image'] == '')
+    //                                        $(tableBody).closest('tr').find('.product_image').attr('src', "<?php echo $this->config->item("base_url") . 'attachement/product/' ?>" + result[0]['product_image']);
+    //                                    else
+    //                                        $(tableBody).closest('tr').find('.product_image').attr('src', "<?php echo $this->config->item("base_url") . 'attachement/product/no-img.gif' ?>");
+    //                                    $(tableBody).closest('tr').find('.product_description').val(result[0]['product_description']);
+    //                                    $(tableBody).closest('tr').find('.qty').val('1');
+    //                                    $(tableBody).closest('tr').addClass('tr_' + result[0]['id']);
+    //                                    $(tableBody).closest('tr').find('.product_id').val(result[0]['id']);
+    //                                    $(tableBody).closest('tr').find('.selling_price').val(result[0]['selling_price']);
+    //                                    $(tableBody).closest('tr').find('.type').val(result[0]['type']);
+    //
+    //                                    $(tableBody).closest('tr').find('.discount').val(result[0]['discount']);
+    //                                    $(tableBody).closest('tr').find('.brand_id').val(result[0]['brand_id']);
+    //                                    $(tableBody).closest('tr').find('.unit').val(result[0]['unit']);
+    //                                    $(tableBody).closest('tr').find('.cat_id').val(result[0]['category_id']);
+    //                                    $(tableBody).closest('tr').find('.model_no').val(result[0]['product_name']);
+    //                                    $(tableBody).closest('tr').find('.model_no_extra').val(result[0]['model_no']);
+    //                                    if ($('#gst_type').val() != '')
+    //                                    {
+    //                                        if ($('#gst_type').val() == 31)
+    //                                        {
+    //                                            $(tableBody).closest('tr').find('.pertax').val(result[0]['cgst']);
+    //                                            $(tableBody).closest('tr').find('.gst').val(result[0]['sgst']);
+    //                                        } else {
+    //                                            $(tableBody).closest('tr').find('.pertax').val(result[0]['cgst']);
+    //                                            $(tableBody).closest('tr').find('.igst').val(result[0]['igst']);
+    //
+    //                                        }
+    //                                    }
+    //                                    calculate_function();
+    //                                    // Firm(result[0]['firm_id'], result[0]['category_id']);
+    //                                }
+    //
+    //                            });
+    //
+    //                        } else {
+    //                            sweetAlert("Error...", "This Product is not available!", "error");
+    //                            return false;
+    //                        }
+    //
+    //                    }
+    //                });
+    //            } else {
+    //                sweetAlert("Error...", "This Product is not available!", "error");
+    //                return false;
+    //            }
+    //
+    //        }
+    //    });
 
-    $('input').on('keypress', function () {
+    $('input').on('keypress', function() {
         formHasChanged = true;
     });
 
-    $('select').on('click', function () {
+    $('select').on('click', function() {
         formHasChanged = true;
     });
 
 
 
 
-    $(window).bind('beforeunload', function () {
+    $(window).bind('beforeunload', function() {
         if (formHasChanged && !submitted) {
             return 'Are you sure you want to leave?';
         }
 
     });
 </script>
-
