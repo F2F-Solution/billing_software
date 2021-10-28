@@ -11,48 +11,67 @@
 <script src="<?php echo $theme_path; ?>/js/sweetalert.min.js" type="text/javascript"></script>
 
 <style type="text/css">
+    .text_right {
 
-    .text_right    {
-
-        text-align:right;
+        text-align: right;
 
     }
 
-    .box, .box-body, .content { padding:0; margin:0;border-radius: 0;}
+    .box,
+    .box-body,
+    .content {
+        padding: 0;
+        margin: 0;
+        border-radius: 0;
+    }
 
-    #top_heading_fix h3 {top: -57px;left: 6px;}
+    #top_heading_fix h3 {
+        top: -57px;
+        left: 6px;
+    }
 
-    #TB_overlay { z-index:20000 !important; }
+    #TB_overlay {
+        z-index: 20000 !important;
+    }
 
-    #TB_window { z-index:25000 !important; }
+    #TB_window {
+        z-index: 25000 !important;
+    }
 
-    .dialog_black{ z-index:30000 !important; }
+    .dialog_black {
+        z-index: 30000 !important;
+    }
 
-    #boxscroll22 {max-height: 291px;overflow: auto;cursor: inherit !important;}
+    #boxscroll22 {
+        max-height: 291px;
+        overflow: auto;
+        cursor: inherit !important;
+    }
 
-    .error_msg, em{color: rgb(255, 0, 0); font-size: 12px;font-weight: normal;}
+    .error_msg,
+    em {
+        color: rgb(255, 0, 0);
+        font-size: 12px;
+        font-weight: normal;
+    }
 
     .ui-datepicker td.ui-datepicker-today a {
 
-        background:#999999;
+        background: #999999;
 
     }
 
-    .auto-asset-search
+    .auto-asset-search {
 
-    {
-
-        position:absolute !important;
+        position: absolute !important;
 
     }
 
-    .auto-asset-search ul#country-list li
+    .auto-asset-search ul#country-list li {
 
-    {
+        margin-left: -40px !important;
 
-        margin-left:-40px !important;
-
-        width:297px;
+        width: 297px;
 
     }
 
@@ -96,7 +115,7 @@
 
         border-bottom: 1px solid #f3f3f3;
 
-        width:297px;
+        width: 297px;
 
     }
 
@@ -106,12 +125,11 @@
 
     }
 
-    #suggesstion-box{
+    #suggesstion-box {
 
         z-index: 99;
 
     }
-
 </style>
 
 <?php
@@ -169,19 +187,19 @@ if (!empty($customers)) {
 
                 <td>
 
-                    <select id='cat_id' class='form-align cat_id static_style class_req form-control' style="width:100%" name='categoty[]' >
+                    <select id='cat_id' class='form-align cat_id static_style class_req form-control' style="width:100%" name='categoty[]'>
 
                         <option value="">Select</option>
 
-<?php
-if (isset($category) && !empty($category)) {
+                        <?php
+                        if (isset($category) && !empty($category)) {
 
-    foreach ($category as $val) {
-        ?>
+                            foreach ($category as $val) {
+                        ?>
 
                                 <option value='<?php echo $val['cat_id'] ?>'><?php echo $val['categoryName'] ?></option>
 
-                                <?php
+                        <?php
                             }
                         }
                         ?>
@@ -190,7 +208,7 @@ if (isset($category) && !empty($category)) {
 
                     <span class="error_msg"></span>
 
-                    <input type="hidden" style="width:100%"  class='form-align form-control tabwid model_no_extra ' readonly="readonly"/>
+                    <input type="hidden" style="width:100%" class='form-align form-control tabwid model_no_extra ' readonly="readonly" />
 
                 </td>
 
@@ -202,36 +220,36 @@ if (isset($category) && !empty($category)) {
 
                 <td>
 
-                    <input type="text"  name="model_no[]" style="width:100%" id="model_no" class='form-align auto_customer tabwid model_no form-control' tabindex="1"/>
+                    <input type="text" name="model_no[]" style="width:100%" id="model_no" class='form-align auto_customer tabwid model_no form-control' tabindex="1" />
 
                     <span class="error_msg"></span>
 
-                    <input type="hidden"  name="product_id[]" id="product_id" class=' tabwid form-align product_id' />
+                    <input type="hidden" name="product_id[]" id="product_id" class=' tabwid form-align product_id' />
 
-                    <input type="hidden"  name="type[]" id="type" class=' tabwid form-align type' />
+                    <input type="hidden" name="type[]" id="type" class=' tabwid form-align type' />
 
                     <div id="suggesstion-box1" class="auto-asset-search suggesstion-box1"></div>
 
                 </td>
 
-                <td >
+                <td>
 
-                    <select  name='brand[]' tabindex="1" class="form-align form-control brand_id">
+                    <select name='brand[]' tabindex="1" class="form-align form-control brand_id">
 
-                        <option >Select</option>
+                        <option>Select</option>
 
-<?php
-if (isset($brand) && !empty($brand)) {
+                        <?php
+                        if (isset($brand) && !empty($brand)) {
 
-    foreach ($brand as $val) {
-        ?>
+                            foreach ($brand as $val) {
+                        ?>
 
                                 <option value='<?php echo $val['id'] ?>'><?php echo $val['brands'] ?></option>
 
-        <?php
-    }
-}
-?>
+                        <?php
+                            }
+                        }
+                        ?>
 
                     </select>
 
@@ -241,7 +259,7 @@ if (isset($brand) && !empty($brand)) {
 
                 <td class="action-btn-align">
 
-                    <input type="text"   tabindex="1"  name='unit[]' style="width:70px;" class="unit" />
+                    <input type="text" tabindex="1" name='unit[]' style="width:70px;" class="unit" />
 
                     <span class="error_msg"></span>
 
@@ -249,9 +267,9 @@ if (isset($brand) && !empty($brand)) {
 
                 <td>
 
-                    <input type="text"  name='available_quantity[]' style="width:70px;" class="form-control  stock_qty" value="0" readonly="readonly"/>
+                    <!-- <input type="text"  name='available_quantity[]' style="width:70px;" class="form-control  stock_qty" value="0" readonly="readonly"/> -->
 
-                    <input type="text"   tabindex="1"  name='quantity[]' style="width:70px;" class="qty form-control" id="qty"/>
+                    <input type="text" tabindex="1" name='quantity[]' style="width:70px;" class="qty form-control" id="qty" />
 
                     <span class="error_msg"></span>
 
@@ -259,7 +277,7 @@ if (isset($brand) && !empty($brand)) {
 
                 <td>
 
-                    <input type="text"   tabindex="1"  name='per_cost[]' style="width:70px;" class="cost_price percost " id="price"/>
+                    <input type="text" tabindex="1" name='per_cost[]' style="width:70px;" class="cost_price percost " id="price" />
 
                     <span class="error_msg"></span>
 
@@ -267,43 +285,43 @@ if (isset($brand) && !empty($brand)) {
 
                 <td class="action-btn-align">
 
-                    <input type="text"   tabindex="1"  style="width:70px;" class="gross" />
+                    <input type="text" tabindex="1" style="width:70px;" class="gross" />
 
                 </td>
 
                 <td>
 
-                    <input type="text"   tabindex="1"   name='discount[]' style="width:70px;" class="discount" />
+                    <input type="text" tabindex="1" name='discount[]' style="width:70px;" class="discount" />
 
                 </td>
 
                 <td class="action-btn-align cgst_td">
 
-                    <input type="text"   tabindex="1"   name='tax[]' style="width:70px;" class="pertax" />
+                    <input type="text" tabindex="1" name='tax[]' style="width:70px;" class="pertax" />
 
                 </td>
 
                 <td class="action-btn-align sgst_td">
 
-                    <input type="text"   tabindex="1"   name='gst[]' style="width:70px;" class="gst" />
+                    <input type="text" tabindex="1" name='gst[]' style="width:70px;" class="gst" />
 
                 </td>
 
                 <td class="action-btn-align igst_td">
 
-                    <input type="text"   tabindex="1"   name='igst[]' style="width:70px;" class="igst wid50"  />
+                    <input type="text" tabindex="1" name='igst[]' style="width:70px;" class="igst wid50" />
 
                 </td>
 
                 <td>
 
-                    <input type="text"   tabindex="1"   name='transport[]' style="width:70px;" class="transport" />
+                    <input type="text" tabindex="1" name='transport[]' style="width:70px;" class="transport" />
 
                 </td>
 
                 <td>
 
-                    <input type="text"   tabindex="1" style="width:70px;" name='sub_total[]' readonly="readonly" id="sub_toatl" class="subtotal text_right" />
+                    <input type="text" tabindex="1" style="width:70px;" name='sub_total[]' readonly="readonly" id="sub_toatl" class="subtotal text_right" />
 
                 </td>
 
@@ -313,7 +331,7 @@ if (isset($brand) && !empty($brand)) {
 
         </table>
 
-        <form  method="post" class="panel-body">
+        <form method="post" class="panel-body">
 
             <div class="row">
 
@@ -327,32 +345,11 @@ if (isset($brand) && !empty($brand)) {
 
                         <div class="col-sm-8">
 
-<?php if (count($firms) > 1) { ?>
+                            <?php if (count($firms) > 1) { ?>
 
-                                <select onchange="Firm(this.value)" name="po[firm_id]"  class="form-control form-align required" id="firm" tabindex="1" >
+                                <select onchange="Firm(this.value)" name="po[firm_id]" class="form-control form-align required" id="firm" tabindex="1">
 
                                     <option value="">Select</option>
-
-    <?php
-    if (isset($firms) && !empty($firms)) {
-
-
-
-        foreach ($firms as $firm) {
-            ?>
-
-                                            <option value="<?php echo $firm['firm_id']; ?>"> <?php echo $firm['firm_name']; ?> </option>
-
-            <?php
-        }
-    }
-    ?> </select>
-
-    <?php
-} else {
-    ?>
-
-                                <select onchange="Firm(this.value)" name="po[firm_id]"  class="form-control form-align required" id="firm" readonly="" tabindex="1">
 
                                     <?php
                                     if (isset($firms) && !empty($firms)) {
@@ -360,16 +357,39 @@ if (isset($brand) && !empty($brand)) {
 
 
                                         foreach ($firms as $firm) {
-                                            ?>
+                                    ?>
 
                                             <option value="<?php echo $firm['firm_id']; ?>"> <?php echo $firm['firm_name']; ?> </option>
 
-                                            <?php
+                                    <?php
                                         }
                                     }
-                                    ?> </select>
+                                    ?>
+                                </select>
 
-                                <?php } ?>
+                            <?php
+                            } else {
+                            ?>
+
+                                <select onchange="Firm(this.value)" name="po[firm_id]" class="form-control form-align required" id="firm" readonly="" tabindex="1">
+
+                                    <?php
+                                    if (isset($firms) && !empty($firms)) {
+
+
+
+                                        foreach ($firms as $firm) {
+                                    ?>
+
+                                            <option value="<?php echo $firm['firm_id']; ?>"> <?php echo $firm['firm_name']; ?> </option>
+
+                                    <?php
+                                        }
+                                    }
+                                    ?>
+                                </select>
+
+                            <?php } ?>
 
                             <span class="error_msg"></span>
 
@@ -385,9 +405,9 @@ if (isset($brand) && !empty($brand)) {
 
                         <div class="col-sm-8">
 
-                            <input type="text"  name="po[pr_no]" class="code form-control colournamedup  form-align" readonly="readonly" value=""  id="pr_id">
+                            <input type="text" name="po[pr_no]" class="code form-control colournamedup  form-align" readonly="readonly" value="" id="pr_id">
 
-                            <input type="hidden"  name="po[po_no]" class="code form-control colournamedup  form-align" readonly="readonly" value=""  id="po_id">
+                            <input type="hidden" name="po[po_no]" class="code form-control colournamedup  form-align" readonly="readonly" value="" id="po_id">
 
                         </div>
 
@@ -415,9 +435,9 @@ if (isset($brand) && !empty($brand)) {
 
                             <span class="error_msg"></span>
 
-                            <input type="hidden"  name="supplier[id]" id="customer_id" class='form-control id_customer tabwid form-align' />
+                            <input type="hidden" name="supplier[id]" id="customer_id" class='form-control id_customer tabwid form-align' />
 
-                            <input type="hidden"  name="credit_days" id="credit_days" class='credit_days' />
+                            <input type="hidden" name="credit_days" id="credit_days" class='credit_days' />
 
                             <div id="suggesstion-box" class="auto-asset-search "></div>
 
@@ -433,34 +453,34 @@ if (isset($brand) && !empty($brand)) {
 
                         <div class="col-sm-8">
 
-<?php
-$delivery_status = array('pending');
+                            <?php
+                            $delivery_status = array('pending');
 
-//                            if ($this->user_auth->is_section_allowed('purchase', 'purchase_request')) {
-//                                $delivery_status = array('delivered', 'partially_delivered', 'pending');
-//                            } else {
-//                                $delivery_status = array('pending');
-//                            }
-?>
+                            //                            if ($this->user_auth->is_section_allowed('purchase', 'purchase_request')) {
+                            //                                $delivery_status = array('delivered', 'partially_delivered', 'pending');
+                            //                            } else {
+                            //                                $delivery_status = array('pending');
+                            //                            }
+                            ?>
 
-                            <select name="po[delivery_status]"  class="form-control required form-align" id="delivery_status"   tabindex="1">
-
-
-
-<?php
-if (isset($delivery_status) && !empty($delivery_status)) {
+                            <select name="po[delivery_status]" class="form-control required form-align" id="delivery_status" tabindex="1">
 
 
 
-    foreach ($delivery_status as $status) {
-        ?>
+                                <?php
+                                if (isset($delivery_status) && !empty($delivery_status)) {
+
+
+
+                                    foreach ($delivery_status as $status) {
+                                ?>
 
                                         <option value="<?php echo $status; ?>"> <?php echo ucwords(str_replace("_", " ", $status)); ?> </option>
 
-        <?php
-    }
-}
-?>
+                                <?php
+                                    }
+                                }
+                                ?>
 
                             </select>
 
@@ -512,7 +532,7 @@ if (isset($delivery_status) && !empty($delivery_status)) {
 
                             <div class="input-group">
 
-                                <input type="text"  name="supplier[email_id]" id="email_id" class=" form-align"/>
+                                <input type="text" name="supplier[email_id]" id="email_id" class=" form-align" />
 
                                 <div class="input-group-addon">
 
@@ -538,7 +558,7 @@ if (isset($delivery_status) && !empty($delivery_status)) {
 
                             <div class="input-group">
 
-                                <input type="text" name="supplier[tin_no]"  id="tin"  class="form-align"  />
+                                <input type="text" name="supplier[tin_no]" id="tin" class="form-align" />
 
                                 <div class="input-group-addon">
 
@@ -564,34 +584,34 @@ if (isset($delivery_status) && !empty($delivery_status)) {
 
 
 
-<?php
-//                            if ($this->user_auth->is_section_allowed('purchase', 'purchase_request')) {
-//                                $pr_status = array('waiting', 'approved');
-//                            } else {
-//                                $pr_status = array('waiting');
-//                            }
+                            <?php
+                            //                            if ($this->user_auth->is_section_allowed('purchase', 'purchase_request')) {
+                            //                                $pr_status = array('waiting', 'approved');
+                            //                            } else {
+                            //                                $pr_status = array('waiting');
+                            //                            }
 
-$pr_status = array('waiting');
-?>
+                            $pr_status = array('waiting');
+                            ?>
 
-                            <select name="po[pr_status]"  class="form-control required form-align" id="pr_status"   tabindex="1">
-
-
-
-<?php
-if (isset($pr_status) && !empty($pr_status)) {
+                            <select name="po[pr_status]" class="form-control required form-align" id="pr_status" tabindex="1">
 
 
 
-    foreach ($pr_status as $status) {
-        ?>
+                                <?php
+                                if (isset($pr_status) && !empty($pr_status)) {
+
+
+
+                                    foreach ($pr_status as $status) {
+                                ?>
 
                                         <option value="<?php echo $status; ?>"> <?php echo ucwords(str_replace("_", " ", $status)); ?> </option>
 
-        <?php
-    }
-}
-?>
+                                <?php
+                                    }
+                                }
+                                ?>
 
                             </select>
 
@@ -613,7 +633,7 @@ if (isset($pr_status) && !empty($pr_status)) {
 
                         <div class="col-sm-8">
 
-                            <textarea name="supplier[address1]"  id="address1" class="form-control form-align"></textarea>
+                            <textarea name="supplier[address1]" id="address1" class="form-control form-align"></textarea>
 
                             <span class="error_msg"></span>
 
@@ -631,7 +651,7 @@ if (isset($pr_status) && !empty($pr_status)) {
 
                             <div class="input-group">
 
-                                <input type="text" tabindex="1"  class="form-align datepicker required" name="po[created_date]" placeholder="dd-mm-yyyy" value="<?php echo date('d-m-Y'); ?>">
+                                <input type="text" tabindex="1" class="form-align datepicker required" name="po[created_date]" placeholder="dd-mm-yyyy" value="<?php echo date('d-m-Y'); ?>">
 
                                 <div class="input-group-addon">
 
@@ -653,7 +673,7 @@ if (isset($pr_status) && !empty($pr_status)) {
 
                         <div class="col-sm-8">
 
-                            <input type="radio" class="receiver" value="cash"  name="po[po_type]" />Cash Purchase
+                            <input type="radio" class="receiver" value="cash" name="po[po_type]" />Cash Purchase
 
                             <input type="radio" class="receiver" value="credit" name="po[po_type]" />Credit Purchase<br>
 
@@ -713,36 +733,37 @@ if (isset($pr_status) && !empty($pr_status)) {
 
                     <tbody id='app_table'>
 
-                        <tr><td class="action-btn-align s_no">
+                        <tr>
+                            <td class="action-btn-align s_no">
 
-<?php echo 1; ?>
+                                <?php echo 1; ?>
 
                             </td>
 
                             <td>
 
-                                <select id='cat_id' class='form-control cat_id static_style class_req required' name='categoty[]' style="width:100%"  >
+                                <select id='cat_id' class='form-control cat_id static_style class_req required' name='categoty[]' style="width:100%">
 
                                     <option value="">Select</option>
 
-<?php
-if (isset($category) && !empty($category)) {
+                                    <?php
+                                    if (isset($category) && !empty($category)) {
 
-    foreach ($category as $val) {
-        ?>
+                                        foreach ($category as $val) {
+                                    ?>
 
                                             <option value='<?php echo $val['cat_id'] ?>'><?php echo $val['categoryName'] ?></option>
 
-        <?php
-    }
-}
-?>
+                                    <?php
+                                        }
+                                    }
+                                    ?>
 
                                 </select>
 
                                 <span class="error_msg"></span>
 
-                                <input type="hidden" style="width:100%" class='form-control form-align  tabwid model_no_extra'  readonly="" />
+                                <input type="hidden" style="width:100%" class='form-control form-align  tabwid model_no_extra' readonly="" />
 
                             </td>
 
@@ -754,13 +775,13 @@ if (isset($category) && !empty($category)) {
 
                             <td>
 
-                                <input type="text"  name="model_no[]" id="model_no" style="width:100%" class='form-control form-align auto_customer tabwid model_no required' tabindex="1" readonly="" />
+                                <input type="text" name="model_no[]" id="model_no" style="width:100%" class='form-control form-align auto_customer tabwid model_no required' tabindex="1" readonly="" />
 
                                 <span class="error_msg"></span>
 
-                                <input type="hidden"  name="product_id[]" id="product_id" class='product_id tabwid form-align' />
+                                <input type="hidden" name="product_id[]" id="product_id" class='product_id tabwid form-align' />
 
-                                <input type="hidden"  name="type[]" id="type" class=' tabwid form-align type' />
+                                <input type="hidden" name="type[]" id="type" class=' tabwid form-align type' />
 
                                 <div id="suggesstion-box1" class="auto-asset-search suggesstion-box1"></div>
 
@@ -768,21 +789,21 @@ if (isset($category) && !empty($category)) {
 
                             </td>
 
-                            <td >
+                            <td>
 
                                 <select id='brand_id' name='brand[]' tabindex="1" class="form-control brand_id">
 
                                     <option value="">Select</option>
 
-<?php
-if (isset($brand) && !empty($brand)) {
+                                    <?php
+                                    if (isset($brand) && !empty($brand)) {
 
-    foreach ($brand as $val) {
-        ?>
+                                        foreach ($brand as $val) {
+                                    ?>
 
                                             <option value='<?php echo $val['id'] ?>'><?php echo $val['brands'] ?></option>
 
-                                            <?php
+                                    <?php
                                         }
                                     }
                                     ?>
@@ -795,7 +816,7 @@ if (isset($brand) && !empty($brand)) {
 
                             <td class="action-btn-align">
 
-                                <input type="text"   tabindex="1"  name='unit[]' style="width:70px;" class="unit" />
+                                <input type="text" tabindex="1" name='unit[]' style="width:70px;" class="unit" />
 
                                 <span class="error_msg"></span>
 
@@ -803,9 +824,9 @@ if (isset($brand) && !empty($brand)) {
 
                             <td>
 
-                                <input type="text"   name='available_quantity[]' style="width:70px;" class="form-control  stock_qty" value="" readonly="readonly"/>
+                                <!-- <input type="text" name='available_quantity[]' style="width:70px;" class="form-control  stock_qty" value="" readonly="readonly" /> -->
 
-                                <input type="text"   tabindex="1"  name='quantity[]' style="width:70px;" class="qty required form-control" />
+                                <input type="text" tabindex="1" name='quantity[]' style="width:70px;" class="qty required form-control" />
 
                                 <span class="error_msg"></span>
 
@@ -813,7 +834,7 @@ if (isset($brand) && !empty($brand)) {
 
                             <td>
 
-                                <input type="text"   tabindex="1"  name='per_cost[]' style="width:70px;" class="cost_price percost required" />
+                                <input type="text" tabindex="1" name='per_cost[]' style="width:70px;" class="cost_price percost required" />
 
                                 <span class="error_msg"></span>
 
@@ -821,43 +842,43 @@ if (isset($brand) && !empty($brand)) {
 
                             <td class="action-btn-align">
 
-                                <input type="text"   tabindex="1"  style="width:70px;" class="gross" />
+                                <input type="text" tabindex="1" style="width:70px;" class="gross" />
 
                             </td>
 
                             <td>
 
-                                <input type="text"   tabindex="1"   name='discount[]' style="width:70px;" class="discount" />
+                                <input type="text" tabindex="1" name='discount[]' style="width:70px;" class="discount" />
 
                             </td>
 
                             <td class="action-btn-align cgst_td">
 
-                                <input type="text"   tabindex="1"   name='tax[]' style="width:70px;" class="pertax" />
+                                <input type="text" tabindex="1" name='tax[]' style="width:70px;" class="pertax" />
 
                             </td>
 
                             <td class="action-btn-align sgst_td">
 
-                                <input type="text"   tabindex="1"   name='gst[]' style="width:70px;" class="gst" />
+                                <input type="text" tabindex="1" name='gst[]' style="width:70px;" class="gst" />
 
                             </td>
 
                             <td class="action-btn-align igst_td">
 
-                                <input type="text"   tabindex="1"   name='igst[]' style="width:70px;" class="igst wid50"  />
+                                <input type="text" tabindex="1" name='igst[]' style="width:70px;" class="igst wid50" />
 
                             </td>
 
                             <td>
 
-                                <input type="text"   tabindex="1"   name='transport[]' style="width:70px;" class="transport" />
+                                <input type="text" tabindex="1" name='transport[]' style="width:70px;" class="transport" />
 
                             </td>
 
                             <td>
 
-                                <input type="text"   style="width:70px;" name='sub_total[]' readonly="readonly" class="subtotal text_right" />
+                                <input type="text" style="width:70px;" name='sub_total[]' readonly="readonly" class="subtotal text_right" />
 
                             </td>
 
@@ -873,11 +894,11 @@ if (isset($brand) && !empty($brand)) {
 
                             <td colspan="5" style="width:70px; text-align:right;"><b>Total</b></td>
 
-                            <td><input type="text"   name="po[total_qty]"   readonly="readonly" class="total_qty" style="width:70px;" id="total" /></td>
+                            <td><input type="text" name="po[total_qty]" readonly="readonly" class="total_qty" style="width:70px;" id="total" /></td>
 
                             <td colspan="6" style="text-align:right;"><b>Sub Total</b></td>
 
-                            <td><input type="text" name="po[subtotal_qty]"  readonly="readonly"  class="final_sub_total text_right" style="width:70px;" /></td>
+                            <td><input type="text" name="po[subtotal_qty]" readonly="readonly" class="final_sub_total text_right" style="width:70px;" /></td>
 
                             <td></td>
 
@@ -887,11 +908,11 @@ if (isset($brand) && !empty($brand)) {
 
                             <td colspan="6" style="width:70px; text-align:right;"></td>
 
-                            <td colspan="6" style="text-align:right;font-weight:bold;"><input type="text"  tabindex="1" name="po[tax_label]" class='tax_label text_right'    style="width:100%;" /></td>
+                            <td colspan="6" style="text-align:right;font-weight:bold;"><input type="text" tabindex="1" name="po[tax_label]" class='tax_label text_right' style="width:100%;" /></td>
 
                             <td>
 
-                                <input type="text"  name="po[tax]" class='totaltax text_right'  tabindex="1"  style="width:70px;" />
+                                <input type="text" name="po[tax]" class='totaltax text_right' tabindex="1" style="width:70px;" />
 
                             </td>
 
@@ -903,9 +924,9 @@ if (isset($brand) && !empty($brand)) {
 
                             <td colspan="6" style="width:70px; text-align:right;"></td>
 
-                            <td colspan="6"style="text-align:right;font-weight:bold;">Net Total</td>
+                            <td colspan="6" style="text-align:right;font-weight:bold;">Net Total</td>
 
-                            <td><input type="text"  name="po[net_total]"  readonly="readonly"  class="final_amt text_right" style="width:70px;" /></td>
+                            <td><input type="text" name="po[net_total]" readonly="readonly" class="final_amt text_right" style="width:70px;" /></td>
 
                             <td></td>
 
@@ -917,7 +938,7 @@ if (isset($brand) && !empty($brand)) {
 
                                 <span class="remark">Remarks</span>
 
-                                <input name="po[remarks]"  type="text" class="form-control remark"  tabindex="1"/>
+                                <input name="po[remarks]" type="text" class="form-control remark" tabindex="1" />
 
                             </td>
 
@@ -943,9 +964,9 @@ if (isset($brand) && !empty($brand)) {
 
                             <div>
 
-                                <input type="text" class="form-control datepicker class_req borderra0 terms"  name="po[delivery_schedule]" placeholder="dd-mm-yyyy" >
+                                <input type="text" class="form-control datepicker class_req borderra0 terms" name="po[delivery_schedule]" placeholder="dd-mm-yyyy">
 
-                                <span id="colorpoerror" style="color:#F00;" ></span>
+                                <span id="colorpoerror" style="color:#F00;"></span>
 
                             </div>
 
@@ -963,7 +984,7 @@ if (isset($brand) && !empty($brand)) {
 
                             <div>
 
-                                <input type="text"  class="form-control class_req borderra0 terms"  name="po[mode_of_payment]"/>
+                                <input type="text" class="form-control class_req borderra0 terms" name="po[mode_of_payment]" />
 
                             </div>
 
@@ -981,9 +1002,9 @@ if (isset($brand) && !empty($brand)) {
 
             </div>
 
-            <input type="hidden"  name="po[supplier]" id="c_id" class='id_customer' />
+            <input type="hidden" name="po[supplier]" id="c_id" class='id_customer' />
 
-            <input type="hidden"  name="gst_type" id="gst_type" class="gst_type" />
+            <input type="hidden" name="gst_type" id="gst_type" class="gst_type" />
 
 
 
@@ -1004,16 +1025,15 @@ if (isset($brand) && !empty($brand)) {
 </div>
 
 <script type="text/javascript">
-
     var formHasChanged = false;
 
     var submitted = false;
 
-    $('#save').live('click', function () {
+    $('#save').live('click', function() {
 
         m = 0;
 
-        $('.required').each(function () {
+        $('.required').each(function() {
 
 
 
@@ -1037,7 +1057,7 @@ if (isset($brand) && !empty($brand)) {
 
         });
 
-        $('.required').each(function () {
+        $('.required').each(function() {
 
             this_val = $.trim($(this).val());
 
@@ -1102,7 +1122,7 @@ if (isset($brand) && !empty($brand)) {
 
 
 
-    $(document).ready(function () {
+    $(document).ready(function() {
 
 
 
@@ -1142,11 +1162,11 @@ if (isset($brand) && !empty($brand)) {
 
         $('#firm').trigger('change');
 
-        $('body').on('keydown', 'input#customer_name', function (e) {
+        $('body').on('keydown', 'input#customer_name', function(e) {
 
             var c_data = [<?php echo implode(',', $customers_json); ?>];
 
-            $("#customer_name").blur(function () {
+            $("#customer_name").blur(function() {
 
                 var keyEvent = $.Event("keydown");
 
@@ -1159,7 +1179,7 @@ if (isset($brand) && !empty($brand)) {
                 return false;
 
             }).autocomplete({
-                source: function (request, response) {
+                source: function(request, response) {
 
                     // filter array to only entries you want to display limited to 10
 
@@ -1181,15 +1201,17 @@ if (isset($brand) && !empty($brand)) {
                 minLength: 0,
                 delay: 0,
                 autoFocus: true,
-                select: function (event, ui) {
+                select: function(event, ui) {
 
                     cust_id = ui.item.id;
 
                     $.ajax({
                         type: 'POST',
-                        data: {cust_id: cust_id},
+                        data: {
+                            cust_id: cust_id
+                        },
                         url: "<?php echo $this->config->item('base_url'); ?>" + "purchase_order/get_customer/",
-                        success: function (data) {
+                        success: function(data) {
 
                             var result = JSON.parse(data);
 
@@ -1259,7 +1281,7 @@ if (isset($brand) && !empty($brand)) {
 
 
 
-    $('#add_group').click(function () {
+    $('#add_group').click(function() {
 
         var tableBody = $(".static").find('tr').clone();
 
@@ -1299,7 +1321,7 @@ if (isset($brand) && !empty($brand)) {
 
         var i = 1;
 
-        $('#app_table tr').each(function () {
+        $('#app_table tr').each(function() {
 
             $(this).closest("tr").find('.s_no').html(i);
 
@@ -1311,7 +1333,7 @@ if (isset($brand) && !empty($brand)) {
 
 
 
-    $('#delete_group').live('click', function () {
+    $('#delete_group').live('click', function() {
 
         $(this).closest("tr").remove();
 
@@ -1321,7 +1343,7 @@ if (isset($brand) && !empty($brand)) {
 
         var i = 1;
 
-        $('#app_table tr').each(function () {
+        $('#app_table tr').each(function() {
 
             $(this).closest("tr").find('.s_no').html(i);
 
@@ -1333,13 +1355,13 @@ if (isset($brand) && !empty($brand)) {
 
 
 
-    $(".remove_comments").live('click', function () {
+    $(".remove_comments").live('click', function() {
 
         $(this).closest("tr").remove();
 
         var full_total = 0;
 
-        $('.total_qty').each(function () {
+        $('.total_qty').each(function() {
 
             full_total = full_total + Number($(this).val());
 
@@ -1353,7 +1375,7 @@ if (isset($brand) && !empty($brand)) {
 
 
 
-    $('.qty,.percost,.pertax,.totaltax,.gst,.igst,.discount,.transport').live('keyup', function () {
+    $('.qty,.percost,.pertax,.totaltax,.gst,.igst,.discount,.transport').live('keyup', function() {
 
         calculate_function();
 
@@ -1367,7 +1389,7 @@ if (isset($brand) && !empty($brand)) {
 
         var final_sub_total = 0;
 
-        $('.qty').each(function () {
+        $('.qty').each(function() {
 
             var qty = $(this);
 
@@ -1427,7 +1449,7 @@ if (isset($brand) && !empty($brand)) {
 
     $(".datepicker").datepicker({
         setDate: new Date(),
-        onClose: function () {
+        onClose: function() {
 
             $("#app_table").find('tr:first td  input.model_no').focus();
 
@@ -1437,7 +1459,7 @@ if (isset($brand) && !empty($brand)) {
 
 
 
-    $('#search').live('click', function () {
+    $('#search').live('click', function() {
 
         for_loading();
 
@@ -1453,7 +1475,7 @@ if (isset($brand) && !empty($brand)) {
                 to_date: $('#to_date').val()
 
             },
-            success: function (result) {
+            success: function(result) {
 
                 for_response();
 
@@ -1464,21 +1486,17 @@ if (isset($brand) && !empty($brand)) {
         });
 
     });
-
-
-
 </script>
 
 <script>
-
-    $('body').on('keydown', '#add_quotation input.model_no', function (e) {
+    $('body').on('keydown', '#add_quotation input.model_no', function(e) {
 
         // var product_data = [<?php echo implode(',', $model_numbers_json); ?>];
 
         var _this = $(this);
 
         $('#add_quotation tbody tr input.model_no').autocomplete({
-            source: function (request, response) {
+            source: function(request, response) {
 
                 var val = _this.closest('tr input.model_no').val();
 
@@ -1492,10 +1510,13 @@ if (isset($brand) && !empty($brand)) {
 
                     $.ajax({
                         type: 'POST',
-                        data: {firm_id: cat_id, pro: val},
+                        data: {
+                            firm_id: cat_id,
+                            pro: val
+                        },
                         async: false,
                         url: '<?php echo base_url(); ?>quotation/get_product_by_frim_id',
-                        success: function (data) {
+                        success: function(data) {
 
                             product_data = JSON.parse(data);
 
@@ -1528,7 +1549,7 @@ if (isset($brand) && !empty($brand)) {
             delay: 0,
             autoFocus: true,
             autoFill: false,
-            select: function (event, ui) {
+            select: function(event, ui) {
 
                 this_val = $(this);
 
@@ -1540,9 +1561,12 @@ if (isset($brand) && !empty($brand)) {
 
                 $.ajax({
                     type: 'POST',
-                    data: {model_number_id: model_number_id, c_id: cust_id},
+                    data: {
+                        model_number_id: model_number_id,
+                        c_id: cust_id
+                    },
                     url: "<?php echo $this->config->item('base_url'); ?>" + "purchase_order/get_product/" + cat_id,
-                    success: function (data) {
+                    success: function(data) {
 
                         var result = JSON.parse(data);
 
@@ -1627,7 +1651,7 @@ if (isset($brand) && !empty($brand)) {
 
 
 
-    $('body').on('keydown', 'input.model_no_extra', function (e) {
+    $('body').on('keydown', 'input.model_no_extra', function(e) {
 
         // var product_data = [<?php echo implode(',', $model_numbers_extra); ?>];
 
@@ -1639,10 +1663,12 @@ if (isset($brand) && !empty($brand)) {
 
         $.ajax({
             type: 'POST',
-            data: {firm_id: cat_id},
+            data: {
+                firm_id: cat_id
+            },
             async: false,
             url: '<?php echo base_url(); ?>quotation/get_model_no_by_frim_id',
-            success: function (data) {
+            success: function(data) {
 
                 product_data = JSON.parse(data);
 
@@ -1653,7 +1679,7 @@ if (isset($brand) && !empty($brand)) {
         });
 
         $(".model_no_extra").autocomplete({
-            source: function (request, response) {
+            source: function(request, response) {
 
                 // filter array to only entries you want to display limited to 10
 
@@ -1675,7 +1701,7 @@ if (isset($brand) && !empty($brand)) {
             minLength: 0,
             delay: 0,
             autoFill: false,
-            select: function (event, ui) {
+            select: function(event, ui) {
 
                 this_val = $(this);
 
@@ -1687,9 +1713,12 @@ if (isset($brand) && !empty($brand)) {
 
                 $.ajax({
                     type: 'POST',
-                    data: {model_number_id: model_number_id, c_id: cust_id},
+                    data: {
+                        model_number_id: model_number_id,
+                        c_id: cust_id
+                    },
                     url: "<?php echo $this->config->item('base_url'); ?>" + "purchase_order/get_product/" + cat_id,
-                    success: function (data) {
+                    success: function(data) {
 
                         var result = JSON.parse(data);
 
@@ -1762,7 +1791,7 @@ if (isset($brand) && !empty($brand)) {
 
 
 
-    $('.pro_class').live('click', function () {
+    $('.pro_class').live('click', function() {
 
         $(this).closest('tr').find('.cat_id').val($(this).attr('pro_cat'));
 
@@ -1794,9 +1823,11 @@ if (isset($brand) && !empty($brand)) {
 
             $.ajax({
                 type: 'POST',
-                data: {firm_id: val},
+                data: {
+                    firm_id: val
+                },
                 url: '<?php echo base_url(); ?>masters/products/get_category_by_frim_id',
-                success: function (data) {
+                success: function(data) {
 
                     var result = JSON.parse(data);
 
@@ -1804,7 +1835,7 @@ if (isset($brand) && !empty($brand)) {
 
                         option_text = '<option value="">Select Category</option>';
 
-                        $.each(result, function (key, value) {
+                        $.each(result, function(key, value) {
 
                             option_text += '<option value="' + value.cat_id + '">' + value.categoryName + '</option>';
 
@@ -1835,9 +1866,11 @@ if (isset($brand) && !empty($brand)) {
             $.ajax({
                 type: 'POST',
                 dataType: 'JSON',
-                data: {firm_id: val},
+                data: {
+                    firm_id: val
+                },
                 url: '<?php echo base_url(); ?>quotation/get_prefix_by_frim_id/',
-                success: function (data1) {
+                success: function(data1) {
 
                     $('#po_id').val(data1[0]['prefix']);
 
@@ -1846,9 +1879,12 @@ if (isset($brand) && !empty($brand)) {
                     $.ajax({
                         type: 'POST',
                         dataType: 'JSON',
-                        data: {type: data1[0]['prefix'], code: 'PO'},
+                        data: {
+                            type: data1[0]['prefix'],
+                            code: 'PO'
+                        },
                         url: '<?php echo base_url(); ?>quotation/get_increment_id/',
-                        success: function (data2) {
+                        success: function(data2) {
 
                             $('#po_id').val(data2);
 
@@ -1886,7 +1922,7 @@ if (isset($brand) && !empty($brand)) {
 
     }
 
-    $(window).bind('scannerDetectionReceive', function (event, data) {
+    $(window).bind('scannerDetectionReceive', function(event, data) {
 
         target_ele = event.target.activeElement;
 
@@ -2072,13 +2108,13 @@ if (isset($brand) && !empty($brand)) {
 
      });*/
 
-    $('input').on('keypress', function () {
+    $('input').on('keypress', function() {
 
         formHasChanged = true;
 
     });
 
-    $('select').on('click', function () {
+    $('select').on('click', function() {
 
         formHasChanged = true;
 
@@ -2092,7 +2128,7 @@ if (isset($brand) && !empty($brand)) {
 
 
 
-    $(window).bind('beforeunload', function () {
+    $(window).bind('beforeunload', function() {
 
         if (formHasChanged && !submitted) {
 
@@ -2103,10 +2139,4 @@ if (isset($brand) && !empty($brand)) {
 
 
     });
-
 </script>
-
-
-
-
-
