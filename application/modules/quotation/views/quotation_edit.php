@@ -118,7 +118,7 @@ if (!empty($customers)) {
     <div id='empty_data'></div>
     <div class="contentpanel mb-25">
         <div class="media">
-            <h4>Update Quotation</h4>
+            <h4>Update Estimation</h4>
         </div>
         <table class="static" style="display: none;">
             <tr>
@@ -185,12 +185,12 @@ if (!empty($customers)) {
                 <td>
                     <input type="text" tabindex="-1" name='discount[]' style="width:70px;" class="discount" />
                 </td>
-                <td class="action-btn-align cgst_td">
+                <!-- <td class="action-btn-align cgst_td">
                     <input type="text" tabindex="-1" name='tax[]' style="width:70px;" class="pertax" />
-                </td>
-                <td class="action-btn-align sgst_td">
+                </td> -->
+                <!-- <td class="action-btn-align sgst_td">
                     <input type="text" tabindex="-1" name='gst[]' style="width:70px;" class="gst" />
-                </td>
+                </td> -->
                 <td class="action-btn-align igst_td">
                     <input type="text" tabindex="-1" name='igst[]' style="width:70px;" class="igst wid50" />
                 </td>
@@ -342,12 +342,12 @@ if (!empty($customers)) {
                                     <td width="15%" class="first_td1">Product Name</td>
                                     <td width="10%" class="first_td1">Brand</td>
                                     <td width="" class="first_td1">Unit</td>
-                                    <td width="15%" class="first_td1">QTY</td>
+                                    <td width="5%" class="first_td1">QTY</td>
                                     <td width="" class="first_td1">Unit Price</td>
                                     <td width="" class="first_td1 ">Total</td>
                                     <td width="" class="first_td1">Discount %</td>
-                                    <td width="" class="first_td1 action-btn-align cgst_td">CGST %</td>
-                                    <td width="" class="first_td1 action-btn-align sgst_td">SGST %</td>
+                                    <!-- <td width="" class="first_td1 action-btn-align cgst_td">CGST %</td> -->
+                                    <!-- <td width="" class="first_td1 action-btn-align sgst_td">SGST %</td> -->
                                     <td width="" class="first_td1 action-btn-align igst_td">IGST %</td>
                                     <td width="" class="first_td1">Net Value</td>
                                     <td width="" class="action-btn-align">
@@ -443,11 +443,11 @@ if (!empty($customers)) {
                                             <td class="action-btn-align">
                                                 <input type="text" tabindex="-1" name='discount[]' style="width:70px;" class="discount" value="<?php echo $vals['discount'] ?>" />
                                             </td>
-                                            <td class="action-btn-align cgst_td">
-                                                <input type="text" tabindex="-1" name='tax[]' style="width:70px;" class="pertax" value="<?php echo $vals['tax'] ?>" />
+                                            <td class="action-btn-align cgst_td" style="display: none;">
+                                                <input type="text" style="display: none;" tabindex="-1" name='tax[]' style="width:70px;" class="pertax" value="<?php echo $vals['tax'] ?>" />
                                             </td>
-                                            <td class="action-btn-align sgst_td">
-                                                <input type="text" tabindex="-1" name='gst[]' style="width:70px;" class="gst" value="<?php echo $vals['gst'] ?>" />
+                                            <td class="action-btn-align sgst_td" style="display: none;">
+                                                <input type="text" tabindex="-1" style="display: none;" name='gst[]' style="width:70px;" class="gst" value="<?php echo $vals['gst'] ?>" />
                                             </td>
                                             <td class="action-btn-align igst_td">
                                                 <input type="text" tabindex="-1" name='igst[]' style="width:70px;" class="igst wid50" value="<?php echo $vals['igst'] ?>" />
@@ -469,13 +469,13 @@ if (!empty($customers)) {
                                 <tr>
                                     <td colspan="6" style="width:70px; text-align:right;"><b>Total</b></td>
                                     <td><input type="text" tabindex="-1" name="quotation[total_qty]" readonly="readonly" value="<?php echo $val['total_qty']; ?>" class="total_qty" style="width:70px;" id="total" /></td>
-                                    <td colspan="4" style="text-align:right;"><b>Sub Total</b></td>
+                                    <td colspan="2" style="text-align:right;"><b>Sub Total</b></td>
                                     <td><input type="text" name="quotation[subtotal_qty]" tabindex="-1" readonly="readonly" value="<?php echo $val['subtotal_qty']; ?>" class="final_sub_total text_right" style="width:70px;" /></td>
                                     <td></td>
                                 </tr>
                                 <tr>
                                     <td colspan="4" style="width:70px; text-align:right;"></td>
-                                    <td colspan="7" style="text-align:right;font-weight:bold;"><input type="text" tabindex="-1" name="quotation[tax_label]" class='tax_label text_right' style="width:100%;" value="<?php echo $val['tax_label']; ?>" /></td>
+                                    <td colspan="5" style="text-align:right;font-weight:bold;"><input type="text" tabindex="-1" name="quotation[tax_label]" class='tax_label text_right' style="width:100%;" value="<?php echo $val['tax_label']; ?>" /></td>
                                     <td>
                                         <input type="text" name="quotation[tax]" class='totaltax text_right' tabindex="-1" value="<?php echo $val['tax']; ?>" style="width:70px;" />
                                     </td>
@@ -483,7 +483,7 @@ if (!empty($customers)) {
                                 </tr>
                                 <tr>
                                     <td colspan="4" style="width:70px; text-align:right;"></td>
-                                    <td colspan="7" style="text-align:right;font-weight:bold;">Net Total</td>
+                                    <td colspan="5" style="text-align:right;font-weight:bold;">Net Total</td>
                                     <td><input type="text" tabindex="-1" name="quotation[net_total]" readonly="readonly" class="final_amt text_right" style="width:70px;" value="<?php echo $val['net_total']; ?>" /></td>
                                     <td></td>
                                 </tr>
@@ -623,7 +623,7 @@ if (!empty($customers)) {
 
         if ($('#gst_type').val() != '') {
             if ($('#gst_type').val() == 31) {
-                $('#add_quotation').find('tr td.sgst_td').show();
+                // $('#add_quotation').find('tr td.sgst_td').show();
                 $('#add_quotation').find('tr td.igst_td').hide();
 
             } else {
@@ -679,7 +679,7 @@ if (!empty($customers)) {
                                 $("#tin").val(result[0].tin);
                                 if ($('#gst_type').val() != '') {
                                     if ($('#gst_type').val() == 31) {
-                                        $('#add_quotation').find('tr td.sgst_td').show();
+                                        // $('#add_quotation').find('tr td.sgst_td').show();
                                         $('#add_quotation').find('tr td.igst_td').hide();
 
                                     } else {
@@ -747,7 +747,7 @@ if (!empty($customers)) {
         $('#add_quotation tbody tr td:nth-child(2)').addClass('relative');
         if ($('#gst_type').val() != '') {
             if ($('#gst_type').val() == 31) {
-                $('#add_quotation').find('tr td.sgst_td').show();
+                // $('#add_quotation').find('tr td.sgst_td').show();
                 $('#add_quotation').find('tr td.igst_td').hide();
 
             } else {

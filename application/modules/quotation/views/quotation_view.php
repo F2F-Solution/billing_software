@@ -2,43 +2,69 @@
 <script src="<?= $theme_path; ?>/js/jquery-1.8.2.js" type="text/javascript"></script>
 <script src="<?= $theme_path; ?>/js/jquery-ui-my-1.10.3.min.js"></script>
 <style type="text/css">
-    .text_right
-    {
-        text-align:right;
+    .text_right {
+        text-align: right;
     }
-    .box, .box-body, .content { padding:0; margin:0;border-radius: 0;}
-    #top_heading_fix h3 {top: -57px;left: 6px;}
-    #TB_overlay { z-index:20000 !important; }
-    #TB_window { z-index:25000 !important; }
-    .dialog_black{ z-index:30000 !important; }
-    #boxscroll22 {max-height: 291px;overflow: auto;cursor: inherit !important;}
+
+    .box,
+    .box-body,
+    .content {
+        padding: 0;
+        margin: 0;
+        border-radius: 0;
+    }
+
+    #top_heading_fix h3 {
+        top: -57px;
+        left: 6px;
+    }
+
+    #TB_overlay {
+        z-index: 20000 !important;
+    }
+
+    #TB_window {
+        z-index: 25000 !important;
+    }
+
+    .dialog_black {
+        z-index: 30000 !important;
+    }
+
+    #boxscroll22 {
+        max-height: 291px;
+        overflow: auto;
+        cursor: inherit !important;
+    }
+
     .auto-asset-search ul#country-list li:hover {
         background: #c3c3c3;
         cursor: pointer;
     }
+
     .auto-asset-search ul#country-list li {
         background: #dadada;
         margin: 0;
         padding: 5px;
         border-bottom: 1px solid #f3f3f3;
     }
+
     ul li {
         list-style-type: none;
     }
-
 </style>
 <div class="print_header">
     <table width="100%">
         <tr>
             <td width="15%" style="vertical-align:middle;">
-                <div class="print_header_logo" ><img src="<?= $theme_path; ?>/images/logo.png" /></div>
+                <div class="print_header_logo"><img src="<?= $theme_path; ?>/images/logo.png" /></div>
             </td>
             <td width="85%">
 
-                <div class="print_header_tit" >
+                <div class="print_header_tit">
                     <h3> <?= $this->config->item("company_name"); ?></h3>
                     <p></p>
-                    <p class="pf">  <?= $company_details[0]['address'] ?>,
+                    <p class="pf"> <?= $company_details[0]['address'] ?>,
                     </p>
                     <p></p>
                     <p class="pf"> Pin Code : <?= $company_details[0]['pincode'] ?>,</p>
@@ -50,7 +76,7 @@
 </div>
 <div class="mainpanel">
     <div class="media mt--40 hide_class">
-        <h4 class="hide_class">View Quotation
+        <h4 class="hide_class">View Estimation
             <a href="<?php echo $this->config->item('base_url') . 'quotation/history_view/' . $quotation[0]['id'] ?>" class="btn btn-success right topgen">Quotation History</a>
         </h4>
     </div>
@@ -58,25 +84,25 @@
         <?php
         if (isset($quotation) && !empty($quotation)) {
             foreach ($quotation as $val) {
-                ?>
+        ?>
                 <div class="mscroll">
                     <div class="tpadd10">
                         <table class="table ptable" cellpadding="0" cellspacing="0">
                             <tr class="tbor">
                                 <td colspan="1">GSTIN NO : <?= $company_details[0]['gstin'] ?></td>
-                                <td  colspan="1" align="right">Cell : <?= $company_details[0]['mobile_number'] ?> </td>
+                                <td colspan="1" align="right">Cell : <?= $company_details[0]['mobile_number'] ?> </td>
                             </tr>
                             <tr>
-                                <td><span  class="tdhead">TO,</span>
+                                <td><span class="tdhead">TO,</span>
                                     <div><?php echo $val['store_name']; ?></div>
                                     <div><?php echo $val['address1']; ?> </div>
                                     <div>Mobile : <?php echo ($val['mobil_number']) ? $val['mobil_number'] : '-'; ?></div>
-                                    <div>Email :  <?php echo ($val['email_id']) ? $val['email_id'] : '-'; ?></div>
+                                    <div>Email : <?php echo ($val['email_id']) ? $val['email_id'] : '-'; ?></div>
                                     <div>GSTIN : <?php echo ($val['tin']) ? $val['tin'] : '-'; ?></div>
                                 </td>
                                 <td align="right" style="vertical-align:top;">
-                                    <span  class="tdhead">Quotation NO : </span><?php echo $val['q_no']; ?><br />
-                                    <span  class="tdhead">Date : </span><?= ($val['created_date'] != '1970-01-01') ? date('d-M-Y', strtotime($val['created_date'])) : ''; ?>
+                                    <span class="tdhead">Quotation NO : </span><?php echo $val['q_no']; ?><br />
+                                    <span class="tdhead">Date : </span><?= ($val['created_date'] != '1970-01-01') ? date('d-M-Y', strtotime($val['created_date'])) : ''; ?>
 
                                 </td>
                             </tr>
@@ -86,31 +112,32 @@
                 <div class="mscroll">
                     <table class="table table-striped table-bordered responsive" id="add_quotation" cellpadding="0" cellspacing="0">
                         <thead>
-                            <tr><td width="2%" class="first_td1 action-btn-align ser-wid">S.No</td>
+                            <tr>
+                                <td width="2%" class="first_td1 action-btn-align ser-wid">S.No</td>
                                 <td width="10%" class="first_td1">HSN Code</td>
                                 <td width="10%" class=" first_td1 hide_class">Category</td>
                                 <td width="25%" class=" first_td1">Product Name</td>
                                 <td width="10%" class=" first_td1 hide_class">Brand</td>
                                 <td width="5%" class=" first_td1 hide_class">Unit</td>
-                                <td  width="5%" class="first_td1 action-btn-align ser-wid">QTY</td>
-                                <td  width="8%" class="first_td1 action-btn-align ser-wid">Unit Price</td>
+                                <td width="5%" class="first_td1 action-btn-align ser-wid">QTY</td>
+                                <td width="8%" class="first_td1 action-btn-align ser-wid">Unit Price</td>
                                 <!--<td  width="5%" class="first_td1 action-btn-align ser-wid">Total</td>-->
                                 <!--<td  width="7%" class="first_td1 action-btn-align proimg-wid hide_class">Discount%</td>-->
-                                <td  width="6%" class="first_td1 action-btn-align proimg-wid">CGST%</td>
+                                <!-- <td  width="6%" class="first_td1 action-btn-align proimg-wid">CGST%</td> -->
                                 <?php
                                 $gst_type = $quotation[0]['state_id'];
                                 if ($gst_type != '') {
                                     if ($gst_type == 31) {
-                                        ?>
-                                        <td  width="6%" class="first_td1 action-btn-align ser-wid" >SGST%</td>
+                                ?>
+                                        <!-- <td  width="6%" class="first_td1 action-btn-align ser-wid" >SGST%</td> -->
                                     <?php } else { ?>
-                                        <td  width="6%" class="first_td1 action-btn-align ser-wid" >IGST%</td>
+                                        <td width="6%" class="first_td1 action-btn-align ser-wid">IGST%</td>
 
-                                        <?php
+                                <?php
                                     }
                                 }
                                 ?>
-                                <td  width="7%" class="first_td1 action-btn-align qty-wid">Net Value</td>
+                                <td width="7%" class="first_td1 action-btn-align qty-wid">Net Value</td>
                             </tr>
                         </thead>
                         <tbody id='app_table'>
@@ -118,14 +145,14 @@
                             $i = 1;
                             if (isset($quotation_details) && !empty($quotation_details)) {
                                 foreach ($quotation_details as $vals) {
-                                    ?>
+                            ?>
 
                                     <tr>
                                         <td class="action-btn-align">
                                             <?php echo $i; ?>
                                         </td>
                                         <td class="">
-                                            <?php echo!empty($vals['hsn_sac_name']) ? $vals['hsn_sac_name'] : '-'; ?>
+                                            <?php echo !empty($vals['hsn_sac_name']) ? $vals['hsn_sac_name'] : '-'; ?>
                                         </td>
                                         <td class="hide_class">
                                             <?php echo $vals['categoryName'] ?>
@@ -134,10 +161,10 @@
                                             <?php echo $vals['product_name'] ?>
                                         </td>
                                         <td class="hide_class">
-                                            <?php echo!empty($vals['brands']) ? $vals['brands'] : '-' ?>
+                                            <?php echo !empty($vals['brands']) ? $vals['brands'] : '-' ?>
                                         </td>
                                         <td class="hide_class">
-                                            <?php echo!empty($vals['unit']) ? $vals['unit'] : '-' ?>
+                                            <?php echo !empty($vals['unit']) ? $vals['unit'] : '-' ?>
                                         </td>
                                         <td class="action-btn-align">
                                             <?php echo $vals['quantity'] ?>
@@ -145,30 +172,30 @@
                                         <td class="text_right">
                                             <?php echo number_format($vals['per_cost'], 2) ?>
                                         </td>
-                <!--                                        <td class="text_right">
+                                        <!--                                        <td class="text_right">
                                         <?php echo number_format(($vals['quantity'] * $vals['per_cost']), 2) ?>
                                         </td>-->
-                <!--                                        <td class="action-btn-align hide_class">
+                                        <!--                                        <td class="action-btn-align hide_class">
                                         <?php echo $vals['discount'] ?>
                                         </td>-->
 
-                                        <td class="action-btn-align">
+                                        <!-- <td class="action-btn-align">
                                             <?php echo $vals['tax'] ?>
-                                        </td>
+                                        </td> -->
                                         <?php
                                         $gst_type = $quotation[0]['state_id'];
                                         if ($gst_type != '') {
                                             if ($gst_type == 31) {
-                                                ?>
-                                                <td class="action-btn-align" >
+                                        ?>
+                                                <!-- <td class="action-btn-align">
                                                     <?php echo $vals['gst']; ?>
-                                                </td>
+                                                </td> -->
                                             <?php } else { ?>
-                                                <td class="action-btn-align" >
+                                                <td class="action-btn-align">
                                                     <?php echo $vals['igst']; ?>
                                                 </td>
 
-                                                <?php
+                                        <?php
                                             }
                                         }
                                         ?>
@@ -176,7 +203,7 @@
                                             <?php echo number_format($vals['sub_total'], 2) ?>
                                         </td>
                                     </tr>
-                                    <?php
+                            <?php
                                     $i++;
                                 }
                             }
@@ -186,22 +213,22 @@
                         <tfoot>
                             <tr>
                                 <td colspan="3" class="hide_class" style="width:70px; text-align:right;"></td>
-                                <td colspan="3" style="width:70px; text-align:right;"><b>Total</b></td>
+                                <td colspan="2" style="width:70px; text-align:right;"><b>Total</b></td>
                                 <td style="text-align:center;"><?php echo $val['total_qty']; ?></td>
-                                <td colspan="3" style="text-align:right;"><b>Sub Total</b></td>
+                                <td colspan="2" style="text-align:right;"><b>Sub Total</b></td>
                                 <td class="text_right"><?php echo number_format($val['subtotal_qty'], 2); ?></td>
 
                             </tr>
                             <tr>
-                                <td colspan="3" class="hide_class" style="width:70px; text-align:right;"></td>
-                                <td colspan="7" style="text-align:right;"><strong><?php echo $val['tax_label']; ?></strong> </td>
+                                <td colspan="2" class="hide_class" style="width:70px; text-align:right;"></td>
+                                <td colspan="6" style="text-align:right;"><strong><?php echo $val['tax_label']; ?></strong> </td>
                                 <td class="text_right">
                                     <?php echo number_format($val['tax'], 2); ?></td>
 
                             </tr>
                             <tr>
-                                <td colspan="3" class="hide_class" style="width:70px; text-align:right;"></td>
-                                <td colspan="7"style="text-align:right;"><strong>Net Total</strong></td>
+                                <td colspan="2" class="hide_class" style="width:70px; text-align:right;"></td>
+                                <td colspan="6" style="text-align:right;"><strong>Net Total</strong></td>
                                 <td class="text_right"><?php echo number_format($val['net_total'], 2); ?></td>
 
                             </tr>
@@ -227,45 +254,44 @@
                         <a href="<?php echo $this->config->item('base_url') . 'quotation/quotation_list/' ?>" class="btn btn-defaultback"><span class="glyphicon"></span> Back </a>
                         <button class="btn btn-defaultprint6 print_btn"><span class="glyphicon glyphicon-print"></span> Print</button>
                         <!--<input type="button" class="btn btn-success" id='send_mail'  value="Send Email"/>-->
-                        <?php
+                    <?php
                     } else {
-                        ?>
+                    ?>
                         <a href="<?php echo $this->config->item('base_url') . 'quotation/change_status/' . $quotation[0]['id'] . '/2' ?>" class="btn complete"><span class="glyphicon"></span> Complete </a>
 
-                        <a href="<?php echo $this->config->item('base_url') . 'quotation/quotation_list/' ?>"class="btn btn-defaultback"><span class="glyphicon"></span> Back </a>
+                        <a href="<?php echo $this->config->item('base_url') . 'quotation/quotation_list/' ?>" class="btn btn-defaultback"><span class="glyphicon"></span> Back </a>
                         <button class="btn btn-defaultprint6 print_btn"><span class="glyphicon glyphicon-print"></span> Print</button>
                         <!--<input type="button" class="btn btn-success" id='send_mail' value="Send Email"/>-->
-                    </div>
-                    <?php
+                </div>
+    <?php
+                    }
                 }
             }
-        }
-        ?>
+    ?>
     </div><!-- contentpanel -->
 </div><!-- mainpanel -->
 <script>
-    $(document).ready(function () {
-        $('#send_mail').click(function () {
+    $(document).ready(function() {
+        $('#send_mail').click(function() {
             var s_html = $('.size_html');
             for_loading();
             $.ajax({
                 url: BASE_URL + "quotation/send_email",
                 type: 'GET',
                 data: {
-                    id:<?= $quotation[0]['id'] ?>
+                    id: <?= $quotation[0]['id'] ?>
                 },
-                success: function (result) {
+                success: function(result) {
                     for_response();
                 }
             });
         });
     });
 
-    $('.print_btn').click(function () {
+    $('.print_btn').click(function() {
         window.print();
     });
-    $(document).ready(function () {
+    $(document).ready(function() {
         window.print();
     });
-
 </script>

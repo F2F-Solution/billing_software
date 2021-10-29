@@ -270,7 +270,7 @@ if (!empty($customers)) {
                     <div class="form-group">
                         <label class="col-sm-4 control-label">Customer Name <span style="color:#F00; font-style:oblique;">*</span></label>
                         <div class="col-sm-8">
-                            <input type="text" tabindex="2" name="customer[store_name]" id="customer_name" class='form-control form-align auto_customer  required' />
+                            <input type="text" tabindex="2" name="customer[store_name]" id="customer_name" value="<?php echo $val['id']; ?> " class='form-control form-align auto_customer  ' />
                             <span class="error_msg"></span>
                             <input type="hidden" name="customer[id]" id="customer_id" class='id_customer  form-align' />
                             <!--<input type="hidden"  name="quotation[product_id]" id="cust_id" class='id_customer' />-->
@@ -282,7 +282,7 @@ if (!empty($customers)) {
                         <div class="col-sm-8">
                             <?php $delivery_status = array('delivered', 'partially_delivered', 'pending'); ?>
                             <select name="quotation[delivery_status]" class="form-control required form-align" id="delivery_status" tabindex="3">
-                                <option value="">Select</option>
+                                <!-- <option value="">Select</option> -->
                                 <?php
                                 if (isset($delivery_status) && !empty($delivery_status)) {
                                     foreach ($delivery_status as $status) {
@@ -587,13 +587,13 @@ if (!empty($customers)) {
     </div>
 </div>
 <script type="text/javascript">
-    $('document').ready(function() {
-        $('#firm').focus();
-        var cus_name = $('#customer_name').val();
-        if (cus_name == '') {
-            $("#app_table input").attr("disabled", true);
-        }
-    });
+    // $('document').ready(function() {
+    //     $('#firm').focus();
+    //     var cus_name = $('#customer_name').val();
+    //     if (cus_name == '') {
+    //         $("#app_table input").attr("disabled", false);
+    //     }
+    // });
 </script>
 <script type="text/javascript">
     var formHasChanged = false;
@@ -710,7 +710,7 @@ if (!empty($customers)) {
                 minLength: 0,
                 autoFocus: true,
                 select: function(event, ui) {
-                    $("#app_table input,select").attr("disabled", false);
+                    // $("#app_table input,select").attr("disabled", false);
                     cust_id = ui.item.id;
                     $.ajax({
                         type: 'POST',
@@ -809,7 +809,7 @@ if (!empty($customers)) {
         $(tableBody).closest('tr').find('.model_no,.percost,.qty').addClass('required');
         var cus_name = $('#customer_name').val();
         if (cus_name == '') {
-            $(tableBody).closest('tr').find('select,input').attr("disabled", true);
+            $(tableBody).closest('tr').find('select,input').attr("disabled", false);
         }
         $('#app_table').append(tableBody);
         $('#add_quotation tbody tr td:nth-child(2)').addClass('relative');

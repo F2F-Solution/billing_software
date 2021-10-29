@@ -492,6 +492,13 @@ if (!empty($data['todays_purchases']) && count($data['todays_purchases']) > 0) {
                             </div>
                         </div>
                     <?php endif; ?>
+                    <?php if ($this->user_auth->is_action_allowed('quotation', 'quotation', 'add')) : ?>
+                        <div class="pull-right">
+                            <div class="btn-group btn-group-option but-new-inv">
+                                <a href="<?php echo $this->config->item('base_url') .  'quotation/' ?>" class="btn btn-success">New Estimation</a>
+                            </div>
+                        </div>
+                    <?php endif; ?>
 
                 </div>
             </div>
@@ -570,7 +577,7 @@ if (!empty($data['todays_purchases']) && count($data['todays_purchases']) > 0) {
                         <?php /* ?><li class="<?= ($cur_class == 'enquiry') ? 'active' : '' ?>"><a href="<?php echo $this->config->item('base_url') . 'enquiry/enquiry_list' ?>"><span><i class="fa  fa-list-alt" aria-hidden="true"></i>&nbsp;Enquiry</span></a>
                               </li><?php */ ?>
                         <?php if ($this->user_auth->is_module_allowed('quotation')) : ?>
-                            <li class="masters_tab2 quotation_tab<?= ($cur_class == 'quotation') ? 'active' : '' ?>"><a href="<?php echo $this->config->item('base_url') . 'quotation/quotation_list' ?>"><i class="fa  fa-file-text-o" aria-hidden="true"></i><span>&nbsp;Quotation</span></a>
+                            <li class="masters_tab2 quotation_tab<?= ($cur_class == 'quotation') ? 'active' : '' ?>"><a href="<?php echo $this->config->item('base_url') . 'quotation/quotation_list' ?>"><i class="fa  fa-file-text-o" aria-hidden="true"></i><span>&nbsp;Estimation</span></a>
                             </li>
                         <?php endif; ?>
                         <?php if ($this->user_auth->is_module_allowed('purchase')) : ?>

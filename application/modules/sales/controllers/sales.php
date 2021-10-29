@@ -3,9 +3,11 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Sales extends MX_Controller {
+class Sales extends MX_Controller
+{
 
-    function __construct() {
+    function __construct()
+    {
 
         parent::__construct();
 
@@ -105,7 +107,8 @@ class Sales extends MX_Controller {
             $this->notification_model->update_notification(array('status' => 1), $_GET['notification']);
     }
 
-    public function index() {
+    public function index()
+    {
 
         if ($this->input->post()) {
 
@@ -239,7 +242,8 @@ class Sales extends MX_Controller {
         }
     }
 
-    public function add_invoice() {
+    public function add_invoice()
+    {
 
         if ($this->input->post()) {
 
@@ -329,8 +333,8 @@ class Sales extends MX_Controller {
 
             unset($input['quotation']['notification_date']);
 
-//$date = date('Y-m-d', strtotime($input['quotation']['warranty_from']));
-//$new_date = date('Y-m-d', strtotime($input['quotation']['warranty_to']));
+            //$date = date('Y-m-d', strtotime($input['quotation']['warranty_from']));
+            //$new_date = date('Y-m-d', strtotime($input['quotation']['warranty_to']));
 
             $input['quotation']['invoice_status'] = 'approved';
 
@@ -348,25 +352,28 @@ class Sales extends MX_Controller {
 
             $ref_amount = $this->project_cost_model->get_reference_amount($input['quotation']['ref_name']);
 
-            $input['quotation']['commission_rate'] = ($input['quotation']['net_total'] / 100 ) * $ref_amount;
+            $input['quotation']['commission_rate'] = ($input['quotation']['net_total'] / 100) * $ref_amount;
 
             if ($input['quotation']['credit_days'] == '') {
 
                 $input['quotation']['credit_days'] = NULL;
-            }if ($input['quotation']['credit_limit'] == '') {
+            }
+            if ($input['quotation']['credit_limit'] == '') {
 
                 $input['quotation']['credit_limit'] = NULL;
-            }if ($input['quotation']['temp_credit_limit'] == '') {
+            }
+            if ($input['quotation']['temp_credit_limit'] == '') {
 
                 $input['quotation']['temp_credit_limit'] = NULL;
-            }if ($input['quotation']['approved_by'] == '') {
+            }
+            if ($input['quotation']['approved_by'] == '') {
 
                 $input['quotation']['approved_by'] = NULL;
             }
 
-//            if (isset($input['cus_type']) && !empty($input['cus_type']) && ($input['cus_type'] == 5 || $input['cus_type'] == 6) && $user_info[0]['role'] != 1) {
-//                $input['quotation']['invoice_status'] = 'waiting';
-//            }
+            //            if (isset($input['cus_type']) && !empty($input['cus_type']) && ($input['cus_type'] == 5 || $input['cus_type'] == 6) && $user_info[0]['role'] != 1) {
+            //                $input['quotation']['invoice_status'] = 'waiting';
+            //            }
 
             if ($input['quotation']['delivery_status'] == 'delivered') {
 
@@ -385,14 +392,14 @@ class Sales extends MX_Controller {
 
             if (isset($input['cus_type']) && !empty($input['cus_type']) && ($input['cus_type'] == 5 || $input['cus_type'] == 6) && $user_info[0]['role'] != 1) {
 
-//                $receiver_list = array(1);
-//                $notification = array();
-//                $notification['notification_date'] = date('d-M-Y');
-//                $notification['type'] = 'invoice';
-//                $notification['receiver_id'] = json_encode($receiver_list);
-//                $notification['link'] = 'sales/invoice_view/' . $insert_id;
-//                $notification['Message'] = 'New invoice is created by the customer T5/T6, is waiting for your approval.';
-//                $this->notification_model->insert_notification($notification);
+                //                $receiver_list = array(1);
+                //                $notification = array();
+                //                $notification['notification_date'] = date('d-M-Y');
+                //                $notification['type'] = 'invoice';
+                //                $notification['receiver_id'] = json_encode($receiver_list);
+                //                $notification['link'] = 'sales/invoice_view/' . $insert_id;
+                //                $notification['Message'] = 'New invoice is created by the customer T5/T6, is waiting for your approval.';
+                //                $this->notification_model->insert_notification($notification);
             }
 
             $customer = array();
@@ -574,10 +581,10 @@ class Sales extends MX_Controller {
 
                 $input['quotation']['net_total'] = $net_total + $input['quotation']['tax'];
 
-//$date = date('Y-m-d', strtotime($input['quotation']['warranty_from']));
-//$new_date = date('Y-m-d', strtotime($input['quotation']['warranty_to']));
-//$input['quotation']['warranty_from'] = $date;
-//$input['quotation']['warranty_to'] = $new_date;
+                //$date = date('Y-m-d', strtotime($input['quotation']['warranty_from']));
+                //$new_date = date('Y-m-d', strtotime($input['quotation']['warranty_to']));
+                //$input['quotation']['warranty_from'] = $date;
+                //$input['quotation']['warranty_to'] = $new_date;
 
                 $input['quotation']['customer'] = $contract_customer;
 
@@ -595,14 +602,14 @@ class Sales extends MX_Controller {
 
                 $ref_amount = $this->project_cost_model->get_reference_amount($input['quotation']['ref_name']);
 
-                $input['quotation']['commission_rate'] = ($input['quotation']['net_total'] / 100 ) * $ref_amount;
+                $input['quotation']['commission_rate'] = ($input['quotation']['net_total'] / 100) * $ref_amount;
 
-// echo "<pre>";print_r($new); print_r($input); exit;
+                // echo "<pre>";print_r($new); print_r($input); exit;
 
                 $insert_id = $this->project_cost_model->insert_invoice($input['quotation']);
 
-//unset($input['quotation']['contract_customer']);
-//$this->sales_return_model->insert_sr($input['quotation']);
+                //unset($input['quotation']['contract_customer']);
+                //$this->sales_return_model->insert_sr($input['quotation']);
 
                 if (isset($insert_id) && !empty($insert_id)) {
 
@@ -684,7 +691,8 @@ class Sales extends MX_Controller {
         }
     }
 
-    function get_stock() {
+    function get_stock()
+    {
 
         $data = $this->input->get();
 
@@ -698,14 +706,16 @@ class Sales extends MX_Controller {
         }
     }
 
-    function stock_details($stock_info, $inv_id) {
+    function stock_details($stock_info, $inv_id)
+    {
 
 
 
         $this->project_cost_model->check_stock($stock_info, $inv_id);
     }
 
-    function get_po() {
+    function get_po()
+    {
 
         $data = $this->input->get();
 
@@ -713,14 +723,15 @@ class Sales extends MX_Controller {
 
         if (isset($stock) && !empty($stock)) {
 
-            echo'<input type="text"   tabindex="-1" value="' . $stock[0]['per_cost'] . '"   name="per_cost[]" style="width:70px;" class="percost required " id="price"/><span class="error_msg"></span>';
+            echo '<input type="text"   tabindex="-1" value="' . $stock[0]['per_cost'] . '"   name="per_cost[]" style="width:70px;" class="percost required " id="price"/><span class="error_msg"></span>';
         } else {
 
-            echo'<input type="text"   tabindex="-1"  name="per_cost[]" style="width:70px;" class="percost required" id="price"/><span class="error_msg"></span>';
+            echo '<input type="text"   tabindex="-1"  name="per_cost[]" style="width:70px;" class="percost required" id="price"/><span class="error_msg"></span>';
         }
     }
 
-    public function quotation_view($id) {
+    public function quotation_view($id)
+    {
 
         $datas["quotation"] = $quotation = $this->project_cost_model->get_all_pc_by_id($id);
 
@@ -733,7 +744,7 @@ class Sales extends MX_Controller {
 
         $datas["category"] = $category = $this->categories_model->get_all_category();
 
-// $datas['company_details'] = $this->admin_model->get_company_details();
+        // $datas['company_details'] = $this->admin_model->get_company_details();
 
         $datas['company_details'] = $this->project_cost_model->get_company_details_by_firms($id);
 
@@ -744,7 +755,8 @@ class Sales extends MX_Controller {
         $this->template->render();
     }
 
-    public function quotation_edit($id) {
+    public function quotation_edit($id)
+    {
 
         $datas["quotation"] = $quotation = $this->project_cost_model->get_all_pc_by_id($id);
 
@@ -752,7 +764,7 @@ class Sales extends MX_Controller {
 
         $datas['firms'] = $firms = $this->user_auth->get_user_firms();
 
-//$datas["nick_name"] = $this->gen_model->get_all_nick_name();
+        //$datas["nick_name"] = $this->gen_model->get_all_nick_name();
 
         $firms = $this->user_auth->get_user_firms();
 
@@ -775,7 +787,8 @@ class Sales extends MX_Controller {
         $this->template->render();
     }
 
-    public function invoice_view($id) {
+    public function invoice_view($id)
+    {
 
         $id = 3892;
 
@@ -787,7 +800,7 @@ class Sales extends MX_Controller {
 
         $datas["category"] = $category = $this->categories_model->get_all_category();
 
-//  $datas['company_details'] = $this->admin_model->get_company_details();
+        //  $datas['company_details'] = $this->admin_model->get_company_details();
 
         $datas["brand"] = $brand = $this->brand_model->get_brand();
 
@@ -802,7 +815,8 @@ class Sales extends MX_Controller {
         $this->template->render();
     }
 
-    public function invoice_views($id) {
+    public function invoice_views($id)
+    {
 
         $datas["quotation"] = $quotation = $this->project_cost_model->get_all_invoice_by_id($id);
 
@@ -825,21 +839,24 @@ class Sales extends MX_Controller {
         $this->template->render();
     }
 
-    public function change_status($id, $status) {
+    public function change_status($id, $status)
+    {
 
         $this->project_cost_model->change_quotation_status($id, $status);
 
         redirect($this->config->item('base_url') . 'sales/project_cost_list');
     }
 
-    public function change_pc_status($id, $status) {
+    public function change_pc_status($id, $status)
+    {
 
         $this->project_cost_model->change_pc_status($id, $status);
 
         redirect($this->config->item('base_url') . 'sales/project_cost_list');
     }
 
-    public function project_cost_list() {
+    public function project_cost_list()
+    {
 
 
 
@@ -852,7 +869,8 @@ class Sales extends MX_Controller {
         $this->template->render();
     }
 
-    function ajaxList() {
+    function ajaxList()
+    {
 
 
 
@@ -939,7 +957,7 @@ class Sales extends MX_Controller {
 
             $row[] = $no;
 
-//$row[] = $ass->firm_name;
+            //$row[] = $ass->firm_name;
 
             $row[] = $val['job_id'];
 
@@ -968,31 +986,33 @@ class Sales extends MX_Controller {
         exit;
     }
 
-    public function invoice_list() {
+    public function invoice_list()
+    {
 
         $datas = array();
 
-// $datas["quotation"] = $quotation = $this->project_cost_model->get_invoice();
-//$datas["quotation"] = $quotation = $this->project_cost_model->get_all_completed_quotation();  --- already in commandline
+        // $datas["quotation"] = $quotation = $this->project_cost_model->get_invoice();
+        //$datas["quotation"] = $quotation = $this->project_cost_model->get_all_completed_quotation();  --- already in commandline
 
         $datas['sales'] = $this->project_cost_model->get_all_sales_id();
 
-// $datas['company_details'] = $this->admin_model->get_company_details();
+        // $datas['company_details'] = $this->admin_model->get_company_details();
 
         $this->template->write_view('content', 'sales/invoice_list', $datas);
 
         $this->template->render();
     }
 
-    public function invoice_edit($id) {
+    public function invoice_edit($id)
+    {
 
         $datas["quotation"] = $quotation = $this->project_cost_model->get_all_invoice_by_id($id);
 
         $datas['quotation_details'] = $this->project_cost_model->get_all_invoice_details_by_id($id);
 
-//        echo '<pre>';
-//        print_r($datas);
-//        exit;
+        //        echo '<pre>';
+        //        print_r($datas);
+        //        exit;
 
         $datas['company_details'] = $this->admin_model->get_company_details();
 
@@ -1013,7 +1033,8 @@ class Sales extends MX_Controller {
         $this->template->render();
     }
 
-    public function get_customer($id) {
+    public function get_customer($id)
+    {
 
         $atten_inputs = $this->input->get();
 
@@ -1028,9 +1049,7 @@ class Sales extends MX_Controller {
                 if ($st_rlno['name'] != '')
                     echo '<li class="cust_class" cust_name="' . $st_rlno['name'] . '" cust_id="' . $st_rlno['id'] . '" cust_no="' . $st_rlno['mobil_number'] . '" cust_email="' . $st_rlno['email_id'] . '" cust_address="' . $st_rlno['address1'] . '" cust_tin="' . $st_rlno['tin'] . '">' . $st_rlno['name'] . '</li>';
             }
-        }
-
-        else {
+        } else {
 
             echo '<li style="color:red;">No Data Found</li>';
         }
@@ -1038,7 +1057,8 @@ class Sales extends MX_Controller {
         echo '</ul>';
     }
 
-    public function get_service($id) {
+    public function get_service($id)
+    {
 
         $atten_inputs = $this->input->get();
 
@@ -1055,9 +1075,7 @@ class Sales extends MX_Controller {
                 if ($st_rlno['model_no'] != '')
                     echo '<li class="ser_class" ser_sell="' . $st_rlno['cost_price'] . '" ser_type="' . $st_rlno['type'] . '" ser_id="' . $st_rlno['id'] . '" ser_no="' . $st_rlno['model_no'] . '" ser_name="' . $st_rlno['product_name'] . '" ser_description="' . $st_rlno['product_description'] . '" ser_image="' . $st_rlno['product_image'] . '" ser_cgst="' . $st_rlno['cgst'] . '"ser_sgst ="' . $st_rlno['sgst'] . '"ser_cat ="' . $st_rlno['category_id'] . '">' . $st_rlno['model_no'] . '</li>';
             }
-        }
-
-        else {
+        } else {
 
             echo '<li style="color:red;">No Data Found</li>';
         }
@@ -1065,7 +1083,8 @@ class Sales extends MX_Controller {
         echo '</ul>';
     }
 
-    public function get_customer_by_id() {
+    public function get_customer_by_id()
+    {
 
         $input = $this->input->post();
 
@@ -1076,7 +1095,8 @@ class Sales extends MX_Controller {
         exit;
     }
 
-    public function get_product($id) {
+    public function get_product($id)
+    {
 
         $atten_inputs = $this->input->get();
 
@@ -1093,9 +1113,7 @@ class Sales extends MX_Controller {
                 if ($st_rlno['product_name'] != '')
                     echo '<li class="pro_class" pro_cost="' . $st_rlno['cost_price'] . '" pro_id="' . $st_rlno['id'] . '" mod_no="' . $st_rlno['model_no'] . '" pro_name="' . $st_rlno['product_name'] . '" pro_description="' . $st_rlno['product_description'] . '" pro_image="' . $st_rlno['product_image'] . '" pro_cgst="' . $st_rlno['cgst'] . '"pro_sgst ="' . $st_rlno['sgst'] . '"pro_cat ="' . $st_rlno['category_id'] . '">' . $st_rlno['product_name'] . '</li>';
             }
-        }
-
-        else {
+        } else {
 
             echo '<li style="color:red;">No Data Found</li>';
         }
@@ -1103,7 +1121,8 @@ class Sales extends MX_Controller {
         echo '</ul>';
     }
 
-    public function get_product_by_id() {
+    public function get_product_by_id()
+    {
 
         $input = $this->input->post();
 
@@ -1114,30 +1133,33 @@ class Sales extends MX_Controller {
         exit;
     }
 
-    public function delete_id() {
+    public function delete_id()
+    {
 
         $input = $this->input->get();
 
         $del = $this->project_cost_model->delete_id($input['del_id']);
     }
 
-    public function delete_pc_id() {
+    public function delete_pc_id()
+    {
 
         $input = $this->input->get();
 
         $del = $this->project_cost_model->delete_pc_id($input['del_id']);
     }
 
-    public function quotation_add($id) {
+    public function quotation_add($id)
+    {
 
         $datas["quotation"] = $quotation = $this->project_cost_model->get_all_quotation_by_id($id);
 
         $datas["quotation_details"] = $quotation_details = $this->project_cost_model->get_all_quotation_details_by_id($id);
 
-//        echo "<pre>";
-//        echo $id;
-//        print_r($datas["quotation_details"]);
-//        exit;
+        //        echo "<pre>";
+        //        echo $id;
+        //        print_r($datas["quotation_details"]);
+        //        exit;
 
         $datas["category"] = $category = $this->categories_model->get_all_category();
 
@@ -1147,7 +1169,7 @@ class Sales extends MX_Controller {
 
         $datas["customer"] = $this->project_cost_model->get_customers();
 
-// $datas["last_id"]=$this->master_model->get_last_id('job_code');
+        // $datas["last_id"]=$this->master_model->get_last_id('job_code');
 
         $datas["products"] = $this->gen_model->get_all_product();
 
@@ -1156,7 +1178,8 @@ class Sales extends MX_Controller {
         $this->template->render();
     }
 
-    public function invoice_add($q_id) {
+    public function invoice_add($q_id)
+    {
 
 
 
@@ -1172,9 +1195,9 @@ class Sales extends MX_Controller {
             $datas["quotation_details"] = $quotation_details = $this->project_cost_model->get_all_project_details_by_id($q_id);
         }
 
-//        echo '<pre>';
-//        print_r($datas);
-//        die;
+        //        echo '<pre>';
+        //        print_r($datas);
+        //        die;
 
         $datas["customer"] = $this->project_cost_model->get_customers();
 
@@ -1195,7 +1218,8 @@ class Sales extends MX_Controller {
         $this->template->render();
     }
 
-    public function update_quotation($id) {
+    public function update_quotation($id)
+    {
 
         $his_quo = $this->project_cost_model->get_his_quotation_by_id($id);
 
@@ -1203,13 +1227,13 @@ class Sales extends MX_Controller {
 
         unset($his_quo[0]['id']);
 
-//echo "<pre>"; print_r($his_quo); exit;
+        //echo "<pre>"; print_r($his_quo); exit;
 
         $insert_id = $this->project_cost_model->insert_history_quotation($his_quo[0]);
 
         $input = $this->input->post();
 
-// echo "<pre>"; print_r($input); exit;
+        // echo "<pre>"; print_r($input); exit;
 
         $input['quotation']['notification_date'] = date('Y-m-d');
 
@@ -1225,7 +1249,7 @@ class Sales extends MX_Controller {
 
         $his_quo1 = $this->project_cost_model->get_all_history_quotation_by_id($id);
 
-//echo "<pre>"; print_r($his_quo1); exit;
+        //echo "<pre>"; print_r($his_quo1); exit;
 
         $his_quo_details['hist'] = $this->project_cost_model->get_his_quotation_deteils_by_id($id);
 
@@ -1248,7 +1272,7 @@ class Sales extends MX_Controller {
                 $insert_arrs[] = $inserts;
             }
 
-// echo "<pre>"; print_r($insert_arrs); exit;
+            // echo "<pre>"; print_r($insert_arrs); exit;
 
             $this->project_cost_model->insert_history_quotation_details($insert_arrs);
 
@@ -1298,7 +1322,7 @@ class Sales extends MX_Controller {
                 $insert_arr[] = $insert;
             }
 
-// echo "<pre>"; print_r($insert_arr); exit;
+            // echo "<pre>"; print_r($insert_arr); exit;
 
             $this->project_cost_model->insert_quotation_details($insert_arr);
         }
@@ -1310,7 +1334,8 @@ class Sales extends MX_Controller {
         redirect($this->config->item('base_url') . 'sales/project_cost_list');
     }
 
-    public function quotation_delete() {
+    public function quotation_delete()
+    {
 
         $id = $this->input->POST('value1');
 
@@ -1321,7 +1346,8 @@ class Sales extends MX_Controller {
         redirect($this->config->item('base_url') . 'sales/project_cost_list');
     }
 
-    public function approve_invoice() {
+    public function approve_invoice()
+    {
 
         $id = $this->input->POST('id');
 
@@ -1338,7 +1364,8 @@ class Sales extends MX_Controller {
         }
     }
 
-    public function send_email() {
+    public function send_email()
+    {
 
 
 
@@ -1372,7 +1399,7 @@ class Sales extends MX_Controller {
 
         $this->email->initialize($config);
 
-// $to_array = array($data['company_details'][0]['email'], $data['quotation'][0]['email_id']);
+        // $to_array = array($data['company_details'][0]['email'], $data['quotation'][0]['email_id']);
 
         $to_array = array($data['quotation'][0]['email_id']);
 
@@ -1382,7 +1409,7 @@ class Sales extends MX_Controller {
 
         $this->email->from($data['email_details'][1]['value'], $data['email_details'][0]['value']);
 
-// $this->email->to($data['company_details'][0]['email'],$data['quotation'][0]['email_id']);
+        // $this->email->to($data['company_details'][0]['email'],$data['quotation'][0]['email_id']);
 
         $this->email->cc($data['email_details'][3]['value']);
 
@@ -1392,7 +1419,7 @@ class Sales extends MX_Controller {
 
         $msg1['test'] = $this->load->view('sales/email_page', $data, TRUE);
 
-//$msg1['company_details']=$data['company_details'];
+        //$msg1['company_details']=$data['company_details'];
 
         $header = $this->load->view('quotation/pdf_header_view', $data, TRUE);
 
@@ -1414,12 +1441,12 @@ class Sales extends MX_Controller {
 
         $pdf->Output($newFile, 'F');
 
-//echo "<pre>"; print_r($data); exit;
+        //echo "<pre>"; print_r($data); exit;
 
         $this->email->attach($this->config->item('theme_path') . 'attachement/' . $filename);
 
         $this->email->message('Dear ' . $data['quotation'][0]['name'] . ',<br> We Thank you for choosing us, Kindly find the attachment for Invoice Details <b>' . $data['quotation'][0]['inv_id'] . '</b><br>'
-                . 'Company Name - ' . $data['quotation'][0]['store_name'] . '<br>
+            . 'Company Name - ' . $data['quotation'][0]['store_name'] . '<br>
 
                        Address - ' . $data['quotation'][0]['address1'] . ' <br>
 
@@ -1430,7 +1457,8 @@ class Sales extends MX_Controller {
         $this->email->send();
     }
 
-    public function new_direct_invoice() {
+    public function new_direct_invoice()
+    {
 
         if ($this->input->post()) {
             $input = $this->input->post();
@@ -1470,7 +1498,7 @@ class Sales extends MX_Controller {
             unset($input['quotation']['notification_date']);
             $input['quotation']['invoice_status'] = 'approved';
 
-//$input['quotation']['delivery_status'] = 'pending';
+            //$input['quotation']['delivery_status'] = 'pending';
             $data['company_details'] = $this->admin_model->get_company_details();
             $data['customer_details'] = $customer_details = $this->customer_model->get_customer1($input['quotation']['customer']);
             $advance_amt = $this->input->post('advance');
@@ -1478,32 +1506,35 @@ class Sales extends MX_Controller {
             //echo $advance_amt;
             //print_r($data['customer_details']);
             //exit;
-//$contract_customer = $input['quotation']['contract_customer'];
+            //$contract_customer = $input['quotation']['contract_customer'];
 
             $input['quotation']['created_by'] = $user_info[0]['id'];
             $input['quotation']['created_date'] = date('Y-m-d', strtotime($input['quotation']['created_date']));
             $input['quotation']['credit_due_date'] = date('Y-m-d', strtotime($input['quotation']['created_date'] . "+" . $data['customer_details'][0]['credit_days'] . " days"));
             $ref_amount = $this->project_cost_model->get_reference_amount($input['quotation']['ref_name']);
-            $input['quotation']['commission_rate'] = ($input['quotation']['net_total'] / 100 ) * $ref_amount;
+            $input['quotation']['commission_rate'] = ($input['quotation']['net_total'] / 100) * $ref_amount;
             if ($input['quotation']['credit_days'] == '') {
                 $input['quotation']['credit_days'] = NULL;
-            }if ($input['quotation']['credit_limit'] == '') {
+            }
+            if ($input['quotation']['credit_limit'] == '') {
                 $input['quotation']['credit_limit'] = NULL;
-            }if ($input['quotation']['temp_credit_limit'] == '') {
+            }
+            if ($input['quotation']['temp_credit_limit'] == '') {
                 $input['quotation']['temp_credit_limit'] = NULL;
-            }if ($input['quotation']['approved_by'] == '') {
+            }
+            if ($input['quotation']['approved_by'] == '') {
                 $input['quotation']['approved_by'] = NULL;
             }
             if ($input['quotation']['approved_by'] == '') {
 
-// $input['quotation']['approved_by'] = NULL;
+                // $input['quotation']['approved_by'] = NULL;
             }
 
 
 
-//            if (isset($input['cus_type']) && !empty($input['cus_type']) && ($input['cus_type'] == 5 || $input['cus_type'] == 6) && $user_info[0]['role'] != 1) {
-//                $input['quotation']['invoice_status'] = 'waiting';
-//            }
+            //            if (isset($input['cus_type']) && !empty($input['cus_type']) && ($input['cus_type'] == 5 || $input['cus_type'] == 6) && $user_info[0]['role'] != 1) {
+            //                $input['quotation']['invoice_status'] = 'waiting';
+            //            }
 
             if ($input['quotation']['delivery_status'] == 'delivered') {
                 $input['quotation']['delivery_qty'] = $input['quotation']['total_qty'];
@@ -1515,14 +1546,14 @@ class Sales extends MX_Controller {
             unset($input['quotation']['labour']);
             if (isset($input['cus_type']) && !empty($input['cus_type']) && ($input['cus_type'] == 5 || $input['cus_type'] == 6) && $user_info[0]['role'] != 1) {
 
-//                $receiver_list = array(1);
-//                $notification = array();
-//                $notification['notification_date'] = date('d-M-Y');
-//                $notification['type'] = 'invoice';
-//                $notification['receiver_id'] = json_encode($receiver_list);
-//                $notification['link'] = 'sales/invoice_view/' . $insert_id1;
-//                $notification['Message'] = 'New invoice is created by the customer T5/T6, is waiting for your approval.';
-//                $this->notification_model->insert_notification($notification);
+                //                $receiver_list = array(1);
+                //                $notification = array();
+                //                $notification['notification_date'] = date('d-M-Y');
+                //                $notification['type'] = 'invoice';
+                //                $notification['receiver_id'] = json_encode($receiver_list);
+                //                $notification['link'] = 'sales/invoice_view/' . $insert_id1;
+                //                $notification['Message'] = 'New invoice is created by the customer T5/T6, is waiting for your approval.';
+                //                $this->notification_model->insert_notification($notification);
             }
 
             $customer = array();
@@ -1628,12 +1659,12 @@ class Sales extends MX_Controller {
 
                         $this->stock_details($insert, $inv_id);
 
-//                        echo '<pre>';
-//                        print_r($insert);
-//                        print_r($inv_id);
+                        //                        echo '<pre>';
+                        //                        print_r($insert);
+                        //                        print_r($inv_id);
 
                         unset($insert['firm']);
-                    }//exit;
+                    } //exit;
 
                     $this->project_cost_model->insert_invoice_details($insert_arr);
 
@@ -1705,22 +1736,23 @@ class Sales extends MX_Controller {
 
         $firm_id = array_column($data['firms'], 'firm_id');
 
-//        echo '<pre>';
-//        print_r($firm_id);
-//        die;
+        //        echo '<pre>';
+        //        print_r($firm_id);
+        //        die;
 
         $data["customers"] = $this->gen_model->get_all_customers($firm_id);
 
-//        echo "<pre>";
-//        print_r($data["ref_grps"]);
-//        exit;
+        //        echo "<pre>";
+        //        print_r($data["ref_grps"]);
+        //        exit;
 
         $this->template->write_view('content', 'sales/new_direct_invoice', $data);
 
         $this->template->render();
     }
 
-    public function get_product_cost() {
+    public function get_product_cost()
+    {
 
 
 
@@ -1776,7 +1808,8 @@ class Sales extends MX_Controller {
         }
     }
 
-    public function update_project_cost() {
+    public function update_project_cost()
+    {
 
         if ($this->input->post()) {
 
@@ -1790,8 +1823,8 @@ class Sales extends MX_Controller {
 
             $input['quotation']['created_date'] = date('Y-m-d', strtotime($input['quotation']['created_date']));
 
-//unset($input['quotation']['q_no']);
-//unset($input['quotation']['ref_name']);
+            //unset($input['quotation']['q_no']);
+            //unset($input['quotation']['ref_name']);
 
             unset($input['quotation']['delivery_schedule']);
 
@@ -1799,7 +1832,7 @@ class Sales extends MX_Controller {
 
             unset($input['quotation']['validity']);
 
-//unset($input['quotation']['inv_id']);
+            //unset($input['quotation']['inv_id']);
 
             $insert_id = $this->project_cost_model->update_project_cost($input['quotation'], $input['pc_id']);
 
@@ -1908,7 +1941,8 @@ class Sales extends MX_Controller {
         }
     }
 
-    public function update_invoice() {
+    public function update_invoice()
+    {
 
         if ($this->input->post()) {
 
@@ -1924,7 +1958,7 @@ class Sales extends MX_Controller {
 
             $input['quotation']['created_date'] = date('Y-m-d', strtotime($input['quotation']['created_date']));
 
-//unset($input['quotation']['q_no']);
+            //unset($input['quotation']['q_no']);
 
             unset($input['quotation']['ref_name']);
 
@@ -1934,7 +1968,7 @@ class Sales extends MX_Controller {
 
             unset($input['quotation']['validity']);
 
-//unset($input['quotation']['inv_id']);
+            //unset($input['quotation']['inv_id']);
 
             $insert_id = $this->project_cost_model->update_invoice($input['quotation'], $input['pc_id']);
 
@@ -2056,7 +2090,8 @@ class Sales extends MX_Controller {
         }
     }
 
-    public function new_quotation() {
+    public function new_quotation()
+    {
 
         if ($this->input->post()) {
 
@@ -2070,8 +2105,8 @@ class Sales extends MX_Controller {
 
             $input['quotation']['created_date'] = date('Y-m-d', strtotime($input['quotation']['created_date']));
 
-//unset($input['quotation']['q_no']);
-//unset($input['quotation']['ref_name']);
+            //unset($input['quotation']['q_no']);
+            //unset($input['quotation']['ref_name']);
 
             unset($input['quotation']['delivery_schedule']);
 
@@ -2079,7 +2114,7 @@ class Sales extends MX_Controller {
 
             unset($input['quotation']['validity']);
 
-//unset($input['quotation']['inv_id']);
+            //unset($input['quotation']['inv_id']);
 
             $insert_id = $this->project_cost_model->insert_quotation($input['quotation']);
 
@@ -2099,7 +2134,7 @@ class Sales extends MX_Controller {
 
                         $insert['j_id'] = $insert_id;
 
-//$insert['q_id'] = $input['quotation']['q_id'];
+                        //$insert['q_id'] = $input['quotation']['q_id'];
 
                         $insert['category'] = $val;
 
@@ -2211,7 +2246,7 @@ class Sales extends MX_Controller {
 
 
 
-//redirect($this->config->item('base_url') . 'sales/project_cost_list');
+            //redirect($this->config->item('base_url') . 'sales/project_cost_list');
         }
 
         $data["category"] = $details = $this->categories_model->get_all_category();
@@ -2239,14 +2274,16 @@ class Sales extends MX_Controller {
         $this->template->render();
     }
 
-    public function todays_sales() {
+    public function todays_sales()
+    {
 
         $total_sales = $this->project_cost_model->get_the_total_sales_count();
 
         print_r($total_sales);
     }
 
-    function get_all_products() {
+    function get_all_products()
+    {
 
         $input = $this->input->post();
 
@@ -2289,10 +2326,11 @@ class Sales extends MX_Controller {
 
         exit;
 
-//echo $arr;
+        //echo $arr;
     }
 
-    public function excel_report() {
+    public function excel_report()
+    {
 
         if (isset($_GET) && $_GET['search'] != '') {
 
@@ -2309,7 +2347,8 @@ class Sales extends MX_Controller {
         $this->export_csv($po);
     }
 
-    public function excel_report_invoice() {
+    public function excel_report_invoice()
+    {
 
         if (isset($_GET) && $_GET['search'] != '') {
 
@@ -2328,7 +2367,8 @@ class Sales extends MX_Controller {
         $this->export_csv($po);
     }
 
-    function export_csv($query, $timezones = array()) {
+    function export_csv($query, $timezones = array())
+    {
 
         header('Content-Type: text/csv; charset=utf-8');
 
@@ -2350,7 +2390,8 @@ class Sales extends MX_Controller {
         exit;
     }
 
-    public function invoice_pdf($inv_id) {
+    public function invoice_pdf($inv_id)
+    {
 
         $data["quotation"] = $quotation = $this->project_cost_model->get_all_invoice_by_id($inv_id);
 
@@ -2358,7 +2399,7 @@ class Sales extends MX_Controller {
 
         $data["category"] = $category = $this->categories_model->get_all_category();
 
-// $data['company_details'] = $this->admin_model->get_company_details();
+        // $data['company_details'] = $this->admin_model->get_company_details();
 
         $datas['company_details'] = $this->project_cost_model->get_company_details_by_firm($inv_id);
 
@@ -2391,7 +2432,8 @@ class Sales extends MX_Controller {
         $pdf->Output($newFile);
     }
 
-    public function customer_invoice_pdf($inv_id) {
+    public function customer_invoice_pdf($inv_id)
+    {
 
         $data["quotation"] = $quotation = $this->project_cost_model->get_all_invoice_by_id($inv_id);
 
@@ -2417,7 +2459,7 @@ class Sales extends MX_Controller {
 
         $data["category"] = $category = $this->categories_model->get_all_category();
 
-// $data['company_details'] = $this->admin_model->get_company_details();
+        // $data['company_details'] = $this->admin_model->get_company_details();
 
 
 
@@ -2452,15 +2494,16 @@ class Sales extends MX_Controller {
         $pdf->Output($newFile);
     }
 
-    function invoice_ajaxList() {
+    function invoice_ajaxList()
+    {
 
 
 
         $list = $this->project_cost_model->get_datatables();
 
-//        echo '<pre>';
-//        print_r($list);
-//        exit;
+        //        echo '<pre>';
+        //        print_r($list);
+        //        exit;
 
         $data = array();
 
@@ -2640,9 +2683,9 @@ class Sales extends MX_Controller {
 
 
 
-//        echo "<pre>";
-//        print_r($data);
-//        exit;
+        //        echo "<pre>";
+        //        print_r($data);
+        //        exit;
 
 
 
@@ -2658,7 +2701,8 @@ class Sales extends MX_Controller {
         exit;
     }
 
-    function convert_number($number) {
+    function convert_number($number)
+    {
 
 
 
@@ -2721,10 +2765,11 @@ class Sales extends MX_Controller {
 
         if (($number >= 0 && (int) $number < 0) || (int) $number < 0 - PHP_INT_MAX) {
 
-// overflow
+            // overflow
 
             trigger_error(
-                    'convert_number_to_words only accepts numbers between -' . PHP_INT_MAX . ' and ' . PHP_INT_MAX, E_USER_WARNING
+                'convert_number_to_words only accepts numbers between -' . PHP_INT_MAX . ' and ' . PHP_INT_MAX,
+                E_USER_WARNING
             );
 
             return false;
@@ -2830,7 +2875,7 @@ class Sales extends MX_Controller {
                 $words[] = $dictionary[$number];
             }
 
-//print_r($words);
+            //print_r($words);
 
             $string .= $words[0] . ' ' . $words[1] . ' Paise Only';
         }
@@ -2840,14 +2885,16 @@ class Sales extends MX_Controller {
         return $string;
     }
 
-    function clear_cache() {
+    function clear_cache()
+    {
 
         $this->output->set_header("Cache-Control: no-store, no-cache, must-revalidate, no-transform, max-age=0, post-check=0, pre-check=0");
 
         $this->output->set_header("Pragma: no-cache");
     }
 
-    public function invoice_delete() {
+    public function invoice_delete()
+    {
 
         $id = $this->input->POST('value1');
 
@@ -2872,7 +2919,8 @@ class Sales extends MX_Controller {
         redirect($this->config->item('base_url') . 'sales/invoice_list');
     }
 
-    public function invoice_duplicate_details() {
+    public function invoice_duplicate_details()
+    {
 
         $data['inv_det'] = $this->project_cost_model->invoice_duplicate_details();
 
@@ -2923,5 +2971,4 @@ class Sales extends MX_Controller {
 
         return $data;
     }
-
 }

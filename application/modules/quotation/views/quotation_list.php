@@ -9,21 +9,17 @@
 <link rel="stylesheet" type="text/css" href="<?= $theme_path; ?>/js/auto_com/jquery.autocomplete.css" />
 
 <style>
-
     .bg-red {
 
         background-color: #dd4b39 !important;
 
     }
 
-    .bg-yellow
+    .bg-yellow {
 
-    {
-
-        background-color:orange !important;
+        background-color: orange !important;
 
     }
-
 </style>
 <?php
 $this->load->model('admin/admin_model');
@@ -33,10 +29,10 @@ $data['company_details'] = $this->admin_model->get_company_details();
     <table width="100%">
         <tr>
             <td width="15%" style="vertical-align:middle;">
-                <div class="print_header_logo" ><img src="<?= $theme_path; ?>/images/logo.png" /></div>
+                <div class="print_header_logo"><img src="<?= $theme_path; ?>/images/logo.png" /></div>
             </td>
             <td width="85%">
-                <div class="print_header_tit" >
+                <div class="print_header_tit">
                     <h3><?= $this->config->item("company_name"); ?></h3>
                     <p>
                         <?= $data['company_details'][0]['address1'] ?>,
@@ -60,15 +56,15 @@ $data['company_details'] = $this->admin_model->get_company_details();
 
     <div class="media">
 
-        <h4>Quotation List
+        <h4>Estimation List
 
             <?php
             $user_info = $this->user_info = $this->user_auth->get_from_session('user_info');
 
             if (($user_info[0]['role'] != 3)) {
-                ?>
+            ?>
 
-                <a href="<?php if ($this->user_auth->is_action_allowed('quotation', 'quotation', 'add')): ?><?php echo $this->config->item('base_url') . 'quotation/' ?><?php endif ?>" class="btn btn-success right topgen <?php if (!$this->user_auth->is_action_allowed('quotation', 'quotation', 'add')): ?>alerts<?php endif ?>"><span class="glyphicon glyphicon-plus"></span> New Quotation</a>
+                <a href="<?php if ($this->user_auth->is_action_allowed('quotation', 'quotation', 'add')) : ?><?php echo $this->config->item('base_url') . 'quotation/' ?><?php endif ?>" class="btn btn-success right topgen <?php if (!$this->user_auth->is_action_allowed('quotation', 'quotation', 'add')) : ?>alerts<?php endif ?>"><span class="glyphicon glyphicon-plus"></span> New Estimation</a>
 
             <?php } ?>
 
@@ -90,7 +86,7 @@ $data['company_details'] = $this->admin_model->get_company_details();
 
                             <td class="action-btn-align">S.No</td>
 
-                            <td class="action-btn-align">Quotation No</td>
+                            <td class="action-btn-align">Estimation No</td>
 
                             <td class="action-btn-align">Customer Name</td>
 
@@ -132,7 +128,7 @@ $data['company_details'] = $this->admin_model->get_company_details();
                             $i = 1;
 
                             foreach ($quotation as $val) {
-                                ?>
+                        ?>
 
                                 <tr>
 
@@ -144,9 +140,9 @@ $data['company_details'] = $this->admin_model->get_company_details();
 
                                     <td class="action-btn-align"><?= $val['total_qty'] ?></td>
 
-                                                                                                    <!--<td class="text_right"><?= number_format($val['tax_details'][0]['tot_tax'], 2) < 0 ? 0 : number_format($val['tax_details'][0]['tot_tax'], 2); ?></td>-->
+                                    <!--<td class="text_right"><?= number_format($val['tax_details'][0]['tot_tax'], 2) < 0 ? 0 : number_format($val['tax_details'][0]['tot_tax'], 2); ?></td>-->
 
-                                                                                                    <!--<td class="text_right"><?= number_format($val['subtotal_qty'], 2); ?></td>-->
+                                    <!--<td class="text_right"><?= number_format($val['subtotal_qty'], 2); ?></td>-->
 
                                     <td class="text_right"><?= number_format($val['net_total'], 2) ?></td>
 
@@ -156,7 +152,7 @@ $data['company_details'] = $this->admin_model->get_company_details();
 
                                     <td class='action-btn-align'><?= ($val['notification_date'] != '1970-01-01') ? date('d-M-Y', strtotime($val['notification_date'])) : ''; ?></td>
 
-                                                                                                    <!--<td><?= $val['mode_of_payment'] ?></td>-->
+                                    <!--<td><?= $val['mode_of_payment'] ?></td>-->
 
                                     <td class='action-btn-align'><?= ($val['created_date'] != '1970-01-01') ? date('d-M-Y', strtotime($val['created_date'])) : ''; ?></td>
 
@@ -164,53 +160,53 @@ $data['company_details'] = $this->admin_model->get_company_details();
 
                                         <?php
                                         if ($val['estatus'] == 1) {
-                                            ?>
+                                        ?>
 
                                             <span class=" badge bg-red"> <?php echo 'Pending'; ?></span>
 
 
 
-                                            <?php
+                                        <?php
                                         }
 
                                         if ($val['estatus'] == 2) {
-                                            ?>
+                                        ?>
 
                                             <span class=" badge bg-green"> <?php echo 'Completed'; ?></span>
 
-                                            <?php
+                                        <?php
                                         }
 
                                         if ($val['estatus'] == 4) {
-                                            ?>
+                                        ?>
 
                                             <span class=" badge bg-green"> <?php echo 'Order Approved'; ?></span>
 
-                                            <?php
+                                        <?php
                                         }
 
                                         if ($val['estatus'] == 5) {
-                                            ?>
+                                        ?>
 
                                             <span class="badge bg-yellow"> <?php echo 'Order Reject'; ?></span>
 
-                                            <?php
+                                        <?php
                                         }
                                         ?>
 
                                     </td>
 
                                     <?php if ($val['estatus'] == 2) {
-                                        ?>
+                                    ?>
 
                                         <td class="hide_class action-btn-align">
 
-                                            <a href="<?php if ($this->user_auth->is_action_allowed('quotation', 'quotation', 'view')): ?><?php echo $this->config->item('base_url') . 'quotation/quotation_view/' . $val['id'] ?><?php endif ?>" data-toggle="tooltip" class="tooltips btn btn-default btn-xs <?php if (!$this->user_auth->is_action_allowed('quotation', 'quotation', 'view')): ?>alerts<?php endif ?>" title="" data-original-title="View" ><span class="fa fa-eye"></span></a>
+                                            <a href="<?php if ($this->user_auth->is_action_allowed('quotation', 'quotation', 'view')) : ?><?php echo $this->config->item('base_url') . 'quotation/quotation_view/' . $val['id'] ?><?php endif ?>" data-toggle="tooltip" class="tooltips btn btn-default btn-xs <?php if (!$this->user_auth->is_action_allowed('quotation', 'quotation', 'view')) : ?>alerts<?php endif ?>" title="" data-original-title="View"><span class="fa fa-eye"></span></a>
 
                                         </td>
 
                                     <?php } else {
-                                        ?>
+                                    ?>
 
                                         <td width="80" class='hide_class  action-btn-align'>
 
@@ -218,17 +214,17 @@ $data['company_details'] = $this->admin_model->get_company_details();
                                             $user_info = $this->user_info = $this->user_auth->get_from_session('user_info');
 
                                             if (($user_info[0]['role'] != 3)) {
-                                                ?>
+                                            ?>
 
-                                                <a href="<?php if ($this->user_auth->is_action_allowed('quotation', 'quotation', 'edit')): ?><?php echo $this->config->item('base_url') . 'quotation/quotation_edit/' . $val['id'] ?><?php endif ?>" data-toggle="tooltip" class="tooltips btn btn-default btn-xs <?php if (!$this->user_auth->is_action_allowed('quotation', 'quotation', 'edit')): ?>alerts<?php endif ?>" title="" data-original-title="Edit"><span class="fa fa-edit "></span></a>
+                                                <a href="<?php if ($this->user_auth->is_action_allowed('quotation', 'quotation', 'edit')) : ?><?php echo $this->config->item('base_url') . 'quotation/quotation_edit/' . $val['id'] ?><?php endif ?>" data-toggle="tooltip" class="tooltips btn btn-default btn-xs <?php if (!$this->user_auth->is_action_allowed('quotation', 'quotation', 'edit')) : ?>alerts<?php endif ?>" title="" data-original-title="Edit"><span class="fa fa-edit "></span></a>
 
 
 
-                                                <a href="<?php if ($this->user_auth->is_action_allowed('quotation', 'quotation', 'delete')): ?>#test3_<?php echo $val['id']; ?><?php endif ?>" data-toggle="modal" name="delete" class="tooltips btn btn-default btn-xs <?php if (!$this->user_auth->is_action_allowed('quotation', 'quotation', 'delete')): ?>alerts<?php endif ?>" title="In-Active"><span class="fa fa-ban"></span></a>
+                                                <a href="<?php if ($this->user_auth->is_action_allowed('quotation', 'quotation', 'delete')) : ?>#test3_<?php echo $val['id']; ?><?php endif ?>" data-toggle="modal" name="delete" class="tooltips btn btn-default btn-xs <?php if (!$this->user_auth->is_action_allowed('quotation', 'quotation', 'delete')) : ?>alerts<?php endif ?>" title="In-Active"><span class="fa fa-ban"></span></a>
 
                                             <?php } ?>
 
-                                            <a href="<?php if ($this->user_auth->is_action_allowed('quotation', 'quotation', 'view')): ?><?php echo $this->config->item('base_url') . 'quotation/quotation_view/' . $val['id'] ?><?php endif ?>" data-toggle="tooltip" class="tooltips btn btn-default back btn-xs <?php if (!$this->user_auth->is_action_allowed('quotation', 'quotation', 'view')): ?>alerts<?php endif ?>" title="" data-original-title="View" ><span class="fa fa-eye"></span></a>
+                                            <a href="<?php if ($this->user_auth->is_action_allowed('quotation', 'quotation', 'view')) : ?><?php echo $this->config->item('base_url') . 'quotation/quotation_view/' . $val['id'] ?><?php endif ?>" data-toggle="tooltip" class="tooltips btn btn-default back btn-xs <?php if (!$this->user_auth->is_action_allowed('quotation', 'quotation', 'view')) : ?>alerts<?php endif ?>" title="" data-original-title="View"><span class="fa fa-eye"></span></a>
 
                                         </td>
 
@@ -236,13 +232,13 @@ $data['company_details'] = $this->admin_model->get_company_details();
 
                                 </tr>
 
-                                <?php
+                        <?php
                                 $i++;
                             }
                         }
                         ?>
 
-<!--                             <tr><td colspan="10">No data found...</td></tr>-->
+                        <!--                             <tr><td colspan="10">No data found...</td></tr>-->
 
 
 
@@ -296,7 +292,7 @@ $data['company_details'] = $this->admin_model->get_company_details();
         if (isset($quotation) && !empty($quotation)) {
 
             foreach ($quotation as $val) {
-                ?>
+        ?>
 
 
 
@@ -310,13 +306,13 @@ $data['company_details'] = $this->admin_model->get_company_details();
 
                             <div class="modal-header modal-padding modalcolor"> <a class="close modal-close closecolor" data-dismiss="modal">×</a>
 
-                                <h3 id="myModalLabel" class="inactivepop">Delete Quotation</h3>
+                                <h3 id="myModalLabel" class="inactivepop">Delete Estimation</h3>
 
                             </div>
 
                             <div class="modal-body">
 
-                                Do You Want Delete This Quotation?<strong><?= $val['q_no']; ?></strong>
+                                Do You Want Delete This Estimation?<strong><?= $val['q_no']; ?></strong>
 
                                 <input type="hidden" value="<?php echo $val['id']; ?>" class="id" />
 
@@ -326,7 +322,7 @@ $data['company_details'] = $this->admin_model->get_company_details();
 
                                 <button class="btn btn-primary delete_yes" id="yesin">Yes</button>
 
-                                <button type="button" class="btn btn-success delete_all"  data-dismiss="modal" id="no">No</button>
+                                <button type="button" class="btn btn-success delete_all" data-dismiss="modal" id="no">No</button>
 
                             </div>
 
@@ -336,7 +332,7 @@ $data['company_details'] = $this->admin_model->get_company_details();
 
                 </div>
 
-                <?php
+        <?php
             }
         }
         ?>
@@ -346,8 +342,7 @@ $data['company_details'] = $this->admin_model->get_company_details();
 </div>
 
 <script>
-
-    $(document).on('click', '.alerts', function () {
+    $(document).on('click', '.alerts', function() {
 
         sweetAlert("Oops...", "This Access is blocked!", "error");
 
@@ -355,12 +350,11 @@ $data['company_details'] = $this->admin_model->get_company_details();
 
     });
 
-    $('.print_btn').click(function () {
+    $('.print_btn').click(function() {
 
         window.print();
 
     });
-
 </script>
 
 </div><!-- contentpanel -->
@@ -370,40 +364,39 @@ $data['company_details'] = $this->admin_model->get_company_details();
 </div><!-- mainpanel -->
 
 <script type="text/javascript">
-
-    $('.complete_remarks').live('blur', function ()
-
-    {
-
-        var complete_remarks = $(this).parent().parent().find(".complete_remarks").val();
-
-        var ssup = $(this).offsetParent().find('.remark_error');
-
-        if (complete_remarks == '' || complete_remarks == null)
+    $('.complete_remarks').live('blur', function()
 
         {
 
-            ssup.html("Required Field");
+            var complete_remarks = $(this).parent().parent().find(".complete_remarks").val();
 
-        } else
+            var ssup = $(this).offsetParent().find('.remark_error');
 
-        {
+            if (complete_remarks == '' || complete_remarks == null)
 
-            ssup.html("");
+            {
 
-        }
+                ssup.html("Required Field");
 
-    });
+            } else
+
+            {
+
+                ssup.html("");
+
+            }
+
+        });
 
 
 
-    $(document).ready(function () {
+    $(document).ready(function() {
 
         jQuery('.datepicker').datepicker();
 
     });
 
-    $().ready(function () {
+    $().ready(function() {
 
         $("#po_no").autocomplete(BASE_URL + "gen/get_po_list", {
             width: 260,
@@ -415,7 +408,7 @@ $data['company_details'] = $this->admin_model->get_company_details();
 
     });
 
-    $('#search').live('click', function () {
+    $('#search').live('click', function() {
 
         for_loading();
 
@@ -431,7 +424,7 @@ $data['company_details'] = $this->admin_model->get_company_details();
                 to_date: $('#to_date').val()
 
             },
-            success: function (result) {
+            success: function(result) {
 
                 for_response();
 
@@ -442,139 +435,149 @@ $data['company_details'] = $this->admin_model->get_company_details();
         });
 
     });
-
 </script>
 
 <script type="text/javascript">
+    $(document).ready(function()
 
-    $(document).ready(function ()
+        {
+            var table;
+            table = $('#basicTable_call_back').DataTable({
+                "lengthMenu": [
+                    [50, 100, 200, 500, -1],
+                    [50, 100, 200, 500, "All"]
+                ],
+                "footerCallback": function(row, data, start, end, display) {
 
-    {
-        var table;
-        table = $('#basicTable_call_back').DataTable({
-            "lengthMenu": [[50, 100, 200, 500, -1], [50, 100, 200, 500, "All"]],
-            "footerCallback": function (row, data, start, end, display) {
-
-                var api = this.api(), data;
+                    var api = this.api(),
+                        data;
 
 
 
-                // Remove the formatting to get integer data for summation
+                    // Remove the formatting to get integer data for summation
 
-                var intVal = function (i) {
+                    var intVal = function(i) {
 
-                    return typeof i === 'string' ?
+                        return typeof i === 'string' ?
                             i.replace(/[\$,]/g, '') * 1 :
                             typeof i === 'number' ?
                             i : 0;
 
-                };
+                    };
 
 
 
-                // Total over all pages
+                    // Total over all pages
 
-                var cols = [3, 4];
-                var numFormat = $.fn.dataTable.render.number('\,', '.', 2).display;
-                for (x in cols) {
+                    var cols = [3, 4];
+                    var numFormat = $.fn.dataTable.render.number('\,', '.', 2).display;
+                    for (x in cols) {
 
-                    total = api.column(cols[x]).data().reduce(function (a, b) {
+                        total = api.column(cols[x]).data().reduce(function(a, b) {
 
-                        return intVal(a) + intVal(b);
+                            return intVal(a) + intVal(b);
 
-                    }, 0);
-
-
-
-                    // Total over this page
-
-                    pageTotal = api.column(cols[x], {page: 'current'}).data().reduce(function (a, b) {
-
-                        return intVal(a) + intVal(b);
-
-                    }, 0);
+                        }, 0);
 
 
 
-                    // Update footer
+                        // Total over this page
+
+                        pageTotal = api.column(cols[x], {
+                            page: 'current'
+                        }).data().reduce(function(a, b) {
+
+                            return intVal(a) + intVal(b);
+
+                        }, 0);
 
 
 
-                    if (Math.floor(pageTotal) == pageTotal && $.isNumeric(pageTotal)) {
-
-                        pageTotal = pageTotal;
+                        // Update footer
 
 
 
-                    } else {
+                        if (Math.floor(pageTotal) == pageTotal && $.isNumeric(pageTotal)) {
 
-                        pageTotal = pageTotal.toFixed(2);/* float */
+                            pageTotal = pageTotal;
 
 
+
+                        } else {
+
+                            pageTotal = pageTotal.toFixed(2); /* float */
+
+
+
+                        }
+
+                        if (x == 0) {
+                            $(api.column(cols[x]).footer()).html(pageTotal);
+                        } else {
+                            $(api.column(cols[x]).footer()).html(numFormat(pageTotal));
+                        }
 
                     }
 
-                    if (x == 0) {
-                        $(api.column(cols[x]).footer()).html(pageTotal);
-                    } else {
-                        $(api.column(cols[x]).footer()).html(numFormat(pageTotal));
+
+
+
+
+                },
+                responsive: true,
+                columnDefs: [{
+                        responsivePriority: 1,
+                        targets: 0
+                    },
+                    {
+                        responsivePriority: 2,
+                        targets: -2
                     }
 
-                }
-
-
-
-
-
-            },
-            responsive: true,
-            columnDefs: [
-                {responsivePriority: 1, targets: 0},
-                {responsivePriority: 2, targets: -2}
-
-            ]
-
-        });
-
-        new $.fn.dataTable.FixedHeader(table);
-
-        $("#yesin").live("click", function ()
-
-        {
-
-
-
-            var hidin = $(this).parent().parent().find('.id').val();
-
-            // alert(hidin);
-
-            $.ajax({
-                url: BASE_URL + "quotation/quotation_delete",
-                type: 'POST',
-                data: {value1: hidin},
-                success: function (result) {
-
-
-
-                    window.location.reload(BASE_URL + "quotation/quotation_list");
-
-                }
+                ]
 
             });
 
+            new $.fn.dataTable.FixedHeader(table);
+
+            $("#yesin").live("click", function()
+
+                {
+
+
+
+                    var hidin = $(this).parent().parent().find('.id').val();
+
+                    // alert(hidin);
+
+                    $.ajax({
+                        url: BASE_URL + "quotation/quotation_delete",
+                        type: 'POST',
+                        data: {
+                            value1: hidin
+                        },
+                        success: function(result) {
+
+
+
+                            window.location.reload(BASE_URL + "quotation/quotation_list");
+
+                        }
+
+                    });
+
+
+
+                });
+
+
+
+            $('.modal').css("display", "none");
+
+            $('.fade').css("display", "none");
+
 
 
         });
-
-
-
-        $('.modal').css("display", "none");
-
-        $('.fade').css("display", "none");
-
-
-
-    });
-
 </script>
 <script src="<?= $theme_path; ?>/js/fixedheader/jquery.dataTables.min.js"></script>
