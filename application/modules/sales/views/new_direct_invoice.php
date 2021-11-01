@@ -270,9 +270,9 @@ if (!empty($customers)) {
                     <div class="form-group">
                         <label class="col-sm-4 control-label">Customer Name <span style="color:#F00; font-style:oblique;">*</span></label>
                         <div class="col-sm-8">
-                            <input type="text" tabindex="2" name="customer[store_name]" id="customer_name" value="<?php echo $val['id']; ?> " class='form-control form-align auto_customer  ' />
+                            <input type="text" tabindex="2" name="customer[store_name]" <?php $list['store_name'] ?> id="customer_name" class='form-control form-align auto_customer' />
                             <span class="error_msg"></span>
-                            <input type="hidden" name="customer[id]" id="customer_id" class='id_customer  form-align' />
+                            <input type="hidden" name="customer[id]" id="customer_id" value="6" <?php $list['id']; ?> class='id_customer  form-align' />
                             <!--<input type="hidden"  name="quotation[product_id]" id="cust_id" class='id_customer' />-->
                             <div id="suggesstion-box" class="auto-asset-search "></div>
                         </div>
@@ -300,7 +300,7 @@ if (!empty($customers)) {
                         <label class="col-sm-4 control-label">Sales Man</label>
                         <div class="col-sm-8">
                             <select name='quotation[sales_man]' tabindex="4" class="form-control class_req" id="sales_man">
-                                <option>Select</option>
+                                <option value="">Select</option>
                                 <?php
                                 if (isset($sales_man) && !empty($sales_man)) {
                                     foreach ($sales_man as $val) {
@@ -349,7 +349,7 @@ if (!empty($customers)) {
                     <div class="form-group">
                         <label class="col-sm-4 control-label">Reference Name<span style="color:#F00; font-style:oblique;">*</span></label>
                         <div class="col-sm-8">
-                            <select id='ref_class' class='nick form-align  form-control static_style class_req required' name='quotation[ref_name]' tabindex="5">
+                            <select id='ref_class' class='nick form-align  form-control static_style class_req' name='quotation[ref_name]' tabindex="5">
                                 <option value="">Select</option>
                                 <?php
                                 if (isset($ref_grps) && !empty($ref_grps)) {
@@ -390,7 +390,7 @@ if (!empty($customers)) {
                         <div class="col-sm-8">
                             <!--                            <input type="radio" class="receiver" id="bill1" value="cash" name="cashbill"/>Cash sale
                             <input type="radio" class="receiver" id="bill2" value="credit" name="quotation[bill_type]"/>Credit sale-->
-                            <input type="radio" tabindex="6" class="receiver" id="bill1" value="cash" name="quotation[bill_type]" />Cash Sale
+                            <input type="radio" tabindex="6" class="receiver" id="bill1" checked='checked' value="cash" name="quotation[bill_type]" />Cash Sale
                             <input type="radio" tabindex="6" class="receiver" id="bill2" value="credit" name="quotation[bill_type]" />Credit Sale<br>
                             <span id="type1" class="error_msg"></span>
                         </div>
@@ -687,123 +687,119 @@ if (!empty($customers)) {
             $('#add_new_values').find('tr td.igst_td').hide();
         }
         $('#firm').trigger('change');
-        $('body').on('keydown', 'input#customer_name', function(e) {
-            var firm_id = $('#firm').val();
-            var c_data = [<?php echo implode(',', $customers_json); ?>];
-            $("#customer_name").blur(function() {
-                var keyEvent = $.Event("keydown");
-                keyEvent.keyCode = $.ui.keyCode.ENTER;
-                $(this).trigger(keyEvent);
-                // Stop event propagation if needed
-                return false;
-            }).autocomplete({
-                source: function(request, response) {
-                    // filter array to only entries you want to display limited to 10
-                    var outputArray = new Array();
-                    for (var i = 0; i < c_data.length; i++) {
-                        if (c_data[i].value.toLowerCase().match(request.term.toLowerCase())) {
-                            outputArray.push(c_data[i]);
-                        }
+        //$('body').on('keydown', 'input#customer_name', function(e) {
+        var firm_id = $('#firm').val();
+        var c_data = [<?php echo implode(',', $customers_json); ?>];
+        $("#customer_name").blur(function() {
+            var keyEvent = $.Event("keydown");
+            keyEvent.keyCode = $.ui.keyCode.ENTER;
+            $(this).trigger(keyEvent);
+            // Stop event propagation if needed
+            return false;
+        }).autocomplete({
+            source: function(request, response) {
+                // filter array to only entries you want to display limited to 10
+                var outputArray = new Array();
+                for (var i = 0; i < c_data.length; i++) {
+                    if (c_data[i].value.toLowerCase().match(request.term.toLowerCase())) {
+                        outputArray.push(c_data[i]);
                     }
-                    response(outputArray.slice(0, 10));
-                },
-                minLength: 0,
-                autoFocus: true,
-                select: function(event, ui) {
-                    // $("#app_table input,select").attr("disabled", false);
-                    cust_id = ui.item.id;
-                    $.ajax({
-                        type: 'POST',
-                        data: {
-                            cust_id: cust_id,
-                            firm_id: firm_id
-                        },
-                        url: "<?php echo $this->config->item('base_url'); ?>" + "quotation/get_customer/",
-                        success: function(data) {
-                            var result = JSON.parse(data);
-                            if (result != null && result.length > 0) {
-                                $("#gst_type").val(result[0].state_id);
-                                $("#customer_id").val(result[0].id);
-                                $("#c_id").val(result[0].id);
-                                $("#cus_type").val(result[0].customer_type);
-                                $("#customer_name").val(result[0].store_name);
-                                $("#customer_no").val(result[0].mobil_number);
-                                $("#email_id").val(result[0].email_id);
-                                $("#address1").val(result[0].address1);
-                                $("#tin").val(result[0].tin);
-                                $("#credit_limit").val(result[0].credit_limit);
-                                $("#credit_days").val(result[0].credit_days);
-                                $("#temp_credit_limit").val(result[0].temp_credit_limit);
-                                $("#approved_by").val(result[0].approved_by);
-                                $("#advance").val(result[0].advance);
-                                $("#customer_details_label").html('<span class="label label-success" style="float:right">' + result[0].balance + ' </span>' + result[0].store_name + '<br>' + result[0].address1 + '<br> Email : ' + result[0].email_id + '<br> Mobile : ' + result[0].mobil_number);
-                                //                                if (result[0].customer_type == 1 || result[0].customer_type == 3)
-                                //                                    $("#bill1").attr('checked', 'checked');
-                                //                                else if (result[0].customer_type == 2 || result[0].customer_type == 4)
-                                //                                    $("#bill2").attr('checked', 'checked');
-                                //                                else
-                                //                                    $(".receiver").prop("checked", false);
-                                if (result[0].customer_type == 1 || result[0].customer_type == 3)
-                                    $("#bill1").attr('checked', false);
-                                else if (result[0].customer_type == 2 || result[0].customer_type == 4)
-                                    $("#bill2").attr('checked', false);
-                                else
-                                    $(".receiver").prop("checked", false);
-                                if ($('#gst_type').val() != '') {
-                                    if ($('#gst_type').val() == 31) {
-                                        $('#add_quotation').find('tr td.sgst_td').show();
-                                        $('#add_quotation').find('tr td.igst_td').hide();
-                                    } else {
-                                        $('#add_quotation').find('tr td.igst_td').show();
-                                        $('#add_quotation').find('tr td.sgst_td').hide();
-                                    }
-                                } else {
-                                    $('#add_quotation').find('tr td.igst_td').hide();
-                                }
-                            }
-                        }
-                    });
-                    var prod_array = new Array();
-                    $(".product_id").each(function() {
-                        prod_array.push($(this).val());
-                    });
-                    //if (!empty(prod_array)) {
-                    $.ajax({
-                        type: 'POST',
-                        data: {
-                            cust_id: cust_id,
-                            prod_array: prod_array
-                        },
-                        url: "<?php echo $this->config->item('base_url'); ?>" + "sales/get_product_cost/",
-                        success: function(data) {
-                            var result = JSON.parse(data);
-                            if (data != null && data.length > 0) {
-                                $('input#product_cost').each(function(i) {
-                                    if (i != 0) {
-                                        var product_id = '';
-                                        product_id = $(this).closest('tr').find('input#product_id').val();
-                                        var qty = '';
-                                        qty = $(this).closest('tr').find('input.qty').val();
-                                        if (qty == '') {
-                                            $(this).closest('tr').find('input.selling_price').val(result[product_id].selling_price);
-                                            $(this).closest('tr').find('input.subtotal').val('');
-                                            $(this).closest('tr').find('input.gross').val('');
-                                        } else {
-                                            $(this).closest('tr').find('input.selling_price').val(result[product_id].selling_price);
-                                            $(this).closest('tr').find('.qty').trigger('keyup');
-                                            //                                            var price = result[product_id].selling_price * qty;
-                                            //                                            $(this).closest('tr').find('input.selling_price').val(price);
-                                        }
-                                    }
-                                });
-                            }
-                        }
-                    });
-                    //}
                 }
-            });
+                response(outputArray.slice(0, 10));
+            },
+            minLength: 0,
+            autoFocus: true,
+            select: function(event, ui) {
+                // $("#app_table input,select").attr("disabled", false);
+                cust_id = ui.item.id;
+                _load_customers(cust_id);
+            }
         });
     });
+
+    function _load_customers(cust_id = '') {
+        cust_id = (cust_id != '') ? cust_id : $('#customer_id').val();
+        var firm_id = $('#firm').val();
+        $.ajax({
+            type: 'POST',
+            data: {
+                cust_id: cust_id,
+                firm_id: firm_id
+            },
+            url: "<?php echo $this->config->item('base_url'); ?>" + "quotation/get_customer/",
+            success: function(data) {
+                var result = JSON.parse(data);
+                if (result != null && result.length > 0) {
+                    $("#gst_type").val(result[0].state_id);
+                    $("#customer_id").val(result[0].id);
+                    $("#c_id").val(result[0].id);
+                    $("#cus_type").val(result[0].customer_type);
+                    $("#customer_name").val(result[0].store_name);
+                    $("#customer_no").val(result[0].mobil_number);
+                    $("#email_id").val(result[0].email_id);
+                    $("#address1").val(result[0].address1);
+                    $("#tin").val(result[0].tin);
+                    $("#credit_limit").val(result[0].credit_limit);
+                    $("#credit_days").val(result[0].credit_days);
+                    $("#temp_credit_limit").val(result[0].temp_credit_limit);
+                    $("#approved_by").val(result[0].approved_by);
+                    $("#advance").val(result[0].advance);
+                    $("#customer_details_label").html('<span class="label label-success" style="float:right">' + result[0].balance + ' </span>' + result[0].store_name + '<br>' + result[0].address1 + '<br> Email : ' + result[0].email_id + '<br> Mobile : ' + result[0].mobil_number);
+                    if (result[0].customer_type == 1 || result[0].customer_type == 3)
+                        $("#bill1").attr('checked', false);
+                    else if (result[0].customer_type == 2 || result[0].customer_type == 4)
+                        $("#bill2").attr('checked', false);
+                    else
+                        $(".receiver").prop("checked", false);
+                    if ($('#gst_type').val() != '') {
+                        if ($('#gst_type').val() == 31) {
+                            $('#add_quotation').find('tr td.sgst_td').show();
+                            $('#add_quotation').find('tr td.igst_td').hide();
+                        } else {
+                            $('#add_quotation').find('tr td.igst_td').show();
+                            $('#add_quotation').find('tr td.sgst_td').hide();
+                        }
+                    } else {
+                        $('#add_quotation').find('tr td.igst_td').hide();
+                    }
+                }
+            }
+        });
+        var prod_array = new Array();
+        $(".product_id").each(function() {
+            prod_array.push($(this).val());
+        });
+        $.ajax({
+            type: 'POST',
+            data: {
+                cust_id: cust_id,
+                prod_array: prod_array
+            },
+            url: "<?php echo $this->config->item('base_url'); ?>" + "sales/get_product_cost/",
+            success: function(data) {
+                var result = JSON.parse(data);
+                if (result != null && result.length > 0) {
+                    $('input#product_cost').each(function(i) {
+                        if (i != 0) {
+                            var product_id = '';
+                            product_id = $(this).closest('tr').find('input#product_id').val();
+                            var qty = '';
+                            qty = $(this).closest('tr').find('input.qty').val();
+                            if (qty == '') {
+                                $(this).closest('tr').find('input.selling_price').val(result[product_id].selling_price);
+                                $(this).closest('tr').find('input.subtotal').val('');
+                                $(this).closest('tr').find('input.gross').val('');
+                            } else {
+                                $(this).closest('tr').find('input.selling_price').val(result[product_id].selling_price);
+                                $(this).closest('tr').find('.qty').trigger('keyup');
+                            }
+                        }
+                    });
+                }
+            }
+        });
+    }
+
     $('#add_group').click(function() {
         var tableBody = $(".static").find('tr').clone();
         $(tableBody).closest('tr').find('.model_no,.percost,.qty').addClass('required');
@@ -1337,102 +1333,13 @@ if (!empty($customers)) {
             $('.cat_id,.model_no,.model_no_extra').val('');
             $('.model_no').attr('readonly', 'readonly');
         }
+        _load_customers();
     }
-    // $('.qty').live('keyup', function() {
-    //     var pro_qty = $(this).val();
-    //     var stock_qty = $(this).closest('tr').find('.stock_qty').text();
-    //     if (Number(pro_qty) > Number(stock_qty)) {
-    //         $(this).closest('td').find('.error_msg').text('Invalid quantity').css('display', 'inline-block');
-    //     } else {
-    //         $(this).closest('td').find('.error_msg').text("");
-    //     }
-    // });
+
     $(window).bind('scannerDetectionReceive', function(event, data) {
         target_ele = event.target.activeElement;
     });
-    /* $(document).scannerDetection({
-     timeBeforeScanTest: 200, // wait for the next character for upto 200ms
-     startChar: [120], // Prefix character for the cabled scanner (OPL6845R)
-     endChar: [13], // be sure the scan is complete if key 13 (enter) is detected
-     avgTimeByChar: 40, // it's not a barcode if a character takes longer than 40ms
-     onComplete: function (barcode, qty) {
-     $(target_ele).val('');
-     cust_id = $('#customer_id').val();
-     val = $('#app_table').find('.product_id').val();
-     if (val == '') {
-     $('#app_table').find('tr:first').remove();
-     }
-     barcode = barcode;
-     if (barcode != '' && cust_id != '') {
-     //alert(barcode);
-     $.ajax({
-     type: 'POST',
-     async: false,
-     data: {barcode: barcode, cust_id: cust_id},
-     url: '<?php echo base_url(); ?>sales/get_all_products/',
-     success: function (data) {
-     result = JSON.parse(data);
-     if (result != null && result.length > 0) {
-     $.each(result, function (key, value) {
-     var prod_array = new Array();
-     $(".product_id").each(function () {
-     prod_array.push($(this).val());
-     });
-     //var disabled = ''
-     if (jQuery.inArray(value.id, prod_array) > -1 && prod_array.length > 0)
-     {
-     qty_val = $('#app_table .tr_' + value.id).find('.qty').val();
-     var add = Number(qty_val) + Number(1);
-     $('#app_table .tr_' + value.id).find('.qty').val(add);
-     calculate_function();
-     } else {
-     $('#firm').val(result[0]['firm_id']);
-     var tableBody = $(".static").find('tr').clone();
-     $(tableBody).closest('tr').find('select,.model_no,.model_no_ser,.percost,.qty').addClass('required');
-     $('#app_table').append(tableBody);
-     $(tableBody).closest('tr').find('.model_no').val(result[0]['product_name']);
-     if (result[0]['product_image'] == '')
-     $(tableBody).closest('tr').find('.product_image').attr('src', "<?php echo $this->config->item("base_url") . 'attachement/product/' ?>" + result[0]['product_image']);
-     else
-     $(tableBody).closest('tr').find('.product_image').attr('src', "<?php echo $this->config->item("base_url") . 'attachement/product/no-img.gif' ?>");
-     $(tableBody).closest('tr').find('.product_description').val(result[0]['product_description']);
-     $(tableBody).closest('tr').find('.qty').val('1');
-     $(tableBody).closest('tr').addClass('tr_' + result[0]['id']);
-     $(tableBody).closest('tr').find('.product_id').val(result[0]['id']);
-     $(tableBody).closest('tr').find('.selling_price').val(result[0]['selling_price']);
-     $(tableBody).closest('tr').find('.type').val(result[0]['type']);
-     $(tableBody).closest('tr').find('.brand_id').val(result[0]['brand_id']);
-     $(tableBody).closest('tr').find('.unit').val(result[0]['unit']);
-     $(tableBody).closest('tr').find('.cat_id').val(result[0]['category_id']);
-     $(tableBody).closest('tr').find('.model_no').val(result[0]['product_name']);
-     $(tableBody).closest('tr').find('.model_no_extra').val(result[0]['model_no']);
-     if ($('#gst_type').val() != '')
-     {
-     if ($('#gst_type').val() == 31)
-     {
-     $(tableBody).closest('tr').find('.pertax').val(result[0]['cgst']);
-     $(tableBody).closest('tr').find('.gst').val(result[0]['sgst']);
-     } else {
-     $(tableBody).closest('tr').find('.pertax').val(result[0]['cgst']);
-     $(tableBody).closest('tr').find('.igst').val(result[0]['igst']);
-     }
-     }
-     calculate_function();
-     // Firm(result[0]['firm_id'], result[0]['category_id']);
-     }
-     });
-     } else {
-     sweetAlert("Error...", "This Product is not available!", "error");
-     return false;
-     }
-     }
-     });
-     } else {
-     sweetAlert("Error...", "This Product is not available!", "error");
-     return false;
-     }
-     }
-     });*/
+
     $('input').on('keypress', function() {
         formHasChanged = true;
     });

@@ -1759,7 +1759,6 @@ class Sales extends MX_Controller
         if ($this->input->post()) {
 
             $input = $this->input->post();
-
             $product_data = $this->project_cost_model->get_product_cost_by_product($input);
 
 

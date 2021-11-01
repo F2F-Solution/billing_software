@@ -3,14 +3,17 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Admin extends MX_Controller {
+class Admin extends MX_Controller
+{
 
-    function __construct() {
+    function __construct()
+    {
         parent::__construct();
         // $this->clear_cache();
     }
 
-    public function index($status = NULL) {
+    public function index($status = NULL)
+    {
         $this->load->model('admin/admin_model');
         $user_info = $this->user_info = $this->user_auth->get_from_session('user_info');
 
@@ -39,20 +42,21 @@ class Admin extends MX_Controller {
         $this->template->write_view('content', 'admin/index');
         $this->template->render();
 
-//	print_r($this->session->userdata($this->config->item('application_name')));
-//	die;
-//        if (empty($this->user_auth->get_user_id())) {
-//            $this->template->set_master_template('../../themes/' . $this->config->item("active_template") . '/template_login.php');
-//            $this->template->write_view('content', 'admin/index');
-//            $this->template->render();
-//        } else {
-//            $data['report'] = $this->admin_model->get_dashboard_report();
-//            $this->template->write_view('content', 'admin/dashboard', $data);
-//            $this->template->render();
-//        }
+        //	print_r($this->session->userdata($this->config->item('application_name')));
+        //	die;
+        //        if (empty($this->user_auth->get_user_id())) {
+        //            $this->template->set_master_template('../../themes/' . $this->config->item("active_template") . '/template_login.php');
+        //            $this->template->write_view('content', 'admin/index');
+        //            $this->template->render();
+        //        } else {
+        //            $data['report'] = $this->admin_model->get_dashboard_report();
+        //            $this->template->write_view('content', 'admin/dashboard', $data);
+        //            $this->template->render();
+        //        }
     }
 
-    public function dashboard() {
+    public function dashboard()
+    {
 
         $this->load->model('admin/admin_model');
         $date = '';
@@ -75,7 +79,8 @@ class Admin extends MX_Controller {
         $this->template->render();
     }
 
-    function logout($status = NULL) {
+    function logout($status = NULL)
+    {
         $data = array();
         $this->user_auth->logout();
 
@@ -85,7 +90,8 @@ class Admin extends MX_Controller {
         redirect($this->config->item('base_url') . 'admin');
     }
 
-    public function update_profile() {
+    public function update_profile()
+    {
         $this->load->model('admin/admin_model');
         if ($this->input->post()) {
             $conpany_details = $this->input->post('company');
@@ -148,22 +154,26 @@ class Admin extends MX_Controller {
         $this->template->render();
     }
 
-    public function back_up() {
+    public function back_up()
+    {
         $this->load->view('admin/back_up');
         exit;
     }
 
-    function get_customer_by_invoice($cust_id) {
+    function get_customer_by_invoice($cust_id)
+    {
         $data['pending'] = $this->admin_model->get_customer_by_invoice($cust_id);
         $this->load->view('admin/pending_invoice', $data);
     }
 
-    function clear_cache() {
+    function clear_cache()
+    {
         $this->output->set_header("Cache-Control: no-store, no-cache, must-revalidate, no-transform, max-age=0, post-check=0, pre-check=0");
         $this->output->set_header("Pragma: no-cache");
     }
 
-    function remove_unwanted_records() {
+    function remove_unwanted_records()
+    {
 
         $parent_table = 'erp_quotation';
         $child_table = 'erp_quotation_details';
@@ -183,21 +193,24 @@ class Admin extends MX_Controller {
         $delete_result = $this->admin_model->delete_unwanted_records($parent_table, $child_table);
     }
 
-    function remove_duplicate_invoice() {
+    function remove_duplicate_invoice()
+    {
         $invoice = $this->admin_model->remove_duplicate_invoice();
         echo 'Test  <pre>';
         print_r($invoice);
         die;
     }
 
-    function invoice_amount() {
+    function invoice_amount()
+    {
         $invoice = $this->admin_model->invoice_amount();
         echo 'Test  <pre>';
         print_r($invoice);
         die;
     }
 
-    public function get_insert_ttbs_users() {
+    public function get_insert_ttbs_users()
+    {
         $this->load->model('masters/user_model');
         $data = $this->user_model->get_insert_users_from_biousers();
         echo "<pre>";
@@ -205,30 +218,34 @@ class Admin extends MX_Controller {
         exit;
     }
 
-    public function remove_unwanted_products() {
+    public function remove_unwanted_products()
+    {
         $invoice_details_products = $this->admin_model->loopallproducts();
         echo '<pre>';
         print_r($invoice_details_products);
         die;
     }
 
-    public function removeemptyproducts() {
+    public function removeemptyproducts()
+    {
         $empty_product_details = $this->admin_model->removeemptyproductdetails();
     }
 
-    public function updatestock_as_per_invoice_live() {
+    public function updatestock_as_per_invoice_live()
+    {
         //$result = $this->admin_model->updatestock_as_per_invoice_live();
         $result1 = $this->admin_model->updatestockreturn_as_per_invoice_live();
     }
 
-    public function getrecordsfromepushserver() {
+    public function getrecordsfromepushserver()
+    {
         $result = $this->admin_model->getrecordsfromepushserver();
         echo json_encode($result);
     }
 
-    public function insertepushrecordsto_ttbsdb() {
+    public function insertepushrecordsto_ttbsdb()
+    {
         $result = $this->admin_model->insertepushrecordsto_ttbsdb();
         echo json_encode($result);
     }
-
 }

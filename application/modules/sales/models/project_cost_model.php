@@ -3,7 +3,8 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Project_cost_model extends CI_Model {
+class Project_cost_model extends CI_Model
+{
 
     private $table_name1 = 'po';
     private $table_name2 = 'po_details';
@@ -38,12 +39,14 @@ class Project_cost_model extends CI_Model {
     var $column_search = array('u.q_no', 'r.store_name', 'u.net_total', 'c.inv_id', 'c.net_total', 'c.created_date', 'c.invoice_status', 'c.payment_status', 'c.delivery_status');
     var $order = array('u.id' => 'DESC'); // default order
 
-    function __construct() {
+    function __construct()
+    {
         parent::__construct();
         $this->load->database();
     }
 
-    public function insert_quotation($data) {
+    public function insert_quotation($data)
+    {
         if ($this->db->insert($this->erp_project_cost, $data)) {
             $insert_id = $this->db->insert_id();
             return $insert_id;
@@ -51,12 +54,14 @@ class Project_cost_model extends CI_Model {
         return false;
     }
 
-    public function insert_quotation_details($data) {
+    public function insert_quotation_details($data)
+    {
         $this->db->insert_batch($this->erp_project_details, $data);
         return true;
     }
 
-    public function insert_invoice($data) {
+    public function insert_invoice($data)
+    {
         if ($this->db->insert($this->erp_invoice, $data)) {
             $insert_id = $this->db->insert_id();
 
@@ -65,27 +70,32 @@ class Project_cost_model extends CI_Model {
         return false;
     }
 
-    public function insert_invoice_details($data) {
+    public function insert_invoice_details($data)
+    {
         $this->db->insert_batch($this->erp_invoice_details, $data);
         return true;
     }
 
-    public function insertinvoicedetails($data) {
+    public function insertinvoicedetails($data)
+    {
         $this->db->insert($this->erp_invoice_details, $data);
         return true;
     }
 
-    public function insert_invoice_product_details($data) {
+    public function insert_invoice_product_details($data)
+    {
         $this->db->insert_batch($this->erp_invoice_product_details, $data);
         return true;
     }
 
-    public function insert_other_cost($data) {
+    public function insert_other_cost($data)
+    {
         $this->db->insert_batch($this->erp_other_cost, $data);
         return true;
     }
 
-    public function get_all_email_details() {
+    public function get_all_email_details()
+    {
         $this->db->select('*');
         $this->db->where("(type='inv_sender' OR type='inv_email' OR type='inv_subject' OR type='inv_cc_email')");
         // $this->db->where($this->erp_email_settings.'.type','q_email');
@@ -93,7 +103,8 @@ class Project_cost_model extends CI_Model {
         return $query;
     }
 
-    public function update_increment($id) {
+    public function update_increment($id)
+    {
         $this->db->where($this->increment_table . '.id', 6);
         if ($this->db->update($this->increment_table, $id)) {
             return true;
@@ -101,7 +112,8 @@ class Project_cost_model extends CI_Model {
         return false;
     }
 
-    public function update_increment2($id) {
+    public function update_increment2($id)
+    {
         $this->db->where($this->increment_table . '.id', 7);
         if ($this->db->update($this->increment_table, $id)) {
             return true;
@@ -109,7 +121,8 @@ class Project_cost_model extends CI_Model {
         return false;
     }
 
-    public function get_customer($atten_inputs, $id) {
+    public function get_customer($atten_inputs, $id)
+    {
         $this->db->select('name,id,mobil_number,email_id,address1,tin,state_id');
         $this->db->where($this->customer . '.status', 1);
         $this->db->where($this->customer . '.firm_id', $id);
@@ -118,45 +131,52 @@ class Project_cost_model extends CI_Model {
         return $query;
     }
 
-    public function get_customer_by_id($id) {
+    public function get_customer_by_id($id)
+    {
         $this->db->select('name,mobil_number,email_id,address1');
         $this->db->where($this->customer . '.id', $id);
         return $this->db->get($this->customer)->result_array();
     }
 
-    public function get_all_nick_name() {
+    public function get_all_nick_name()
+    {
         $this->db->select('*');
         $this->db->where($this->erp_user . '.status', 1);
         $query = $this->db->get($this->erp_user)->result_array();
         return $query;
     }
 
-    public function get_service_cost($id) {
+    public function get_service_cost($id)
+    {
         $this->db->select('SUM(sub_total) as service_cost');
         $this->db->where($this->erp_project_details . '.j_id', $id);
         $this->db->where($this->erp_project_details . '.product_type', 2);
         return $this->db->get($this->erp_project_details)->result_array();
     }
 
-    public function get_other_cost($id) {
+    public function get_other_cost($id)
+    {
         $this->db->select('SUM(amount) as other_cost');
         $this->db->where($this->erp_other_cost . '.j_id', $id);
         return $this->db->get($this->erp_other_cost)->result_array();
     }
 
-    public function get_receipt_id($id) {
+    public function get_receipt_id($id)
+    {
         $this->db->select('receipt_id');
         $this->db->where($this->receipt_bill . '.recevier_id', $id);
         return $this->db->get($this->receipt_bill)->result_array();
     }
 
-    public function get_all_quotation_no() {
+    public function get_all_quotation_no()
+    {
         $this->db->select('q_no,id');
         $query = $this->db->get($this->erp_quotation)->result_array();
         return $query;
     }
 
-    public function get_product($atten_inputs, $id) {
+    public function get_product($atten_inputs, $id)
+    {
         $this->db->select('id,model_no,product_name,product_description,product_image,cost_price,cgst,sgst,category_id,igst');
         $this->db->where($this->erp_product . '.status', 1);
         if ($id != '')
@@ -168,7 +188,8 @@ class Project_cost_model extends CI_Model {
         return $query;
     }
 
-    public function get_service($atten_inputs, $id) {
+    public function get_service($atten_inputs, $id)
+    {
         $this->db->select('id,model_no,product_name,product_description,product_image,type,cost_price,cgst,sgst,category_id,igst');
         $this->db->where($this->erp_product . '.status', 1);
         if ($id != '')
@@ -180,13 +201,15 @@ class Project_cost_model extends CI_Model {
         return $query;
     }
 
-    public function get_product_by_id($id) {
+    public function get_product_by_id($id)
+    {
         $this->db->select('model_no,product_name,product_description,product_image,cost_price');
         $this->db->where($this->erp_product . '.id', $id);
         return $this->db->get($this->erp_product)->result_array();
     }
 
-    public function get_all_project_cost($serch_data) {
+    public function get_all_project_cost($serch_data)
+    {
         if (!empty($serch_data['from_date']))
             $serch_data['from_date'] = date('Y-m-d', strtotime($serch_data['from_date']));
         if (!empty($serch_data['to_date']))
@@ -220,7 +243,7 @@ class Project_cost_model extends CI_Model {
         }
 
         $this->db->select('customer.id as customer,customer.store_name,customer.state_id,customer.tin, customer.name,customer.mobil_number,customer.email_id,customer.address1,erp_project_cost.id,erp_project_cost.job_id,erp_project_cost.total_qty,erp_project_cost.tax,erp_project_cost.tax_label,'
-                . 'erp_project_cost.net_total,erp_project_cost.created_date,erp_project_cost.remarks,erp_project_cost.subtotal_qty,erp_project_cost.estatus');
+            . 'erp_project_cost.net_total,erp_project_cost.created_date,erp_project_cost.remarks,erp_project_cost.subtotal_qty,erp_project_cost.estatus');
         $firms = $this->user_auth->get_user_firms();
         $frim_id = array();
         foreach ($firms as $value) {
@@ -252,7 +275,8 @@ class Project_cost_model extends CI_Model {
         //echo"<pre>"; print_r($query); exit;
     }
 
-    public function get_all_pc($serch_data) {
+    public function get_all_pc($serch_data)
+    {
         if (!empty($serch_data['from_date']))
             $serch_data['from_date'] = date('Y-m-d', strtotime($serch_data['from_date']));
         if (!empty($serch_data['to_date']))
@@ -286,7 +310,7 @@ class Project_cost_model extends CI_Model {
         }
 
         $this->db->select('customer.id as customer,customer.store_name,customer.tin,customer.state_id, customer.name,customer.mobil_number,customer.email_id,customer.address1,erp_project_cost.id,erp_project_cost.job_id,erp_project_cost.total_qty,erp_project_cost.tax,erp_project_cost.tax_label,'
-                . 'erp_project_cost.net_total,erp_project_cost.created_date,erp_project_cost.remarks,erp_project_cost.subtotal_qty,erp_project_cost.estatus');
+            . 'erp_project_cost.net_total,erp_project_cost.created_date,erp_project_cost.remarks,erp_project_cost.subtotal_qty,erp_project_cost.estatus');
         $firms = $this->user_auth->get_user_firms();
         $frim_id = array();
         foreach ($firms as $value) {
@@ -321,7 +345,8 @@ class Project_cost_model extends CI_Model {
         //echo"<pre>"; print_r($query); exit;
     }
 
-    function get_pc_datatables($search_data) {
+    function get_pc_datatables($search_data)
+    {
 
         $this->_get_pc_datatables_query($search_data);
         if ($_POST['length'] != -1)
@@ -345,7 +370,8 @@ class Project_cost_model extends CI_Model {
         return $query;
     }
 
-    function _get_pc_datatables_query($serch_data = array()) {
+    function _get_pc_datatables_query($serch_data = array())
+    {
         if (!isset($serch_data['from_date']))
             $serch_data['from_date'] = '';
         if (!isset($serch_data['to_date']))
@@ -383,7 +409,7 @@ class Project_cost_model extends CI_Model {
         }
 
         $this->db->select('customer.id as customer,customer.store_name,customer.tin,customer.state_id, customer.name,customer.mobil_number,customer.email_id,customer.address1,erp_project_cost.id,erp_project_cost.job_id,erp_project_cost.total_qty,erp_project_cost.tax,erp_project_cost.tax_label,'
-                . 'erp_project_cost.net_total,erp_project_cost.created_date,erp_project_cost.remarks,erp_project_cost.subtotal_qty,erp_project_cost.estatus');
+            . 'erp_project_cost.net_total,erp_project_cost.created_date,erp_project_cost.remarks,erp_project_cost.subtotal_qty,erp_project_cost.estatus');
         $firms = $this->user_auth->get_user_firms();
         $frim_id = array();
         foreach ($firms as $value) {
@@ -399,19 +425,22 @@ class Project_cost_model extends CI_Model {
         $this->db->group_by('erp_project_cost.id');
     }
 
-    function count_filtered_pc() {
+    function count_filtered_pc()
+    {
         $this->_get_pc_datatables_query();
         $query = $this->db->get('erp_project_cost');
         return $query->num_rows();
     }
 
-    function count_all_pc() {
+    function count_all_pc()
+    {
         $this->_get_pc_datatables_query();
         $this->db->from('erp_project_cost');
         return $this->db->count_all_results();
     }
 
-    public function get_all_project_cost_for_report($search = NULL) {
+    public function get_all_project_cost_for_report($search = NULL)
+    {
 
         $firms = $this->user_auth->get_user_firms();
         $frim_id = array();
@@ -419,7 +448,7 @@ class Project_cost_model extends CI_Model {
             $frim_id[] = $value['firm_id'];
         }
         $this->db->select('customer.id as customer,customer.store_name,customer.tin,customer.state_id, customer.name,customer.mobil_number,customer.email_id,customer.address1,erp_project_cost.id,erp_project_cost.job_id,erp_project_cost.total_qty,erp_project_cost.tax,erp_project_cost.tax_label,'
-                . 'erp_project_details.j_id,erp_project_cost.net_total,erp_project_cost.created_date,erp_project_cost.remarks,erp_project_cost.subtotal_qty,erp_project_cost.estatus');
+            . 'erp_project_details.j_id,erp_project_cost.net_total,erp_project_cost.created_date,erp_project_cost.remarks,erp_project_cost.subtotal_qty,erp_project_cost.estatus');
         //  $this->db->join('erp_quotation', 'erp_quotation.id=erp_project_cost.q_id');
         $this->db->join('customer', 'customer.id=erp_project_cost.customer');
         if ($search != NULL && $search != '') {
@@ -464,13 +493,14 @@ class Project_cost_model extends CI_Model {
         }
 
         return $query;
-//        if ($query->num_rows() >= 0) {
-//            return $query->result_array();
-//        }
-//        return false;
+        //        if ($query->num_rows() >= 0) {
+        //            return $query->result_array();
+        //        }
+        //        return false;
     }
 
-    public function get_invoice($serch_data) {
+    public function get_invoice($serch_data)
+    {
 
         //echo "<pre>";
         //print_r($serch_data);
@@ -543,7 +573,7 @@ class Project_cost_model extends CI_Model {
                     }
                 }
 
-                $invoiceIds = array_map(function($invoices) {
+                $invoiceIds = array_map(function ($invoices) {
                     return $invoices['in_id'];
                 }, $invoices);
 
@@ -583,7 +613,7 @@ class Project_cost_model extends CI_Model {
         }
 
         $this->db->select('customer.id as customer,customer.store_name,customer.tin,customer.state_id, customer.name,customer.mobil_number,customer.email_id,customer.address1,customer.advance,erp_invoice.id,erp_invoice.inv_id,erp_quotation.q_no,erp_invoice.total_qty,erp_invoice.tax,erp_quotation.ref_name,erp_invoice.tax_label,'
-                . 'erp_invoice.net_total,erp_invoice.created_date,erp_invoice.remarks,erp_invoice.subtotal_qty,erp_invoice.estatus,erp_invoice.customer_po,erp_sales_man.sales_man_name,erp_invoice.q_id');
+            . 'erp_invoice.net_total,erp_invoice.created_date,erp_invoice.remarks,erp_invoice.subtotal_qty,erp_invoice.estatus,erp_invoice.customer_po,erp_sales_man.sales_man_name,erp_invoice.q_id');
 
         $firms = $this->user_auth->get_user_firms();
         $frim_id = array();
@@ -674,7 +704,8 @@ class Project_cost_model extends CI_Model {
         return $query;
     }
 
-    public function get_gst_invoice($serch_data) {
+    public function get_gst_invoice($serch_data)
+    {
 
         if (!empty($serch_data['from_date']))
             $serch_data['from_date'] = date('Y-m-d', strtotime($serch_data['from_date']));
@@ -714,7 +745,7 @@ class Project_cost_model extends CI_Model {
 
             if (!empty($serch_data['cust_type']) && $serch_data['cust_type'] != 'Select') {
                 if ($serch_data['cust_type'] == 1) {
-//                    $this->db->where($this->customer . '.tin IS NOT NULL', null, false);
+                    //                    $this->db->where($this->customer . '.tin IS NOT NULL', null, false);
                     $this->db->where($this->customer . '.tin IS NULL');
                 } else if ($serch_data['cust_type'] == 2) {
                     //  $this->db->where($this->customer . '.tin', '');
@@ -767,7 +798,7 @@ class Project_cost_model extends CI_Model {
                     }
                 }
 
-                $invoiceIds = array_map(function($invoices) {
+                $invoiceIds = array_map(function ($invoices) {
                     return $invoices['in_id'];
                 }, $invoices);
 
@@ -816,9 +847,9 @@ class Project_cost_model extends CI_Model {
         }
 
         $this->db->select('customer.id as customer,customer.store_name,customer.tin,customer.state_id, customer.name,customer.mobil_number,customer.email_id,customer.address1,customer.advance,erp_invoice.id,erp_invoice.inv_id,erp_quotation.q_no,erp_invoice.total_qty,erp_invoice.tax,erp_quotation.ref_name,erp_invoice.tax_label,'
-                . 'erp_invoice.net_total,erp_invoice.created_date,'
-                . 'erp_invoice.remarks,erp_invoice.subtotal_qty,'
-                . 'erp_invoice.estatus,erp_invoice.customer_po,erp_sales_man.sales_man_name,erp_invoice.q_id,erp_manage_firms.gstin,,erp_manage_firms.firm_name');
+            . 'erp_invoice.net_total,erp_invoice.created_date,'
+            . 'erp_invoice.remarks,erp_invoice.subtotal_qty,'
+            . 'erp_invoice.estatus,erp_invoice.customer_po,erp_sales_man.sales_man_name,erp_invoice.q_id,erp_manage_firms.gstin,,erp_manage_firms.firm_name');
 
         $firms = $this->user_auth->get_user_firms();
         $frim_id = array();
@@ -841,8 +872,8 @@ class Project_cost_model extends CI_Model {
 
         $query = $this->db->get('erp_invoice')->result_array();
 
-//        echo $this->db->last_query();
-//        exit;
+        //        echo $this->db->last_query();
+        //        exit;
         $i = 0;
         foreach ($query as $val) {
 
@@ -907,9 +938,10 @@ class Project_cost_model extends CI_Model {
         return $query;
     }
 
-    public function get_all_pc_by_id($id) {
+    public function get_all_pc_by_id($id)
+    {
         $this->db->select('customer.id as customer,customer.store_name,customer.tin,customer.state_id, customer.name,customer.mobil_number,customer.email_id,customer.address1,customer.account_num, customer.ifsc,customer.bank_name,erp_project_cost.id,erp_project_cost.job_id,erp_project_cost.total_qty,erp_project_cost.tax,erp_project_cost.tax_label,erp_project_cost.ref_name,'
-                . 'erp_project_cost.net_total,erp_project_cost.remarks,erp_project_cost.subtotal_qty,erp_project_cost.q_no,erp_project_cost.estatus,erp_project_cost.created_date,erp_manage_firms.firm_id,erp_manage_firms.firm_name');
+            . 'erp_project_cost.net_total,erp_project_cost.remarks,erp_project_cost.subtotal_qty,erp_project_cost.q_no,erp_project_cost.estatus,erp_project_cost.created_date,erp_manage_firms.firm_id,erp_manage_firms.firm_name');
         //$this->db->where('erp_project_cost.estatus',1);
         $this->db->where('erp_project_cost.id', $id);
         $this->db->join('customer', 'customer.id=erp_project_cost.customer');
@@ -919,18 +951,19 @@ class Project_cost_model extends CI_Model {
         foreach ($query as $val) {
             $this->db->select('*');
             $this->db->where('j_id', intval($val['id']));
-            $this->db->where('type =', project_cost);
+            $this->db->where('type =', 'project_cost');
             $query[$i]['other_cost'] = $this->db->get('erp_other_cost')->result_array();
             $i++;
         }
         return $query;
     }
 
-    public function get_all_pc_details_by_id($id) {
+    public function get_all_pc_details_by_id($id)
+    {
         $this->db->select('erp_category.cat_id,erp_category.categoryName,erp_product.id,erp_product.product_name,erp_brand.id,erp_brand.brands,'
-                . 'erp_project_details.category,erp_project_details.product_id,erp_project_details.brand,erp_project_details.quantity,erp_project_details.unit,erp_project_details.igst,'
-                . 'erp_project_details.per_cost,erp_project_details.tax,erp_project_details.gst,erp_project_details.sub_total,erp_product.model_no,erp_product.product_image,erp_product.type,erp_project_details.discount,'
-                . 'erp_project_details.product_description');
+            . 'erp_project_details.category,erp_project_details.product_id,erp_project_details.brand,erp_project_details.quantity,erp_project_details.unit,erp_project_details.igst,'
+            . 'erp_project_details.per_cost,erp_project_details.tax,erp_project_details.gst,erp_project_details.sub_total,erp_product.model_no,erp_product.product_image,erp_product.type,erp_project_details.discount,'
+            . 'erp_project_details.product_description');
         $this->db->where('erp_project_details.j_id', $id);
         $this->db->join('erp_category', 'erp_category.cat_id=erp_project_details.category', 'left');
         $this->db->join('erp_product', 'erp_product.id=erp_project_details.product_id');
@@ -944,9 +977,10 @@ class Project_cost_model extends CI_Model {
         return false;
     }
 
-    public function get_all_invoice_by_id($id) {
+    public function get_all_invoice_by_id($id)
+    {
         $this->db->select('erp_user.nick_name,customer.id as customer,customer.store_name,customer.tin,customer.state_id,customer.advance, customer.name,customer.mobil_number,customer.email_id,customer.address1,customer.account_num, customer.ifsc,customer.bank_name,customer.customer_type,erp_invoice.id,erp_invoice.q_id,erp_invoice.inv_id,erp_quotation.q_no,erp_invoice.total_qty,erp_invoice.tax,erp_quotation.ref_name,erp_invoice.tax_label,'
-                . 'erp_invoice.net_total,erp_invoice.round_off,erp_invoice.transport,erp_invoice.labour,erp_invoice.remarks,erp_invoice.subtotal_qty,erp_invoice.estatus,erp_invoice.customer_po,erp_invoice.created_date,erp_invoice.firm_id,erp_invoice.sales_man,erp_invoice.invoice_status,erp_invoice.delivery_status,erp_manage_firms.firm_name,erp_sales_man.sales_man_name');
+            . 'erp_invoice.net_total,erp_invoice.round_off,erp_invoice.transport,erp_invoice.labour,erp_invoice.remarks,erp_invoice.subtotal_qty,erp_invoice.estatus,erp_invoice.customer_po,erp_invoice.created_date,erp_invoice.firm_id,erp_invoice.sales_man,erp_invoice.invoice_status,erp_invoice.delivery_status,erp_manage_firms.firm_name,erp_sales_man.sales_man_name');
         //$this->db->where('erp_invoice.estatus',1);
         $this->db->where('erp_invoice.id', $id);
         $this->db->join('erp_quotation', 'erp_quotation.id=erp_invoice.q_id', 'LEFT');
@@ -968,10 +1002,11 @@ class Project_cost_model extends CI_Model {
         return $query;
     }
 
-    public function get_all_invoice_details_by_id($id) {
+    public function get_all_invoice_details_by_id($id)
+    {
         $this->db->select('erp_category.cat_id,erp_category.categoryName,erp_product.id,erp_product.product_name,erp_brand.id,erp_brand.brands,erp_product.hsn_sac_name,erp_invoice_details.category,erp_invoice_details.product_id,erp_invoice_details.brand,erp_invoice_details.quantity,erp_invoice_details.unit,'
-                . 'erp_invoice_details.per_cost,erp_invoice_details.tax,erp_invoice_details.gst,erp_invoice_details.sub_total,erp_product.model_no,erp_product.product_image,erp_invoice_details.discount,erp_invoice_details.igst,'
-                . 'erp_invoice_details.product_description,erp_invoice_details.customer_exists_qty');
+            . 'erp_invoice_details.per_cost,erp_invoice_details.tax,erp_invoice_details.gst,erp_invoice_details.sub_total,erp_product.model_no,erp_product.product_image,erp_invoice_details.discount,erp_invoice_details.igst,'
+            . 'erp_invoice_details.product_description,erp_invoice_details.customer_exists_qty');
         $this->db->where('erp_invoice_details.in_id', intval($id));
         $this->db->join('erp_quotation', 'erp_quotation.id=erp_invoice_details.q_id', 'LEFT');
         $this->db->join('erp_category', 'erp_category.cat_id=erp_invoice_details.category', 'left');
@@ -994,7 +1029,8 @@ class Project_cost_model extends CI_Model {
         return $query;
     }
 
-    public function get_all_sales_id() {
+    public function get_all_sales_id()
+    {
         $this->db->select('erp_project_cost.id,erp_project_cost.job_id ,erp_project_cost.firm_id,erp_project_cost.net_total,erp_project_cost.customer,customer.name');
         $this->db->where('erp_project_cost.estatus =', 2);
         $this->db->join('customer', 'customer.id=erp_project_cost.customer', 'LEFT');
@@ -1006,14 +1042,15 @@ class Project_cost_model extends CI_Model {
         $this->db->where_in('erp_project_cost.firm_id', $frim_id);
         $this->db->order_by('erp_project_cost.id', 'desc');
         $query = $this->db->get('erp_project_cost')->result_array();
-//        echo $this->db->last_query();
-//        die;
+        //        echo $this->db->last_query();
+        //        die;
         return $query;
     }
 
-    public function get_all_quotation() {
+    public function get_all_quotation()
+    {
         $this->db->select('erp_project_cost.id,customer.id as customer,customer.store_name,customer.state_id, customer.tin,customer.name,customer.mobil_number,customer.email_id,customer.address1,customer.customer_type,customer.credit_days, customer.credit_limit, customer.temp_credit_limit, customer.approved_by,erp_project_cost.total_qty,erp_project_cost.tax,erp_project_cost.tax_label,'
-                . 'erp_project_cost.job_id,erp_project_cost.net_total,erp_project_cost.notification_date,erp_project_cost.remarks,erp_project_cost.subtotal_qty,erp_project_cost.estatus,erp_project_cost.created_date');
+            . 'erp_project_cost.job_id,erp_project_cost.net_total,erp_project_cost.notification_date,erp_project_cost.remarks,erp_project_cost.subtotal_qty,erp_project_cost.estatus,erp_project_cost.created_date');
         //$this->db->where('erp_project_cost.estatus =', 2);
         $firms = $this->user_auth->get_user_firms();
         $frim_id = array();
@@ -1043,7 +1080,8 @@ class Project_cost_model extends CI_Model {
         return $query;
     }
 
-    function get_order_datatables($search_data) {
+    function get_order_datatables($search_data)
+    {
 
         $this->_get_order_datatables_query($search_data);
         if ($_POST['length'] != -1)
@@ -1056,10 +1094,11 @@ class Project_cost_model extends CI_Model {
         return $query;
     }
 
-    function _get_order_datatables_query($search_data = array()) {
+    function _get_order_datatables_query($search_data = array())
+    {
 
         $this->db->select('erp_project_cost.id,customer.id as customer,customer.store_name,customer.state_id, customer.tin,customer.name,customer.mobil_number,customer.email_id,customer.address1,customer.customer_type,customer.credit_days, customer.credit_limit, customer.temp_credit_limit, customer.approved_by,erp_project_cost.total_qty,erp_project_cost.tax,erp_project_cost.tax_label,'
-                . 'erp_project_cost.job_id,erp_project_cost.net_total,erp_project_cost.notification_date,erp_project_cost.remarks,erp_project_cost.subtotal_qty,erp_project_cost.estatus,erp_project_cost.created_date');
+            . 'erp_project_cost.job_id,erp_project_cost.net_total,erp_project_cost.notification_date,erp_project_cost.remarks,erp_project_cost.subtotal_qty,erp_project_cost.estatus,erp_project_cost.created_date');
         //$this->db->where('erp_project_cost.estatus =', 2);
         $firms = $this->user_auth->get_user_firms();
         $frim_id = array();
@@ -1071,20 +1110,23 @@ class Project_cost_model extends CI_Model {
         $this->db->order_by('erp_project_cost.id', 'desc');
     }
 
-    function count_all_order() {
+    function count_all_order()
+    {
         $this->db->from('erp_project_cost');
         return $this->db->count_all_results();
     }
 
-    function count_filtered_order() {
+    function count_filtered_order()
+    {
         $this->_get_order_datatables_query();
         $query = $this->db->get('erp_project_cost');
         return $query->num_rows();
     }
 
-    public function get_all_quotation_by_id($id) {
+    public function get_all_quotation_by_id($id)
+    {
         $this->db->select('erp_user.nick_name,customer.id as customer,customer.store_name,customer.state_id,customer.name,customer.tin,customer.mobil_number,customer.email_id,customer.address1,customer.customer_type,customer.customer_type,customer.credit_days, customer.credit_limit, customer.temp_credit_limit, customer.approved_by,customer.advance,erp_quotation.id,erp_quotation.q_no,erp_quotation.total_qty,erp_quotation.tax,erp_quotation.discount,erp_quotation.ref_name,erp_quotation.tax_label,erp_quotation.inv_id,'
-                . 'erp_quotation.job_id,erp_quotation.net_total,erp_quotation.delivery_schedule,erp_quotation.notification_date,erp_quotation.mode_of_payment,erp_quotation.remarks,erp_quotation.subtotal_qty,erp_quotation.estatus,erp_quotation.created_date,erp_quotation.firm_id,erp_manage_firms.firm_name');
+            . 'erp_quotation.job_id,erp_quotation.net_total,erp_quotation.delivery_schedule,erp_quotation.notification_date,erp_quotation.mode_of_payment,erp_quotation.remarks,erp_quotation.subtotal_qty,erp_quotation.estatus,erp_quotation.created_date,erp_quotation.firm_id,erp_manage_firms.firm_name');
         //$this->db->where('erp_quotation.estatus',2);
         $this->db->where('erp_quotation.id', $id);
         $this->db->join('customer', 'customer.id=erp_quotation.customer');
@@ -1097,9 +1139,10 @@ class Project_cost_model extends CI_Model {
         return false;
     }
 
-    public function get_all_project_cost_by_id($id) {
+    public function get_all_project_cost_by_id($id)
+    {
         $this->db->select('customer.id as customer,customer.store_name,customer.tin,customer.state_id,customer.name,customer.mobil_number,customer.email_id,customer.address1,customer.customer_type,customer.credit_days, customer.credit_limit, customer.temp_credit_limit, customer.approved_by, customer.advance,erp_project_cost.id,erp_project_cost.job_id,erp_project_cost.total_qty,erp_project_cost.tax,erp_project_cost.tax_label,'
-                . 'erp_project_cost.net_total,erp_project_cost.remarks,erp_project_cost.subtotal_qty,erp_project_cost.inv_id,erp_project_cost.q_no,erp_project_cost.estatus,erp_project_cost.firm_id,erp_manage_firms.firm_name');
+            . 'erp_project_cost.net_total,erp_project_cost.remarks,erp_project_cost.subtotal_qty,erp_project_cost.inv_id,erp_project_cost.q_no,erp_project_cost.estatus,erp_project_cost.firm_id,erp_manage_firms.firm_name');
         //$this->db->where('erp_project_cost.estatus',1);
         $this->db->where('erp_project_cost.id', $id);
         $this->db->join('customer', 'customer.id=erp_project_cost.customer');
@@ -1111,9 +1154,10 @@ class Project_cost_model extends CI_Model {
         return false;
     }
 
-    public function get_all_product_by_id($id) {
+    public function get_all_product_by_id($id)
+    {
         $this->db->select('erp_product.id,erp_product.model_no,erp_product.product_name,erp_product.product_image,'
-                . 'erp_quotation_details.product_description');
+            . 'erp_quotation_details.product_description');
         $this->db->where('erp_quotation.id', $id);
         $this->db->join('erp_quotation', 'erp_quotation.id=erp_quotation_details.q_id');
         $this->db->join('erp_product', 'erp_product.id=erp_quotation_details.product_id');
@@ -1124,11 +1168,12 @@ class Project_cost_model extends CI_Model {
         return false;
     }
 
-    public function get_all_quotation_details_by_id($id) {
+    public function get_all_quotation_details_by_id($id)
+    {
         $this->db->select('erp_category.cat_id,erp_category.categoryName,erp_product.id,erp_product.product_name,erp_brand.id,erp_brand.brands,erp_product.cost_price,'
-                . 'erp_quotation_details.id as p_id,erp_quotation_details.category,erp_quotation_details.product_id,erp_quotation_details.brand,erp_quotation_details.quantity,'
-                . 'erp_quotation_details.per_cost,erp_quotation_details.tax,erp_quotation_details.gst,erp_quotation_details.igst,erp_quotation_details.sub_total,erp_product.model_no,erp_product.product_image,erp_product.type,erp_quotation_details.discount,'
-                . 'erp_quotation_details.product_description');
+            . 'erp_quotation_details.id as p_id,erp_quotation_details.category,erp_quotation_details.product_id,erp_quotation_details.brand,erp_quotation_details.quantity,'
+            . 'erp_quotation_details.per_cost,erp_quotation_details.tax,erp_quotation_details.gst,erp_quotation_details.igst,erp_quotation_details.sub_total,erp_product.model_no,erp_product.product_image,erp_product.type,erp_quotation_details.discount,'
+            . 'erp_quotation_details.product_description');
         $this->db->where('erp_quotation_details.q_id', $id);
         $this->db->join('erp_quotation', 'erp_quotation.id=erp_quotation_details.q_id');
         $this->db->join('erp_category', 'erp_category.cat_id=erp_quotation_details.category', 'left');
@@ -1152,11 +1197,12 @@ class Project_cost_model extends CI_Model {
         return $query;
     }
 
-    public function get_all_sales_details_by_id($q_id) {
+    public function get_all_sales_details_by_id($q_id)
+    {
         $this->db->select('erp_category.cat_id,erp_category.categoryName,erp_product.id,erp_product.product_name,erp_brand.id,erp_brand.brands,erp_product.cost_price,'
-                . 'erp_project_details.id as p_id,erp_project_details.category,erp_project_details.product_id,erp_project_details.brand,erp_project_details.quantity,erp_project_details.unit,'
-                . 'erp_project_details.per_cost,erp_project_details.tax,erp_project_details.gst,erp_project_details.igst,erp_project_details.sub_total,erp_product.model_no,erp_product.product_image,erp_product.type,erp_project_details.discount,'
-                . 'erp_project_details.product_description');
+            . 'erp_project_details.id as p_id,erp_project_details.category,erp_project_details.product_id,erp_project_details.brand,erp_project_details.quantity,erp_project_details.unit,'
+            . 'erp_project_details.per_cost,erp_project_details.tax,erp_project_details.gst,erp_project_details.igst,erp_project_details.sub_total,erp_product.model_no,erp_product.product_image,erp_product.type,erp_project_details.discount,'
+            . 'erp_project_details.product_description');
         $this->db->where('erp_project_details.j_id', $q_id);
         $this->db->join('erp_project_cost', 'erp_project_cost.id=erp_project_details.j_id');
         $this->db->join('erp_category', 'erp_category.cat_id=erp_project_details.category', 'left');
@@ -1177,28 +1223,29 @@ class Project_cost_model extends CI_Model {
         return $query;
     }
 
-    public function get_all_project_details_by_id($q_id) {
+    public function get_all_project_details_by_id($q_id)
+    {
         $this->db->select('erp_category.cat_id,erp_category.categoryName,erp_product.id,erp_product.product_name,erp_brand.id,erp_brand.brands,erp_product.cost_price,'
-                . 'erp_quotation_details.id as p_id,erp_quotation_details.category,erp_quotation_details.product_id,erp_quotation_details.brand,erp_quotation_details.quantity,erp_quotation_details.unit,'
-                . 'erp_quotation_details.per_cost,erp_quotation_details.tax,erp_quotation_details.gst,erp_quotation_details.igst,erp_quotation_details.sub_total,erp_product.model_no,erp_product.product_image,erp_product.type,erp_quotation_details.discount,'
-                . 'erp_quotation_details.product_description');
+            . 'erp_quotation_details.id as p_id,erp_quotation_details.category,erp_quotation_details.product_id,erp_quotation_details.brand,erp_quotation_details.quantity,erp_quotation_details.unit,'
+            . 'erp_quotation_details.per_cost,erp_quotation_details.tax,erp_quotation_details.gst,erp_quotation_details.igst,erp_quotation_details.sub_total,erp_product.model_no,erp_product.product_image,erp_product.type,erp_quotation_details.discount,'
+            . 'erp_quotation_details.product_description');
         $this->db->where('erp_quotation_details.q_id', $q_id);
         $this->db->join('erp_quotation', 'erp_quotation.id=erp_quotation_details.q_id');
         $this->db->join('erp_category', 'erp_category.cat_id=erp_quotation_details.category', 'left');
         $this->db->join('erp_product', 'erp_product.id=erp_quotation_details.product_id');
         $this->db->join('erp_brand', 'erp_brand.id=erp_quotation_details.brand', 'left');
         $query = $this->db->get('erp_quotation_details')->result_array();
-//        $this->db->select('erp_category.cat_id,erp_category.categoryName,erp_product.id,erp_product.product_name,erp_brand.id,erp_brand.brands,'
-//                . 'erp_project_details.category,erp_project_details.product_id,erp_project_details.brand,erp_project_details.quantity,erp_project_details.q_id,'
-//                . 'erp_quotation_details.per_cost,erp_project_details.tax,erp_project_details.sub_total,erp_product.model_no,erp_product.product_image,erp_product.type,'
-//                . 'erp_quotation_details.product_description');
-//        $this->db->where('erp_project_details.j_id', $id);
-//        $this->db->where('erp_project_details.q_id', $q_id);
-//        $this->db->join('erp_quotation_details', 'erp_quotation_details.q_id = erp_project_details.q_id');
-//        $this->db->join('erp_category', 'erp_category.cat_id=erp_project_details.category');
-//        $this->db->join('erp_product', 'erp_product.id=erp_project_details.product_id');
-//        $this->db->join('erp_brand', 'erp_brand.id=erp_project_details.brand');
-//        $query = $this->db->get('erp_project_details')->result_array();
+        //        $this->db->select('erp_category.cat_id,erp_category.categoryName,erp_product.id,erp_product.product_name,erp_brand.id,erp_brand.brands,'
+        //                . 'erp_project_details.category,erp_project_details.product_id,erp_project_details.brand,erp_project_details.quantity,erp_project_details.q_id,'
+        //                . 'erp_quotation_details.per_cost,erp_project_details.tax,erp_project_details.sub_total,erp_product.model_no,erp_product.product_image,erp_product.type,'
+        //                . 'erp_quotation_details.product_description');
+        //        $this->db->where('erp_project_details.j_id', $id);
+        //        $this->db->where('erp_project_details.q_id', $q_id);
+        //        $this->db->join('erp_quotation_details', 'erp_quotation_details.q_id = erp_project_details.q_id');
+        //        $this->db->join('erp_category', 'erp_category.cat_id=erp_project_details.category');
+        //        $this->db->join('erp_product', 'erp_product.id=erp_project_details.product_id');
+        //        $this->db->join('erp_brand', 'erp_brand.id=erp_project_details.brand');
+        //        $query = $this->db->get('erp_project_details')->result_array();
         $i = 0;
         foreach ($query as $val) {
             $this->db->select('erp_stock.quantity');
@@ -1213,7 +1260,8 @@ class Project_cost_model extends CI_Model {
         return $query;
     }
 
-    public function get_stock($data) { //echo "<pre>"; print_r($data); exit;
+    public function get_stock($data)
+    { //echo "<pre>"; print_r($data); exit;
         $this->db->select('quantity');
         $this->db->where('category', $data['cat_id']);
         $this->db->where('product_id', $data['model_no']);
@@ -1223,7 +1271,8 @@ class Project_cost_model extends CI_Model {
         return $available_stock;
     }
 
-    public function get_po($data) { //echo "<pre>"; print_r($data); exit;
+    public function get_po($data)
+    { //echo "<pre>"; print_r($data); exit;
         $this->db->select('per_cost');
         $this->db->where('category', $data['cat_id']);
         $this->db->where('product_id', $data['model_no']);
@@ -1233,14 +1282,15 @@ class Project_cost_model extends CI_Model {
         return $available_stock;
     }
 
-    public function check_stock($check_stock, $inv_id) {
+    public function check_stock($check_stock, $inv_id)
+    {
 
         $this->db->select('*');
         $this->db->where('category', $check_stock['category']);
         $this->db->where('product_id', $check_stock['product_id']);
         $this->db->where('firm_id', $check_stock['firm']);
         $available_stock = $this->db->get($this->erp_stock)->result_array();
-//        echo $this->db->last_query();
+        //        echo $this->db->last_query();
 
         $ava_quantity = $available_stock[0]['quantity'] - $check_stock['quantity'];
 
@@ -1261,7 +1311,7 @@ class Project_cost_model extends CI_Model {
             $this->db->where('product_id', $check_stock['product_id']);
             $this->db->where('firm_id', $check_stock['firm']);
             $this->db->update($this->erp_stock, array('quantity' => $quantity));
-//            echo $this->db->last_query();
+            //            echo $this->db->last_query();
             $this->check_min_qty($check_stock['category'], $check_stock['firm_id'], $check_stock['product_id'], $quantity);
         }
         //Insert Stock History
@@ -1279,7 +1329,8 @@ class Project_cost_model extends CI_Model {
         }
     }
 
-    public function check_min_qty($cat_id, $firm_id, $p_id, $quantity) {
+    public function check_min_qty($cat_id, $firm_id, $p_id, $quantity)
+    {
         $this->db->select('min_qty,product_name');
         $this->db->where('erp_product.id', $p_id);
         $qty = $this->db->get('erp_product')->result_array();
@@ -1302,9 +1353,10 @@ class Project_cost_model extends CI_Model {
         }
     }
 
-    public function get_all_quotation_history_by_id($id) {
+    public function get_all_quotation_history_by_id($id)
+    {
         $this->db->select('customer.id,customer.tin,customer.name,customer.state_id,customer.mobil_number,customer.email_id,customer.address1,erp_quotation_history.q_no,erp_quotation_history.total_qty,erp_quotation_history.tax,erp_quotation_history.ref_name,erp_quotation_history.tax_label,'
-                . 'erp_quotation_history.net_total,erp_quotation_history.delivery_schedule,erp_quotation_history.notification_date,erp_quotation_history.mode_of_payment,erp_quotation_history.remarks,erp_quotation_history.subtotal_qty');
+            . 'erp_quotation_history.net_total,erp_quotation_history.delivery_schedule,erp_quotation_history.notification_date,erp_quotation_history.mode_of_payment,erp_quotation_history.remarks,erp_quotation_history.subtotal_qty');
         $this->db->where('erp_quotation_history.eStatus', 1);
         $this->db->where('erp_quotation_history.id', $id);
         $this->db->join('customer', 'customer.id=erp_quotation_history.customer');
@@ -1315,11 +1367,12 @@ class Project_cost_model extends CI_Model {
         return false;
     }
 
-    public function get_all_quotation_history_details_by_id($id) {
+    public function get_all_quotation_history_details_by_id($id)
+    {
         $this->db->select('erp_category.cat_id,erp_category.categoryName,erp_brand.id,erp_brand.brands,'
-                . ' erp_product.id,erp_product.model_no,erp_product.product_name,erp_product.product_image,erp_quotation_history_details.product_description,erp_quotation_history_details.igst,'
-                . 'erp_quotation_history_details.category,erp_quotation_history_details.product_id,erp_quotation_history_details.brand,erp_quotation_history_details.quantity,erp_quotation_history_details.unit,'
-                . 'erp_quotation_history_details.per_cost,erp_quotation_history_details.tax,erp_quotation_history_details.sub_total');
+            . ' erp_product.id,erp_product.model_no,erp_product.product_name,erp_product.product_image,erp_quotation_history_details.product_description,erp_quotation_history_details.igst,'
+            . 'erp_quotation_history_details.category,erp_quotation_history_details.product_id,erp_quotation_history_details.brand,erp_quotation_history_details.quantity,erp_quotation_history_details.unit,'
+            . 'erp_quotation_history_details.per_cost,erp_quotation_history_details.tax,erp_quotation_history_details.sub_total');
         $this->db->where('erp_quotation_history.id', $id);
         $this->db->join('erp_quotation_history', 'erp_quotation_history.id=erp_quotation_history_details.h_id');
         $this->db->join('erp_category', 'erp_category.cat_id=erp_quotation_history_details.category');
@@ -1332,19 +1385,22 @@ class Project_cost_model extends CI_Model {
         return false;
     }
 
-    public function get_his_quotation_by_id($id) {
+    public function get_his_quotation_by_id($id)
+    {
         $this->db->select('*');
         $this->db->where($this->erp_quotation . '.id', $id);
         return $this->db->get($this->erp_quotation)->result_array();
     }
 
-    public function get_all_history_quotation_by_id($id) {
+    public function get_all_history_quotation_by_id($id)
+    {
         $this->db->select('*');
         $this->db->where($this->erp_quotation_history . '.org_q_id', $id);
         return $this->db->get($this->erp_quotation_history)->result_array();
     }
 
-    public function insert_history_quotation($data) {
+    public function insert_history_quotation($data)
+    {
         if ($this->db->insert($this->erp_quotation_history, $data)) {
             $insert_id = $this->db->insert_id();
             return $insert_id;
@@ -1352,58 +1408,69 @@ class Project_cost_model extends CI_Model {
         return false;
     }
 
-    public function insert_history_quotation_details($data) {
+    public function insert_history_quotation_details($data)
+    {
         $this->db->insert_batch($this->erp_quotation_history_details, $data);
         return true;
     }
 
-    public function get_his_quotation_deteils_by_id($id) {
+    public function get_his_quotation_deteils_by_id($id)
+    {
         $this->db->select('*');
         $this->db->where($this->erp_quotation_details . '.q_id', $id);
         return $this->db->get($this->erp_quotation_details)->result_array();
     }
 
-    public function delete_quotation_deteils_by_id($id) {
+    public function delete_quotation_deteils_by_id($id)
+    {
         $this->db->where('q_id', $id);
         $this->db->delete($this->erp_quotation_details);
     }
 
-    public function delete_id($id) {
+    public function delete_id($id)
+    {
         $this->db->where('id', $id);
         $this->db->delete($this->erp_quotation_details);
     }
 
-    public function delete_pc_id($id) {
+    public function delete_pc_id($id)
+    {
         $this->db->where('q_id', $id);
         $this->db->delete($this->erp_project_details);
     }
 
-    public function delete_pc_by_id($id) {
+    public function delete_pc_by_id($id)
+    {
         $this->db->where('j_id', $id);
         $this->db->delete($this->erp_project_details);
     }
 
-    public function delete_return_inv_by_id($id) {
+    public function delete_return_inv_by_id($id)
+    {
         $this->db->where('inv_number', $id);
         $this->db->delete('sales_return_details');
     }
 
-    public function delete_inv_by_id($id) {
+    public function delete_inv_by_id($id)
+    {
         $this->db->where('in_id', $id);
         $this->db->delete($this->erp_invoice_details);
     }
 
-    public function delete_invoice($id) {
+    public function delete_invoice($id)
+    {
         $this->db->where('id', $id);
         $this->db->delete($this->erp_invoice);
     }
 
-    public function delete_receipt_by_inv_id($id) {
+    public function delete_receipt_by_inv_id($id)
+    {
         $this->db->where('receipt_id', $id);
         $this->db->delete($this->receipt_bill);
     }
 
-    public function change_quotation_status($id, $status) {
+    public function change_quotation_status($id, $status)
+    {
         $this->db->where($this->erp_quotation . '.id', $id);
         if ($this->db->update($this->erp_quotation, array('estatus' => $status))) {
             return true;
@@ -1411,7 +1478,8 @@ class Project_cost_model extends CI_Model {
         return false;
     }
 
-    public function change_pc_status($id, $status) {
+    public function change_pc_status($id, $status)
+    {
         $this->db->where($this->erp_project_cost . '.id', $id);
         if ($this->db->update($this->erp_project_cost, array('estatus' => $status))) {
             return true;
@@ -1419,7 +1487,8 @@ class Project_cost_model extends CI_Model {
         return false;
     }
 
-    public function update_quotation($data, $id) {
+    public function update_quotation($data, $id)
+    {
         $this->db->where($this->erp_quotation . '.id', $id);
         if ($this->db->update($this->erp_quotation, $data)) {
             return true;
@@ -1427,7 +1496,8 @@ class Project_cost_model extends CI_Model {
         return false;
     }
 
-    public function update_project_cost($data, $id) {
+    public function update_project_cost($data, $id)
+    {
         $this->db->where($this->erp_project_cost . '.id', $id);
         if ($this->db->update($this->erp_project_cost, $data)) {
             return true;
@@ -1435,7 +1505,8 @@ class Project_cost_model extends CI_Model {
         return false;
     }
 
-    public function update_invoice($data, $id) {
+    public function update_invoice($data, $id)
+    {
         $this->db->where($this->erp_invoice . '.id', $id);
         if ($this->db->update($this->erp_invoice, $data)) {
             return true;
@@ -1443,7 +1514,8 @@ class Project_cost_model extends CI_Model {
         return false;
     }
 
-    public function update_other_cost($data, $id) {
+    public function update_other_cost($data, $id)
+    {
         $this->db->where($this->erp_other_cost . '.j_id', $id);
         if ($this->db->update($this->erp_other_cost, $data)) {
             return true;
@@ -1451,7 +1523,8 @@ class Project_cost_model extends CI_Model {
         return false;
     }
 
-    public function delete_quotation($id) {
+    public function delete_quotation($id)
+    {
         $this->db->where('id', $id);
         if ($this->db->update($this->erp_quotation, $data = array('estatus' => 0))) {
             return true;
@@ -1459,7 +1532,8 @@ class Project_cost_model extends CI_Model {
         return false;
     }
 
-    public function all_history_quotations($id) {
+    public function all_history_quotations($id)
+    {
         $this->db->select('*');
         $this->db->where('erp_quotation_history.org_q_id', $id);
         $this->db->order_by('created_date', 'desc');
@@ -1474,7 +1548,8 @@ class Project_cost_model extends CI_Model {
         return $query;
     }
 
-    public function get_all_customer_by_id($id) {
+    public function get_all_customer_by_id($id)
+    {
         $this->db->select('*');
         $this->db->where('df', 0);
         $this->db->where('status', 1);
@@ -1486,7 +1561,8 @@ class Project_cost_model extends CI_Model {
         return false;
     }
 
-    public function get_all_style_details_by_id($style_name) {
+    public function get_all_style_details_by_id($style_name)
+    {
         $this->db->select('style_name,mrp,lot_no,id as style_id');
         $this->db->where('df', 0);
         $this->db->where('status', 1);
@@ -1498,14 +1574,16 @@ class Project_cost_model extends CI_Model {
         return false;
     }
 
-    public function get_location($where) {
+    public function get_location($where)
+    {
         $this->db->select('location');
         $this->db->where($where);
         $query = $this->db->get('stock_info')->result_array();
         return $query;
     }
 
-    public function get_all_color_details_by_id($s_id) {
+    public function get_all_color_details_by_id($s_id)
+    {
         $this->db->select('master_colour.id,master_colour.colour');
         $this->db->where('master_style_color.status', 1);
         $this->db->where('master_style_color.style_id', $s_id);
@@ -1517,7 +1595,8 @@ class Project_cost_model extends CI_Model {
         return false;
     }
 
-    public function get_all_style_details_by_id1($id) {
+    public function get_all_style_details_by_id1($id)
+    {
         $this->db->select($this->table_name4 . '.*');
         $this->db->select('master_style_type.style_type');
         $this->db->where($this->table_name4 . '.status', 1);
@@ -1536,7 +1615,8 @@ class Project_cost_model extends CI_Model {
         return $query;
     }
 
-    public function insert_gen($data) {
+    public function insert_gen($data)
+    {
         if ($this->db->insert($this->table_name1, $data)) {
             $insert_id = $this->db->insert_id();
 
@@ -1545,7 +1625,8 @@ class Project_cost_model extends CI_Model {
         return false;
     }
 
-    public function insert_gen_details($data) {
+    public function insert_gen_details($data)
+    {
         if ($this->db->insert_batch($this->table_name2, $data)) {
             $insert_id = $this->db->insert_id();
 
@@ -1554,7 +1635,8 @@ class Project_cost_model extends CI_Model {
         return false;
     }
 
-    public function get_all_gen($serch_data = NULL) {
+    public function get_all_gen($serch_data = NULL)
+    {
         if (isset($serch_data) && !empty($serch_data)) {
             $serch_data['from_date'] = date('Y-m-d', strtotime($serch_data['from_date']));
             $serch_data['to_date'] = date('Y-m-d', strtotime($serch_data['to_date']));
@@ -1629,35 +1711,40 @@ class Project_cost_model extends CI_Model {
         return $query;
     }
 
-    function get_customers() {
+    function get_customers()
+    {
         $this->db->select($this->customer . '.*');
         $this->db->where($this->customer . '.customer_type = 1 OR customer_type =2');
         $query = $this->db->get($this->customer)->result_array();
         return $query;
     }
 
-    function get_customer_type($id) {
+    function get_customer_type($id)
+    {
         $this->db->select($this->customer . '.customer_type');
         $this->db->where($this->customer . '.id', $id);
         $query = $this->db->get($this->customer)->result_array();
         return $query[0]['customer_type'];
     }
 
-    function get_product_cash_selling_price($id) {
+    function get_product_cash_selling_price($id)
+    {
         $this->db->select($this->erp_product . '.cash_cus_price');
         $this->db->where($this->erp_product . '.id', $id);
         $query = $this->db->get($this->erp_product)->result_array();
         return $query[0]['cash_cus_price'];
     }
 
-    function get_product_credit_selling_price($id) {
+    function get_product_credit_selling_price($id)
+    {
         $this->db->select($this->erp_product . '.credit_cus_price');
         $this->db->where($this->erp_product . '.id', $id);
         $query = $this->db->get($this->erp_product)->result_array();
         return $query[0]['credit_cus_price'];
     }
 
-    public function get_reference_amount($id) {
+    public function get_reference_amount($id)
+    {
         $this->db->select('erp_user.id,erp_reference_groups.commission_rate,erp_reference_groups.user_id');
         $this->db->where('erp_user.id', $id);
         $this->db->join('erp_reference_groups', 'erp_reference_groups.user_id=erp_user.id');
@@ -1665,7 +1752,8 @@ class Project_cost_model extends CI_Model {
         return $query[0]['commission_rate'];
     }
 
-    public function get_all_products($barcode) {
+    public function get_all_products($barcode)
+    {
         $firms = $this->user_auth->get_user_firms();
         $frim_id = array();
         foreach ($firms as $value) {
@@ -1684,7 +1772,8 @@ class Project_cost_model extends CI_Model {
         return false;
     }
 
-    public function get_the_total_sales_count() {
+    public function get_the_total_sales_count()
+    {
         $current_date = date('Y-m-d');
         $this->db->select('net_total');
         $this->db->where($this->erp_project_cost . '.created_date', $current_date);
@@ -1695,7 +1784,8 @@ class Project_cost_model extends CI_Model {
         return false;
     }
 
-    public function approve_invoice($id) {
+    public function approve_invoice($id)
+    {
         $data = array('invoice_status' => 'approved');
         $this->db->where($this->erp_invoice . '.id', $id);
         if ($this->db->update($this->erp_invoice, $data)) {
@@ -1704,7 +1794,8 @@ class Project_cost_model extends CI_Model {
         return false;
     }
 
-    public function get_all_customer_pc() {
+    public function get_all_customer_pc()
+    {
         $firms = $this->user_auth->get_user_firms();
         $frim_id = array();
         foreach ($firms as $value) {
@@ -1719,7 +1810,8 @@ class Project_cost_model extends CI_Model {
         return $query;
     }
 
-    public function get_all_customer_invoice($serch_data = array()) {
+    public function get_all_customer_invoice($serch_data = array())
+    {
         $this->db->distinct();
         $this->db->select('erp_invoice.*');
         $this->db->select('customer.name,customer.store_name,customer.mobil_number,customer.advance');
@@ -1787,7 +1879,8 @@ class Project_cost_model extends CI_Model {
         return $query;
     }
 
-    public function get_all_product_pc() {
+    public function get_all_product_pc()
+    {
         $firms = $this->user_auth->get_user_firms();
         $frim_id = array();
         foreach ($firms as $value) {
@@ -1802,7 +1895,8 @@ class Project_cost_model extends CI_Model {
         return $query;
     }
 
-    public function get_all_completed_quotation($serch_data) {
+    public function get_all_completed_quotation($serch_data)
+    {
 
         if (isset($serch_data) && !empty($serch_data)) {
             if (!empty($serch_data['from_date']))
@@ -1838,7 +1932,7 @@ class Project_cost_model extends CI_Model {
             }
         }
         $this->db->select('customer.id as customer,customer.store_name,customer.tin,customer.name,customer.mobil_number,customer.email_id,customer.address1,erp_quotation.id,erp_quotation.q_no,erp_quotation.total_qty,erp_quotation.tax,erp_quotation.ref_name,erp_quotation.tax_label,'
-                . 'erp_quotation.net_total,erp_quotation.delivery_schedule,erp_quotation.notification_date,erp_quotation.mode_of_payment,erp_quotation.remarks,erp_quotation.subtotal_qty,erp_quotation.estatus,erp_quotation.validity,erp_quotation.created_date');
+            . 'erp_quotation.net_total,erp_quotation.delivery_schedule,erp_quotation.notification_date,erp_quotation.mode_of_payment,erp_quotation.remarks,erp_quotation.subtotal_qty,erp_quotation.estatus,erp_quotation.validity,erp_quotation.created_date');
 
         $firms = $this->user_auth->get_user_firms();
         $frim_id = array();
@@ -1874,7 +1968,8 @@ class Project_cost_model extends CI_Model {
         return $query;
     }
 
-    function _get_datatables_query() {
+    function _get_datatables_query()
+    {
         //Join Table
         $this->db->join($this->joinTable1, 'r.id=u.customer');
         $this->db->join($this->joinTable2, 'c.q_id=u.id', 'left');
@@ -1913,7 +2008,8 @@ class Project_cost_model extends CI_Model {
         }
     }
 
-    function _get_datatables_query1() {
+    function _get_datatables_query1()
+    {
 
         $this->db->select('i.net_total As inv_amount,i.inv_id,i.invoice_status,i.payment_status,i.delivery_status,i.contract_customer,i.customer,i.created_date,c.store_name,q.id,q.q_no,q.net_total,i.id As i_id');
         $this->db->join('customer c', 'c.id=i.customer');
@@ -1956,14 +2052,15 @@ class Project_cost_model extends CI_Model {
         }
     }
 
-    function get_datatables() {
+    function get_datatables()
+    {
         //$this->db->select($this->selectColumn);
         $this->_get_datatables_query1();
         if ($_POST['length'] != -1)
             $this->db->limit($_POST['length'], $_POST['start']);
         $query = $this->db->get()->result_array();
-//        echo $this->db->last_query();
-//        exit;
+        //        echo $this->db->last_query();
+        //        exit;
         $j = 0;
         foreach ($query as $val) {
 
@@ -1972,25 +2069,27 @@ class Project_cost_model extends CI_Model {
             $query[$j]['invoice'] = $this->db->get('erp_invoice')->result_array();
             $j++;
         }
-//        echo $this->db->last_query();
+        //        echo $this->db->last_query();
         //print_r($query);
         //exit;
         return $query;
     }
 
-    function count_filtered() {
+    function count_filtered()
+    {
         $this->_get_datatables_query1();
         $query = $this->db->get();
-//        echo $this->db->last_query();
-//        exit;
+        //        echo $this->db->last_query();
+        //        exit;
         return $query->num_rows();
     }
 
-    function count_all() {
-//        $this->db->from($this->primaryTable);
-//        $this->db->count_all_results();
-//        echo $this->db->last_query();
-//        exit;
+    function count_all()
+    {
+        //        $this->db->from($this->primaryTable);
+        //        $this->db->count_all_results();
+        //        echo $this->db->last_query();
+        //        exit;
 
         $this->db->select('COUNT(id) AS numrows');
         $query = $this->db->get('erp_quotation u')->result_array();
@@ -1998,7 +2097,8 @@ class Project_cost_model extends CI_Model {
             return $query[0]['numrows'];
     }
 
-    public function get_company_details_by_firm($s_id) {
+    public function get_company_details_by_firm($s_id)
+    {
         $this->db->select('erp_manage_firms.*,erp_invoice.firm_id');
         $this->db->where('erp_invoice.id', $s_id);
         $this->db->join('erp_manage_firms', 'erp_manage_firms.firm_id=erp_invoice.firm_id');
@@ -2007,7 +2107,8 @@ class Project_cost_model extends CI_Model {
         return $query;
     }
 
-    public function get_company_details_by_firms($s_id) {
+    public function get_company_details_by_firms($s_id)
+    {
         $this->db->select('erp_manage_firms.*,erp_project_cost.firm_id');
         $this->db->where('erp_project_cost.id', $s_id);
         $this->db->join('erp_manage_firms', 'erp_manage_firms.firm_id=erp_project_cost.firm_id');
@@ -2015,7 +2116,8 @@ class Project_cost_model extends CI_Model {
         return $query;
     }
 
-    public function delete_quotation_also($id) {
+    public function delete_quotation_also($id)
+    {
         $this->db->where('id', $id);
         if ($this->db->delete($this->erp_quotation)) {
             return true;
@@ -2023,11 +2125,12 @@ class Project_cost_model extends CI_Model {
         return false;
     }
 
-    public function get_all_customer() {
+    public function get_all_customer()
+    {
         $customerIds = array();
         $this->db->select('DISTINCT(customer)');
         $invoice_query = $this->db->get('erp_invoice')->result_array();
-        $customerIds = array_map(function($invoice_query) {
+        $customerIds = array_map(function ($invoice_query) {
             return $invoice_query['customer'];
         }, $invoice_query);
 
@@ -2044,10 +2147,17 @@ class Project_cost_model extends CI_Model {
         return $query;
     }
 
-    public function get_product_cost_by_product($input) {
+    public function get_product_cost_by_product($input)
+    {
+        $firms = $this->user_auth->get_user_firms();
+        $frim_id = array();
+        foreach ($firms as $value) {
+            $frim_id[] = $value['firm_id'];
+        }
         $this->db->select('erp_product.*');
         $this->db->where_in('erp_product.id', $input['prod_array']);
-        //$this->db->join('erp_manage_firms', 'erp_manage_firms.firm_id=erp_project_cost.firm_id');
+        $this->db->where_in('firm_id', $frim_id);
+        // $this->db->join('erp_manage_firms', 'erp_manage_firms.firm_id=erp_product.firm_id');
         $query = $this->db->get('erp_product')->result_array();
 
         $product_details = array();
@@ -2057,7 +2167,8 @@ class Project_cost_model extends CI_Model {
         return $product_details;
     }
 
-    public function invoice_duplicate_details() {
+    public function invoice_duplicate_details()
+    {
         $this->db->select('erp_invoice.id');
         $this->db->order_by('erp_invoice.id');
         $query = $this->db->get('erp_invoice')->result_array();
@@ -2069,12 +2180,14 @@ class Project_cost_model extends CI_Model {
         return $inv_det;
     }
 
-    public function insert_inv_pro_details($data) {
+    public function insert_inv_pro_details($data)
+    {
         $this->db->insert('erp_invoice_product_details', $data);
         return true;
     }
 
-    public function updatestock_as_per_invoice_live($invoice_id) {
+    public function updatestock_as_per_invoice_live($invoice_id)
+    {
         // Get all Products in invoice details
         $i = $invoice_id;
         // Get Firm Id in - Invoice Table
@@ -2129,7 +2242,8 @@ class Project_cost_model extends CI_Model {
         }
     }
 
-    public function updatestockreturn_as_per_invoice_live($invoice_id) {
+    public function updatestockreturn_as_per_invoice_live($invoice_id)
+    {
 
         // Get all Products in invoice details
         $i = $invoice_id;
@@ -2155,7 +2269,7 @@ class Project_cost_model extends CI_Model {
                     $query = $this->db->get('erp_sales_return')->result_array();
 
                     if (count($query) > 1) {
-//                            /echo "Rajaa";exit;
+                        //                            /echo "Rajaa";exit;
                         foreach ($query as $salesreturn) {
                             $sales_return_id = $salesreturn['id'];
                             $invoice_id = $salesreturn['invoice_id'];
@@ -2200,7 +2314,8 @@ class Project_cost_model extends CI_Model {
         }
     }
 
-    public function update_invoice_payment_status($invoice_id) {
+    public function update_invoice_payment_status($invoice_id)
+    {
         $data = array();
         $data['payment_status'] = 'Completed';
         $this->db->where('id', $invoice_id);
@@ -2211,7 +2326,8 @@ class Project_cost_model extends CI_Model {
         return false;
     }
 
-    public function get_invoice_report($serch) {
+    public function get_invoice_report($serch)
+    {
 
         if ($serch != NULL && $serch != '') {
             $serch_data['inv_id'] = $serch[0]->inv_id;
@@ -2291,7 +2407,7 @@ class Project_cost_model extends CI_Model {
                     }
                 }
 
-                $invoiceIds = array_map(function($invoices) {
+                $invoiceIds = array_map(function ($invoices) {
                     return $invoices['in_id'];
                 }, $invoices);
 
@@ -2331,7 +2447,7 @@ class Project_cost_model extends CI_Model {
         }
 
         $this->db->select('customer.id as customer,customer.store_name,customer.tin,customer.state_id, customer.name,customer.mobil_number,customer.email_id,customer.address1,customer.advance,erp_invoice.id,erp_invoice.inv_id,erp_quotation.q_no,erp_invoice.total_qty,erp_invoice.tax,erp_quotation.ref_name,erp_invoice.tax_label,'
-                . 'erp_invoice.net_total,erp_invoice.created_date,erp_invoice.remarks,erp_invoice.subtotal_qty,erp_invoice.estatus,erp_invoice.customer_po,erp_sales_man.sales_man_name,erp_invoice.q_id');
+            . 'erp_invoice.net_total,erp_invoice.created_date,erp_invoice.remarks,erp_invoice.subtotal_qty,erp_invoice.estatus,erp_invoice.customer_po,erp_sales_man.sales_man_name,erp_invoice.q_id');
 
         $firms = $this->user_auth->get_user_firms();
         $frim_id = array();
@@ -2422,5 +2538,4 @@ class Project_cost_model extends CI_Model {
 
         return $query;
     }
-
 }

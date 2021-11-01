@@ -3,7 +3,6 @@ $theme_path = $this->config->item('theme_locations') . $this->config->item('acti
 ?>
 <style>
     .st {
-        /*float: left;*/
         width: 82.1px;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -63,6 +62,7 @@ $theme_path = $this->config->item('theme_locations') . $this->config->item('acti
     } else {
         $po_data = '[[1, 0], [2, 0], [3,0], [4, 0], [5, 0], [6, 0], [7, 0], [8, 0], [9, 0], [10, 0], [11, 0], [12, 0]]';
     }
+
     ?>
     <div class="row dash-icons">
         <div class="col-md-1">
@@ -168,54 +168,7 @@ $theme_path = $this->config->item('theme_locations') . $this->config->item('acti
             </div>
             <div class="clearfix"></div>
 
-            <!--            <div class="col-md-4">
-                            <div class="panel panel-success-alt noborder">
-                                <div class="panel-heading noborder">
-                                    <div class="panel-btns">
-                                        <a href="#" class="panel-close tooltips" data-toggle="tooltip" title="Close Panel"><i class="fa fa-times"></i></a>
-                                    </div> panel-btns
-
-                                    <div class="media-body1">
-                                        <h5 class="md-title nomargin">Pending Enquiry</h5>
-                                    </div> media-body
-                                    <hr>
-                                    <div class="clearfix mt20">
-                                        <table class="table table-bordered">
-                                            <thead>
-                                            <th class="qty_align">Enquiry#</th>
-                                            <th class="qty_align">Customer</th>
-                                            <th class="qty_align">Date</th>
-                                            </thead>
-                                            <tbody>
-
-            <?php
-            if (isset($report['enquiry']) && !empty($report['enquiry'])) {
-                foreach ($report['enquiry'] as $enquiry) {
-            ?>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <tr>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <td class="qty_align"><?php echo $enquiry['enquiry_no']; ?></td>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <td class="qty_align"><?php echo $enquiry['customer_name']; ?></td>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <td class="qty_align"><?php echo date('d-M-Y', strtotime($enquiry['created_date'])); ?></td>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </tr>
-                    <?php
-                }
-            } else {
-                echo '<tr><td colspan="3">No pending Enquiry</td></tr>';
-            }
-                    ?>
-                                            </tbody>
-                                        </table>
-                                    </div>
-
-                                </div> panel-body
-                            </div> panel
-                        </div> col-md-4 -->
-            <?php
-            $data['invoice'] = $this->admin_model->get_firm_based_pending_invoice();
-            //echo '<pre>';
-            //print_r($data['invoice']);
-            // exit;
-            ?>
+            <?php $data['invoice'] = $this->admin_model->get_firm_based_pending_invoice(); ?>
             <div class="col-md-6">
                 <div class="panel panel-primary noborder">
                     <div class="panel-heading  panel-back  noborder">
@@ -256,89 +209,6 @@ $theme_path = $this->config->item('theme_locations') . $this->config->item('acti
                     </div>
                 </div>
             </div>
-
-            <!--            <?php
-                            $data['today_po'] = $this->admin_model->get_cash_credit_po();
-                            $data['today_sales'] = $this->admin_model->get_cash_credit_sales();
-                            ?>
-                        <div class="col-md-3">
-                            <div class="panel panel-dark noborder">
-                                <div class="panel-heading panel-red noborder">
-                                    <div class="media-body1">
-                                        <h5 class="md-title nomargin">Today's Purchase</h5>
-                                    </div> media-body
-                                    <hr>
-                                    <div class="clearfix mt20">
-                                        <div id="">
-                                            <table class="table table-bordered margin0">
-                                                <thead>
-                                                    <tr>
-                                                        <th align="left" style="text-align:left">Firm Name</th>
-                                                        <th align="center" style="text-align:center">Cash</th>
-                                                        <th align="center" style="text-align:center">Credit</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-            <?php
-            if (!empty($data['today_po'])) {
-                foreach ($data['today_po'] as $val) {
-            ?>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <tr>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <td align="left"><?php echo $val['firm_name']; ?></td>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <td align="center"><?php echo ($val['po_cash'][0]['po_cash'] != '') ? number_format($val['po_cash'][0]['po_cash'], 2) : '0.00'; ?></td>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <td align="center"><?php echo ($val['po_credit'][0]['po_credit'] != 0) ? number_format($val['po_credit'][0]['po_credit'], 2) : '0.00'; ?></td>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </tr>
-                    <?php
-                }
-            }
-                    ?>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="panel panel-dark noborder">
-                                <div class="panel-heading panel-red noborder">
-                                    <div class="media-body1">
-                                        <h5 class="md-title nomargin">Today's Sale</h5>
-                                    </div> media-body
-                                    <hr>
-                                    <div class="clearfix mt20">
-                                        <div id="">
-                                            <table class="table table-bordered margin0">
-                                                <thead>
-                                                    <tr>
-                                                        <th align="left" style="text-align:left">Firm Name</th>
-                                                        <th align="center" style="text-align:center">Cash</th>
-                                                        <th align="center" style="text-align:center">Credit</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-            <?php
-            if (!empty($data['today_sales'])) {
-                foreach ($data['today_sales'] as $val) {
-            ?>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <tr>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <td align="left"><?php echo $val['firm_name']; ?></td>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <td align="center"><?php echo ($val['inv_cash'][0]['inv_cash'] != '') ? number_format($val['inv_cash'][0]['inv_cash'], 2) : '0.00'; ?></td>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <td align="center"><?php echo ($val['inv_credit'][0]['inv_credit'] != 0) ? number_format($val['inv_credit'][0]['inv_credit'], 2) : '0.00'; ?></td>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </tr>
-                    <?php
-                }
-            }
-                    ?>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-
-                                </div> panel-body
-                            </div>
-                        </div>-->
-            <!--<div class="clearfix"></div>-->
             <div class="col-md-6">
                 <div class="panel panel-dark noborder">
                     <div class="panel-heading panel-red noborder">
@@ -380,11 +250,6 @@ $theme_path = $this->config->item('theme_locations') . $this->config->item('acti
                     </div><!-- panel-body -->
                 </div><!-- panel -->
             </div><!-- col-md-4 -->
-            <?php //}
-            ?>
-
-            <?php //if (($user_info[0]['role'] == 1) || ($user_info[0]['role'] == 2)) {
-            ?>
 
 
             <div class="col-md-12">
@@ -397,12 +262,6 @@ $theme_path = $this->config->item('theme_locations') . $this->config->item('acti
 
                 </div><!-- panel -->
             </div>
-            <!--                <div class="col-md-6">
-                                    <div class="panel panel-default">
-                                    <div id="chartdiv"></div>
-                                </div>
-                            </div>-->
-
 
         </div><!-- row -->
 
@@ -421,10 +280,6 @@ $theme_path = $this->config->item('theme_locations') . $this->config->item('acti
                 </div>
             </div>
         </div>
-
-        <?php // }
-        ?>
-        <!-- row -->
 
     </div><!-- contentpanel -->
 
@@ -587,149 +442,6 @@ $theme_path = $this->config->item('theme_locations') . $this->config->item('acti
             }
         });
 
-
-
-
-        /*var previousPoint = null;
-         jQuery("#basicflot2").bind("plothover", function (event, pos, item) {
-         jQuery("#x").text(pos.x.toFixed(2));
-         jQuery("#y").text(pos.y.toFixed(2));
-
-         if (item) {
-         if (previousPoint != item.dataIndex) {
-         previousPoint = item.dataIndex;
-
-         jQuery("#tooltip").remove();
-         var x = item.datapoint[0].toFixed(2),
-         y = item.datapoint[1].toFixed(2);
-
-         showTooltip(item.pageX, item.pageY,
-         item.series.label + " of " + x + " = " + y);
-         }
-
-         } else {
-         jQuery("#tooltip").remove();
-         previousPoint = null;
-         }
-
-         });
-
-         jQuery("#basicflot2").bind("plotclick", function (event, pos, item) {
-         if (item) {
-         plot.highlight(item.series, item.datapoint);
-         }
-         });
-
-
-
-
-         var previousPoint = null;
-         jQuery("#basicflot3").bind("plothover", function (event, pos, item) {
-         jQuery("#x").text(pos.x.toFixed(2));
-         jQuery("#y").text(pos.y.toFixed(2));
-
-         if (item) {
-         if (previousPoint != item.dataIndex) {
-         previousPoint = item.dataIndex;
-
-         jQuery("#tooltip").remove();
-         var x = item.datapoint[0].toFixed(2),
-         y = item.datapoint[1].toFixed(2);
-
-         showTooltip(item.pageX, item.pageY,
-         item.series.label + " of " + x + " = " + y);
-         }
-
-         } else {
-         jQuery("#tooltip").remove();
-         previousPoint = null;
-         }
-
-         });
-
-         jQuery("#basicflot3").bind("plotclick", function (event, pos, item) {
-         if (item) {
-         plot.highlight(item.series, item.datapoint);
-         }
-         });
-
-
-         jQuery('#sparkline').sparkline([4, 3, 3, 1, 4, 3, 2, 2, 3, 10, 9, 6], {
-         type: 'bar',
-         height: '30px',
-         barColor: '#428BCA'
-         });
-
-         jQuery('#sparkline2').sparkline([9, 8, 8, 6, 9, 10, 6, 5, 6, 3, 4, 2], {
-         type: 'bar',
-         height: '30px',
-         barColor: '#999'
-         });
-
-         jQuery('#sparkline3').sparkline([4, 3, 3, 1, 4, 3, 2, 2, 3, 10, 9, 6], {
-         type: 'bar',
-         height: '30px',
-         barColor: '#428BCA'
-         });
-
-         jQuery('#sparkline4').sparkline([9, 8, 8, 6, 9, 10, 6, 5, 6, 3, 4, 2], {
-         type: 'bar',
-         height: '30px',
-         barColor: '#999'
-         });
-
-         jQuery('#sparkline5').sparkline([4, 3, 3, 1, 4, 3, 2, 2, 3, 10, 9, 6], {
-         type: 'bar',
-         height: '30px',
-         barColor: '#428BCA'
-         });
-
-         jQuery('#sparkline6').sparkline([9, 8, 8, 6, 9, 10, 6, 5, 6, 3, 4, 2], {
-         type: 'bar',
-         height: '30px',
-         barColor: '#999'
-         });
-         */
-
-        /***** BAR CHART *****/
-
-        /*var m3 = new Morris.Bar({
-         // ID of the element in which to draw the chart.
-         element: 'bar-chart',
-         // Chart data records -- each entry in this array corresponds to a point on
-         // the chart.
-         data: [
-         {y: '2006', a: 30, b: 20},
-         {y: '2007', a: 75, b: 65},
-         {y: '2008', a: 50, b: 40},
-         {y: '2009', a: 75, b: 65},
-         {y: '2010', a: 50, b: 40},
-         {y: '2011', a: 75, b: 65},
-         {y: '2012', a: 100, b: 90}
-         ],
-         xkey: 'y',
-         ykeys: ['a', 'b'],
-         labels: ['Series A', 'Series B'],
-         lineWidth: '1px',
-         fillOpacity: 0.8,
-         smooth: false,
-         hideHover: true,
-         resize: true
-         });
-
-         var delay = (function () {
-         var timer = 0;
-         return function (callback, ms) {
-         clearTimeout(timer);
-         timer = setTimeout(callback, ms);
-         };
-         })();
-
-         jQuery(window).resize(function () {
-         delay(function () {
-         m3.redraw();
-         }, 200);
-         }).trigger('resize'); */
 
 
         // This will empty first option in select to enable placeholder

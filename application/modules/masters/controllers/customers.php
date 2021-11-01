@@ -3,9 +3,11 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Customers extends MX_Controller {
+class Customers extends MX_Controller
+{
 
-    function __construct() {
+    function __construct()
+    {
         parent::__construct();
         $this->clear_cache();
         if (!$this->user_auth->is_logged_in()) {
@@ -45,7 +47,8 @@ class Customers extends MX_Controller {
             $this->notification_model->update_notification(array('status' => 1), $_GET['notification']);
     }
 
-    public function index() {
+    public function index()
+    {
         $this->load->model('masters/agent_model');
         $data["customer"] = $this->customer_model->get_customer();
         $data['all_state'] = $this->customer_model->state();
@@ -57,7 +60,8 @@ class Customers extends MX_Controller {
         $this->template->render();
     }
 
-    public function insert_customer() {
+    public function insert_customer()
+    {
         if ($this->input->post('customer_region') == 'local') {
             $street = $this->input->post('street_name');
         }
@@ -106,7 +110,8 @@ class Customers extends MX_Controller {
         redirect($this->config->item('base_url') . 'masters/customers', $data);
     }
 
-    public function edit_customer($id) {
+    public function edit_customer($id)
+    {
         $this->load->model('masters/agent_model');
         $data['all_state'] = $this->customer_model->state();
         $data["customer"] = $this->customer_model->get_customer1($id);
@@ -119,7 +124,8 @@ class Customers extends MX_Controller {
         $this->template->render();
     }
 
-    public function update_customer() {
+    public function update_customer()
+    {
         $id = $this->input->POST('id');
         $dob = $this->input->post('dob');
         if ($this->input->post('temp_credit') != '' && $this->input->post('approved_by') != '') {
@@ -180,42 +186,47 @@ class Customers extends MX_Controller {
         redirect($this->config->item('base_url') . 'masters/customers/');
     }
 
-    public function delete_customer() {
+    public function delete_customer()
+    {
         $this->load->model('masters/customer_model');
         $data["customer"] = $this->customer_model->get_customer();
-        $id = $this->input->POST('value1');
-        {
+        $id = $this->input->POST('value1'); {
             $this->customer_model->delete_customer($id);
 
             redirect($this->config->item('base_url') . 'masters/customers', $data);
         }
     }
 
-    public function add_duplicate_email() {
+    public function add_duplicate_email()
+    {
         $this->load->model('masters/customer_model');
         $input = $this->input->get('value1');
         $validation = $this->customer_model->add_duplicate_email($input);
         $i = 0;
         if ($validation) {
             $i = 1;
-        }if ($i == 1) {
+        }
+        if ($i == 1) {
             echo "Email Already Exist";
         }
     }
 
-    public function add_duplicate_mobile() {
+    public function add_duplicate_mobile()
+    {
         $this->load->model('masters/customer_model');
         $input = $this->input->post();
         $validation = $this->customer_model->add_duplicate_mobile($input);
         $i = 0;
         if ($validation) {
             $i = 1;
-        }if ($i == 1) {
+        }
+        if ($i == 1) {
             echo "Number Already Exist";
         }
     }
 
-    public function update_duplicate_email() {
+    public function update_duplicate_email()
+    {
         $this->load->model('masters/customer_model');
         $input = $this->input->post('value1');
         $id = $this->input->post('value2');
@@ -223,12 +234,14 @@ class Customers extends MX_Controller {
         $i = 0;
         if ($validation) {
             $i = 1;
-        }if ($i == 1) {
+        }
+        if ($i == 1) {
             echo "Email already Exist";
         }
     }
 
-    public function update_duplicate_mobile() {
+    public function update_duplicate_mobile()
+    {
         $this->load->model('masters/customer_model');
         $input = $this->input->post('value1');
         $id = $this->input->post('value2');
@@ -236,19 +249,22 @@ class Customers extends MX_Controller {
         $i = 0;
         if ($validation) {
             $i = 1;
-        }if ($i == 1) {
+        }
+        if ($i == 1) {
             echo "Number already Exist";
         }
     }
 
-    public function add_state() {
+    public function add_state()
+    {
         $this->load->model('masters/customer_model');
         $input = $this->input->get();
         $insert_id = $this->customer_model->insert_state($input);
         echo $insert_id;
     }
 
-    function import_customers() {
+    function import_customers()
+    {
         if ($this->input->post()) {
             $is_success = 0;
             if (!empty($_FILES['customer_data'])) {
@@ -419,7 +435,8 @@ class Customers extends MX_Controller {
         }
     }
 
-    function ajaxList() {
+    function ajaxList()
+    {
         $list = $this->customer_model->get_datatables();
         $data = array();
         $no = $_POST['start'];
@@ -467,7 +484,8 @@ class Customers extends MX_Controller {
         exit;
     }
 
-    function customer_piechart() {
+    function customer_piechart()
+    {
         $local_customers = $this->customer_model->count_local_customers();
         $non_local_customers = $this->customer_model->count_non_local_customers();
         $responce->cols[] = array(
@@ -509,7 +527,8 @@ class Customers extends MX_Controller {
         exit;
     }
 
-    function customer_barchart() {
+    function customer_barchart()
+    {
         $customers = $this->customer_model->get_customer();
         $current_month = date('m');
         $month_range = $current_month - 5;
@@ -553,9 +572,9 @@ class Customers extends MX_Controller {
         exit;
     }
 
-    function clear_cache() {
+    function clear_cache()
+    {
         $this->output->set_header("Cache-Control: no-store, no-cache, must-revalidate, no-transform, max-age=0, post-check=0, pre-check=0");
         $this->output->set_header("Pragma: no-cache");
     }
-
 }
