@@ -298,9 +298,9 @@ if (!empty($customers)) {
                     <div class="form-group">
                         <label class="col-sm-4 control-label">Customer Name</label>
                         <div class="col-sm-8">
-                            <input type="text" tabindex="2" name="customer[store_name]" <?php $list['store_name'] ?>id="customer_name" class='form-align auto_customer  form-control' />
+                            <input type="text" tabindex="2" name="customer[store_name]" id="customer_name" class='form-align auto_customer  form-control' />
                             <span class="error_msg"></span>
-                            <input type="hidden" name="customer[id]" id="customer_id" value="6" class='id_customer form-align' />
+                            <input type="hidden" name="customer[id]" id="customer_id" value="6" <?php $list['id']; ?> class='id_customer form-align' />
                             <!--                              <input type="hidden"  name="quotation[product_id]" id="cust_id" class='id_customer' />-->
                             <div id="suggesstion-box" class="auto-asset-search "></div>
                         </div>
@@ -635,7 +635,9 @@ if (!empty($customers)) {
         $('#firm').trigger('change');
         // $('body').on('keydown', 'input#customer_name', function(e) {
         var firm_id = $('#firm').val();
+        console.log(firm_id);
         var c_data = [<?php echo implode(',', $customers_json); ?>];
+
         $("#customer_name").blur(function() {
             var keyEvent = $.Event("keydown");
             keyEvent.keyCode = $.ui.keyCode.ENTER;
@@ -659,6 +661,7 @@ if (!empty($customers)) {
                 // $("#app_table input,select").attr("disabled", false);
                 cust_id = ui.item.id;
                 load_customers(cust_id);
+                Firm(val);
             }
         });
         // });

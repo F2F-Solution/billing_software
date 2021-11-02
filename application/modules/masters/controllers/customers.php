@@ -31,6 +31,7 @@ class Customers extends MX_Controller
             'customers/ajaxList' => 'no_restriction',
             'customers/customer_piechart' => 'no_restriction',
             'customers/customer_barchart' => 'no_restriction',
+            'customers/add_customers' => 'no_restriction',
         );
 
         if (!$this->user_auth->is_permission_allowed($access_arr, $main_module)) {
@@ -209,6 +210,23 @@ class Customers extends MX_Controller
         if ($i == 1) {
             echo "Email Already Exist";
         }
+    }
+    public function add_customers()
+    {
+        $input_data = array(
+            // 'name' => $this->input->post('cus_name'),
+            'store_name' => $this->input->post('cus_name'),
+            'address1' => $this->input->post('cus_address'),
+            'mobil_number' => $this->input->post('cus_num'),
+            'email_id' => $this->input->post('cus_email'),
+            'customer_type' => $this->input->post('cus_type'),
+            'firm_id' => $this->input->POST('firm_id'),
+            'tin' => $this->input->post('customer_gstin'),
+            'created_by' => $this->user_auth->get_user_id(),
+        );
+        $id = $this->customer_model->insert_customer($input_data);
+        echo $id;
+        exit;
     }
 
     public function add_duplicate_mobile()
