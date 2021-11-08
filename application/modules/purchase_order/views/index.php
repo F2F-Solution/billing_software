@@ -223,7 +223,7 @@ if (!empty($customers)) {
                             <?php
                             } else {
                             ?>
-                                <select onchange="Firm(this.value)" name="po[firm_id]" class="form-control form-align required" id="firm" readonly="" tabindex="1">
+                                <select onchange="Firm(this.value)" name="po[firm_id]" class="form-control form-align required" id="firm" tabindex="1">
                                     <?php
                                     if (isset($firms) && !empty($firms)) {
                                         foreach ($firms as $firm) {
@@ -486,13 +486,13 @@ if (!empty($customers)) {
                         <tr>
                             <td colspan="5" style="width:70px; text-align:right;"><b>Total</b></td>
                             <td><input type="text" name="po[total_qty]" readonly="readonly" class="total_qty" style="width:70px;" id="total" /></td>
-                            <td colspan="6" style="text-align:right;"><b>Sub Total</b></td>
+                            <td colspan="7" style="text-align:right;"><b>Sub Total</b></td>
                             <td><input type="text" name="po[subtotal_qty]" readonly="readonly" class="final_sub_total text_right" style="width:70px;" /></td>
                             <td></td>
                         </tr>
                         <tr>
                             <td colspan="6" style="width:70px; text-align:right;"></td>
-                            <td colspan="6" style="text-align:right;font-weight:bold;"><input type="text" tabindex="1" name="po[tax_label]" class='tax_label text_right' style="width:100%;" /></td>
+                            <td colspan="7" style="text-align:right;font-weight:bold;"><input type="text" tabindex="1" name="po[tax_label]" class='tax_label text_right' style="width:100%;" /></td>
                             <td>
                                 <input type="text" name="po[tax]" class='totaltax text_right' tabindex="1" style="width:70px;" />
                             </td>
@@ -500,7 +500,7 @@ if (!empty($customers)) {
                         </tr>
                         <tr>
                             <td colspan="6" style="width:70px; text-align:right;"></td>
-                            <td colspan="6" style="text-align:right;font-weight:bold;">Net Total</td>
+                            <td colspan="7" style="text-align:right;font-weight:bold;">Net Total</td>
                             <td><input type="text" name="po[net_total]" readonly="readonly" class="final_amt text_right" style="width:70px;" /></td>
                             <td></td>
                         </tr>

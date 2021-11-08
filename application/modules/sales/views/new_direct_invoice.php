@@ -777,64 +777,66 @@ if (!empty($customers)) {
         //            return false;
         //        }
     });
+    // $(document).ready(function() {
+    //     // $(".receiver").attr('checked').val();
+    //     // $("#bill1").prop("checked", true);
+    //     $("#bill1").attr('checked', 'checked');
+    // });
     $(document).ready(function() {
-        // $(".receiver").attr('checked').val();
-        $("#bill1").prop("checked", true);
-        // $("#bill1").attr('checked', 'checked');
-    });
-    $(document).ready(function() {
-        // $("#bill1").attr('checked', 'checked');
+        $("#bill1").attr('checked', 'checked');
+
 
         if ($('#gst_type').val() == '') {
             $('#add_quotation').find('tr td.igst_td').hide();
             $('#add_new_values').find('tr td.igst_td').hide();
         }
         $('#firm').trigger('change');
-        //$('body').on('keydown', 'input#customer_name', function(e) {
-        var firm_id = $('#firm').val();
-        var c_data = [<?php echo implode(',', $customers_json); ?>];
-        $("#customer_name").blur(function() {
-            var keyEvent = $.Event("keydown");
-            keyEvent.keyCode = $.ui.keyCode.ENTER;
-            $(this).trigger(keyEvent);
-            // Stop event propagation if needed
-            return false;
-        }).autocomplete({
-            source: function(request, response) {
-                // filter array to only entries you want to display limited to 10
-                var outputArray = new Array();
-                for (var i = 0; i < c_data.length; i++) {
-                    if (c_data[i].value.toLowerCase().match(request.term.toLowerCase())) {
-                        outputArray.push(c_data[i]);
+        $('body').on('keydown', 'input#customer_name', function(e) {
+            var firm_id = $('#firm').val();
+            var c_data = [<?php echo implode(',', $customers_json); ?>];
+            $("#customer_name").blur(function() {
+                var keyEvent = $.Event("keydown");
+                keyEvent.keyCode = $.ui.keyCode.ENTER;
+                $(this).trigger(keyEvent);
+                // Stop event propagation if needed
+                return false;
+            }).autocomplete({
+                source: function(request, response) {
+                    // filter array to only entries you want to display limited to 10
+                    var outputArray = new Array();
+                    for (var i = 0; i < c_data.length; i++) {
+                        if (c_data[i].value.toLowerCase().match(request.term.toLowerCase())) {
+                            outputArray.push(c_data[i]);
+                        }
                     }
+                    if (outputArray.length == 0) {
+                        var nodata = 'Add new Customer';
+                        outputArray.push(nodata);
+                    }
+                    response(outputArray.slice(0, 10));
+                    // response(outputArray.slice(0, 10));
+                },
+                minLength: 0,
+                autoFocus: true,
+                select: function(event, ui) {
+                    if (ui.item.value == "Add new Customer") {
+                        clear_data();
+                        $('#test1').modal('toggle');
+                        return false;
+                    } else {
+
+
+
+                        $("#app_table input,select").attr("disabled", false);
+                        cust_id = ui.item.id;
+                        // _load_customers(cust_id);
+                        add_customer();
+
+                    }
+                    _load_customers(cust_id);
+
                 }
-                if (outputArray.length == 0) {
-                    var nodata = 'Add new Customer';
-                    outputArray.push(nodata);
-                }
-                response(outputArray.slice(0, 10));
-                // response(outputArray.slice(0, 10));
-            },
-            minLength: 0,
-            autoFocus: true,
-            select: function(event, ui) {
-                if (ui.item.value == "Add new Customer") {
-                    clear_data();
-                    $('#test1').modal('toggle');
-                    return false;
-                } else {
-
-
-
-                    $("#app_table input,select").attr("disabled", false);
-                    cust_id = ui.item.id;
-                    // _load_customers(cust_id);
-                    add_customer();
-
-                }
-                _load_customers(cust_id);
-
-            }
+            });
         });
     });
     $('#model_discard').on('click', function(e) {
@@ -989,12 +991,12 @@ if (!empty($customers)) {
                     $("#approved_by").val(result[0].approved_by);
                     $("#advance").val(result[0].advance);
                     $("#customer_details_label").html('<span class="label label-success" style="float:right">' + result[0].balance + ' </span>' + result[0].store_name + '<br>' + result[0].address1 + '<br> Email : ' + result[0].email_id + '<br> Mobile : ' + result[0].mobil_number);
-                    if (result[0].customer_type == 1 || result[0].customer_type == 3)
-                        $("#bill1").attr('checked', false);
-                    else if (result[0].customer_type == 2 || result[0].customer_type == 4)
-                        $("#bill2").attr('checked', false);
-                    else
-                        $(".receiver").prop("checked", false);
+                    // if (result[0].customer_type == 1 || result[0].customer_type == 3)
+                    //     $("#bill1").attr('checked', false);
+                    // else if (result[0].customer_type == 2 || result[0].customer_type == 4)
+                    //     $("#bill2").attr('checked', false);
+                    // else
+                    //     $(".receiver").prop("checked", false);
                     if ($('#gst_type').val() != '') {
                         if ($('#gst_type').val() == 31) {
                             $('#add_quotation').find('tr td.sgst_td').show();
@@ -1049,7 +1051,7 @@ if (!empty($customers)) {
             type: 'POST',
             data: {
                 cust_id: cust_id,
-                firm_id: firm_id
+                // firm_id: firm_id
             },
             url: "<?php echo $this->config->item('base_url'); ?>" + "quotation/get_customer/",
             success: function(data) {
@@ -1070,12 +1072,12 @@ if (!empty($customers)) {
                     $("#approved_by").val(result[0].approved_by);
                     $("#advance").val(result[0].advance);
                     $("#customer_details_label").html('<span class="label label-success" style="float:right">' + result[0].balance + ' </span>' + result[0].store_name + '<br>' + result[0].address1 + '<br> Email : ' + result[0].email_id + '<br> Mobile : ' + result[0].mobil_number);
-                    if (result[0].customer_type == 1 || result[0].customer_type == 3)
-                        $("#bill1").attr('checked', false);
-                    else if (result[0].customer_type == 2 || result[0].customer_type == 4)
-                        $("#bill2").attr('checked', false);
-                    else
-                        $(".receiver").prop("checked", false);
+                    // if (result[0].customer_type == 1 || result[0].customer_type == 3)
+                    //     $("#bill1").attr('checked', false);
+                    // else if (result[0].customer_type == 2 || result[0].customer_type == 4)
+                    //     $("#bill2").attr('checked', false);
+                    // else
+                    //     $(".receiver").prop("checked", false);
                     if ($('#gst_type').val() != '') {
                         if ($('#gst_type').val() == 31) {
                             $('#add_quotation').find('tr td.sgst_td').show();
@@ -1203,6 +1205,7 @@ if (!empty($customers)) {
                 final_qty = final_qty + Number(qty.val());
                 final_sub_total = final_sub_total + taxless;
             }
+
         });
         $('.add_cgst').val(cgst.toFixed(2));
         $('.add_sgst').val(sgst.toFixed(2));
@@ -1625,6 +1628,7 @@ if (!empty($customers)) {
             $('.model_no').attr('readonly', 'readonly');
         }
         _load_customers();
+
     }
 
     $(window).bind('scannerDetectionReceive', function(event, data) {

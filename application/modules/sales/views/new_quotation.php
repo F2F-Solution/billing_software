@@ -370,7 +370,7 @@ if (!empty($customers)) {
                     <div class="form-group">
                         <label class="col-sm-4 control-label">Customer Name <span style="color:#F00; font-style:oblique;">*</span></label>
                         <div class="col-sm-8">
-                            <input type="text" tabindex="1" name="customer[store_name]" id="customer_name" class='form-control form-align auto_customer required' />
+                            <input type="text" tabindex="1" name="customer[store_name]" id="customer_name" <?php $list['store_name']; ?>class='form-control form-align auto_customer required' />
                             <span class="error_msg"></span>
                             <input type="hidden" name="customer[id]" id="customer_id" value="6" <?php $list['id']; ?>class='id_customer  form-align' />
                             <!--                              <input type="hidden"  name="quotation[product_id]" id="cust_id" class='id_customer' />-->

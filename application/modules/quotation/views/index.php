@@ -236,12 +236,12 @@ if (!empty($customers)) {
                 <td>
                     <input type="text" tabindex="-1" name='discount[]' style="width:70px;" class="discount" />
                 </td>
-                <!-- <td class="action-btn-align cgst_td">
-                    <input type="text" tabindex="-1" name='tax[]' style="width:70px;" class="pertax" />
-                </td> -->
-                <!-- <td class="action-btn-align sgst_td">
-                    <input type="text" tabindex="-1" name='gst[]' style="width:70px;" class="gst" />
-                </td> -->
+                <td class="action-btn-align cgst_td" style="display: none;">
+                    <input type="text" style="display: none;" tabindex="-1" name='tax[]' style="width:70px;" class="pertax" />
+                </td>
+                <td class="action-btn-align sgst_td" style="display: none;">
+                    <input type="text" tabindex="-1" style="display: none;" name='gst[]' style="width:70px;" class="gst" />
+                </td>
                 <td class="action-btn-align igst_td">
                     <input type="text" tabindex="-1" name='igst[]' style="width:70px;" class="igst wid50" />
                 </td>
@@ -251,10 +251,106 @@ if (!empty($customers)) {
                 <td class="action-btn-align"><a id="delete_group" tabindex="-1" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash"></span></a></td>
             </tr>
         </table>
+        <div id="test1" class="modal fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false" align="center">
+            <div class="modal-dialog">
+                <div class="modal-content modalcontent-top">
+                    <div class="modal-header modal-padding modalcolor"><a class="close modal-close closecolor" data-dismiss="modal">×</a>
+                        <h3 id="myModalLabel" style="color:white;margin-top:10px">Insert Customer</h3>
+                    </div>
+                    <div class="modal-body">
+                        <form id="customer_model_form">
+                            <table class="table" width="60%">
+                                <tr>
+                                    <td><input type="hidden" name="id" class="id form-control id_update" id="id" value="" readonly="readonly" /></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Customer Name</strong></td>
+                                    <td>
+                                        <div class="input-group">
+                                            <input type="text" class="brand form-control form-group mandatory customername borderra0 form-align " data-num="1" name="customer_name" value="" id="customername" maxlength="40" />
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-user"></i>
+                                            </div>
+                                        </div>
+                                        <span id="cnameerror" class="val field1 " style="color:#F00; font-style:italic;"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Email Address</strong></td>
+                                    <td>
+                                        <div class="input-group">
+                                            <input type="text" class="brand form-control  form-group   borderra0 form-align emailid" data-num="2" name="email" value="" id="email_address" maxlength="40" />
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-envelope"></i>
+                                            </div>
+                                        </div>
+                                        <span id="mailerr" class="field2 val" style="color:#F00; font-style:italic;"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Customer Type</strong></td>
+                                    <td>
+                                        <div class="input-group form-group" style="width:100%;">
+                                            <select name="cus_type" id="cus_type" class="form-control  mandatory form-align " data-num="3">
+                                                <option value="">Select Customer Type</option>
+                                                <option value="1">Regular</option>
+                                                <option value="1">Non-Regular</option>
+                                            </select>
+                                        </div>
+                                        <span id="custypeerr" class="field3 val" style="color:#F00; font-style:italic;"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Mobile Number</strong></td>
+                                    <td>
+                                        <div class="input-group form-group">
+                                            <input type="text" class="brand form-control  mandatory   borderra0 form-align " data-num="4" name="mobile_num" value="" id="mobile_num" maxlength="40" />
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-phone"></i>
+                                            </div>
+                                        </div>
+                                        <span id="mobile_num_err" class="field4 val" style="color:#F00; font-style:italic;"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Address</strong></td>
+                                    <td>
+                                        <div class="input-group form-group" style="width: 100%;">
+                                            <input type="text" class="address form-control  mandatory  borderra0 form-align " data-num="5" name="address" value="" id="address" maxlength="40" />
+                                            <!--<div class="input-group-addon">
+                                                <i class="fa fa-fa"></i>
+                                            </div>-->
+                                        </div>
+                                        <span id="address_err" class="field5 val" style="color:#F00; font-style:italic;"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><strong>GSTIN</strong></td>
+                                    <td>
+                                        <div class="input-group">
+                                            <input type="text" class="customer_gstin form-control  form-group borderra0 form-align emailid" data-num="6" name="customer_gstin" value="" id="customer_gstin" maxlength="40" />
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-cog"></i>
+                                            </div>
+                                        </div>
+                                        <span id="gstinerr" class="field6 val" style="color:#F00; font-style:italic;"></span>
+                                    </td>
+                                </tr>
+                            </table>
+                        </form>
+                    </div>
+                    <div class="modal-footer action-btn-align">
+                        <button type="button" class="edit btn btn-info1" id="update_customer">Update</button>
+                        <button type="reset" class="btn btn-danger1 " id="model_discard" data-dismiss="modal">
+                            Discard</button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <form method="post" class="panel-body" id="quotation">
             <div class="row">
                 <div class="col-md-4">
-                    <?php if (count($firms) > 1) { ?>
+                    <?php if (count($firms) == 1) { ?>
                         <div class="form-group">
                             <label class="col-sm-4 control-label">Firm Name</label>
                             <div class="col-sm-8">
@@ -495,9 +591,9 @@ if (!empty($customers)) {
                     </tbody>
                     <tfoot>
                         <tr>
-                            <td colspan="6" style="width:70px; text-align:right;"><b>Total</b></td>
+                            <td colspan="5" style="width:70px; text-align:right;"><b>Total</b></td>
                             <td class="action-btn-align"><input type="text" tabindex="-1" name="quotation[total_qty]" readonly="readonly" class="total_qty" style="width:70px;" id="total" /></td>
-                            <td colspan="2" style="text-align:right;"><b>Sub Total</b></td>
+                            <td colspan="3" style="text-align:right;"><b>Sub Total</b></td>
                             <td class="action-btn-align"><input type="text" tabindex="-1" name="quotation[subtotal_qty]" readonly="readonly" class="final_sub_total text_right" style="width:70px;" /></td>
                             <td></td>
                         </tr>
@@ -653,18 +749,155 @@ if (!empty($customers)) {
                         outputArray.push(c_data[i]);
                     }
                 }
+                if (outputArray.length == 0) {
+                    var nodata = 'Add new Customer';
+                    outputArray.push(nodata);
+                }
                 response(outputArray.slice(0, 10));
             },
             minLength: 0,
             autoFocus: true,
             select: function(event, ui) {
-                // $("#app_table input,select").attr("disabled", false);
-                cust_id = ui.item.id;
+                if (ui.item.value == "Add new Customer") {
+                    clear_data();
+                    $('#test1').modal('toggle');
+                    return false;
+                } else {
+
+                    $("#app_table input,select").attr("disabled", false);
+                    cust_id = ui.item.id;
+                    add_customers();
+                    // load_customers(cust_id);
+                    // Firm(val);
+                }
                 load_customers(cust_id);
-                Firm(val);
             }
         });
         // });
+    });
+    $('#model_discard').on('click', function(e) {
+        // $('#test1').hide();
+        clear_data();
+        $('#test1').modal('toggle');
+    });
+
+    function clear_data() {
+        $('#customername').val('');
+        $('#email_address').val('');
+        $('#cus_type').val('');
+        $('#mobile_num').val('');
+        $('#address').val('');
+        $('#customer_gstin').val('');
+    }
+
+    $('#update_customer').on('click', function(e) {
+        var m = 0;
+        var firm_id = $('#firm').val();
+        if (firm_id) {
+            $('.mandatory').each(function(i) {
+                this_val = $.trim($(this).val());
+                this_id = $(this).attr('id');
+                num = $(this).attr('data-num');
+                this_id_first = "";
+                if (this_val.length == 0) {
+                    $('.field' + num + '').text('Required Field').css('display', 'inline-block');
+                    m++;
+                } else {
+                    $('.field' + num + '').find('span.val').text('').css('display', 'none');
+                }
+                if (num == 6 && $.trim(this_val).length > 1) {
+                    var gstinformat = new RegExp(
+                        '^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$');
+                    if (gstinformat.test($.trim(this_val))) {
+                        $('#gstinerr').text('').css('display', 'inline-block');
+                        $('#gstinerr').text('');
+                    } else {
+                        $('#gstinerr').text('Enter valid GSTIN').css('display', 'inline-block');
+                        m++;
+                    }
+                }
+                // if (num == 2 && this_val.length > 1) {
+                //     var mail = this_val;
+                //     var efilter =
+                //         /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+                //     if (mail != "" && !efilter.test(mail)) {
+                //         $('.field2').text('Enter Valid Email').css('display', 'inline-block');
+                //         m++;
+                //     } else {
+                //         $.ajax({
+                //             url: BASE_URL + "masters/customers/check_duplicate_email",
+                //             type: 'get',
+                //             data: {
+                //                 email: mail,
+                //                 firm_id: firm_id
+                //             },
+                //             success: function(result) {
+                //                 //  alert(result);
+                //                 if (result != 0) {
+                //                     $('.field2').text(result).css('display', 'inline-block');
+                //                     m++;
+                //                 } else {
+                //                     $('.field2').empty();
+                //                 }
+                //             }
+                //         });
+                //     }
+                // }
+                // if (num == 4 && this_val.length > 1) {
+                //     $.ajax({
+                //         url: BASE_URL + "masters/customers/check_duplicate_mobile_number",
+                //         type: 'get',
+                //         data: {
+                //             number: this_val,
+                //             firm_id: firm_id
+                //         },
+                //         success: function(result) {
+                //             //alert(result!=0);
+                //             if (result != 0) {
+                //                 $('.field4').text(result).css('display', 'inline-block');
+                //                 m++;
+                //             } else {
+                //                 $('.field4').empty();
+                //             }
+                //         }
+                //     });
+                // }
+            });
+            if (m > 0) {
+                return false;
+            } else {
+                var cus_name = $('#customername').val();
+                var cus_email = $('#email_address').val();
+                var cus_type = $('#cus_type').val();
+                var cus_num = $('#mobile_num').val();
+                var cus_address = $('#address').val();
+                var customer_gstin = $('#customer_gstin').val();
+                $.ajax({
+                    url: BASE_URL + "masters/customers/add_customers",
+                    type: 'post',
+                    data: {
+                        firm_id: firm_id,
+                        cus_name: cus_name,
+                        cus_email: cus_email,
+                        cus_type: cus_type,
+                        cus_num: cus_num,
+                        cus_address: cus_address,
+                        customer_gstin: customer_gstin
+                    },
+                    success: function(result) {
+                        if (result > 0) {
+                            $('#test1').modal('toggle');
+                            $("#customer_id").val(result);
+                            clear_data();
+                            load_customers(result);
+                        } else {
+                            clear_data();
+                        }
+                    }
+                });
+                return true;
+            }
+        }
     });
 
     function load_customers(cust_id = '') {
@@ -673,7 +906,7 @@ if (!empty($customers)) {
             type: 'POST',
             data: {
                 cust_id: cust_id,
-                firm_id: firm_id
+                // firm_id: firm_id
             },
             url: "<?php echo $this->config->item('base_url'); ?>" + "quotation/get_customer/",
             success: function(data) {
@@ -717,7 +950,7 @@ if (!empty($customers)) {
             url: "<?php echo $this->config->item('base_url'); ?>" + "sales/get_product_cost/",
             success: function(data) {
                 var result = JSON.parse(data);
-                if (data != null && data.length > 0) {
+                if (result != null && result.length > 0) {
                     $('input#product_cost').each(function(i) {
                         if (i != 0) {
                             var product_id = '';
@@ -736,6 +969,42 @@ if (!empty($customers)) {
                             }
                         }
                     });
+                }
+            }
+        });
+    }
+
+    function add_customers() {
+        $.ajax({
+            type: 'POST',
+            data: {
+                cust_id: cust_id,
+                // firm_id: firm_id
+            },
+            url: "<?php echo $this->config->item('base_url'); ?>" + "quotation/get_customer/",
+            success: function(data) {
+                // $("#app_table input,select").attr("disabled", false);
+                var result = JSON.parse(data);
+                if (result != null && result.length > 0) {
+                    $("#gst_type").val(result[0].state_id);
+                    $("#customer_id").val(result[0].id);
+                    $("#c_id").val(result[0].id);
+                    $("#customer_name").val(result[0].store_name);
+                    $("#customer_no").val(result[0].mobil_number);
+                    $("#email_id").val(result[0].email_id);
+                    $("#address1").val(result[0].address1);
+                    $("#tin").val(result[0].tin);
+                    if ($('#gst_type').val() != '') {
+                        if ($('#gst_type').val() == 31) {
+                            // $('#add_quotation').find('tr td.sgst_td').show();
+                            $('#add_quotation').find('tr td.igst_td').hide();
+                        } else {
+                            $('#add_quotation').find('tr td.igst_td').show();
+                            $('#add_quotation').find('tr td.sgst_td').hide();
+                        }
+                    } else {
+                        $('#add_quotation').find('tr td.igst_td').hide();
+                    }
                 }
             }
         });
@@ -829,10 +1098,12 @@ if (!empty($customers)) {
                 final_qty = final_qty + Number(qty.val());
                 final_sub_total = final_sub_total + sub_total;
             }
+            $('.total_qty').val(final_qty);
+            $('.final_sub_total').val(final_sub_total.toFixed(2));
+            $('.final_amt').val(final_sub_total.toFixed(2));
         });
-        $('.total_qty').val(final_qty);
-        $('.final_sub_total').val(final_sub_total.toFixed(2));
-        $('.final_amt').val((final_sub_total + Number($('.totaltax').val())).toFixed(2));
+
+
     }
     $(".datepicker").datepicker({
         onClose: function() {
