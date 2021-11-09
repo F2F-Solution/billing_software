@@ -1352,7 +1352,7 @@ if (!empty($customers)) {
                             this_val.closest('tr').find('.model_no_extra').val(result[0].model_no);
                             this_val.closest('tr').find('.product_description').val(result[0].product_description);
                             if ($('#gst_type').val() != '') {
-                                if ($('#gst_type').val() == 31) {
+                                if ($('#gst_type').val()) {
                                     this_val.closest('tr').find('.pertax').val(result[0].cgst);
                                     this_val.closest('tr').find('.gst').val(result[0].sgst);
                                 } else {

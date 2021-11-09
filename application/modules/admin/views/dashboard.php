@@ -69,7 +69,7 @@ $theme_path = $this->config->item('theme_locations') . $this->config->item('acti
             <a href="<?php echo $this->config->item('base_url') . 'quotation/quotation_list' ?>">
                 <div class="dashboard-icons orange-bg hvr-ripple-out">
                     <img src="<?= $theme_path; ?>/images/icons/1.png" />
-                    <div>Quotation</div>
+                    <div>Estimation</div>
                 </div>
             </a>
         </div>

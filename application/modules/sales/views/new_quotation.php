@@ -370,7 +370,7 @@ if (!empty($customers)) {
                     <div class="form-group">
                         <label class="col-sm-4 control-label">Customer Name <span style="color:#F00; font-style:oblique;">*</span></label>
                         <div class="col-sm-8">
-                            <input type="text" tabindex="1" name="customer[store_name]" id="customer_name" <?php $list['store_name']; ?>class='form-control form-align auto_customer required' />
+                            <input type="text" tabindex="1" name="customer[store_name]" id="customer_name" class='form-control form-align auto_customer required' />
                             <span class="error_msg"></span>
                             <input type="hidden" name="customer[id]" id="customer_id" value="6" <?php $list['id']; ?>class='id_customer  form-align' />
                             <!--                              <input type="hidden"  name="quotation[product_id]" id="cust_id" class='id_customer' />-->
@@ -1120,7 +1120,7 @@ if (!empty($customers)) {
                             this_val.closest('tr').find('.model_no_extra').val(result[0].model_no);
                             this_val.closest('tr').find('.product_description').val(result[0].product_description);
                             if ($('#gst_type').val() != '') {
-                                if ($('#gst_type').val() == 31) {
+                                if ($('#gst_type').val()) {
                                     this_val.closest('tr').find('.pertax').val(result[0].cgst);
                                     this_val.closest('tr').find('.gst').val(result[0].sgst);
                                 } else {
