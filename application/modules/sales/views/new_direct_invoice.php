@@ -312,7 +312,7 @@ if (!empty($customers)) {
                         </form>
                     </div>
                     <div class="modal-footer action-btn-align">
-                        <button type="button" class="edit btn btn-info1" id="update_customer">Update</button>
+                        <button type="button" class="edit btn btn-info1" id="update_customer">Save</button>
                         <button type="reset" class="btn btn-danger1 " id="model_discard" data-dismiss="modal">
                             Discard</button>
                     </div>
