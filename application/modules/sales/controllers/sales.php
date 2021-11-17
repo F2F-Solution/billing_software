@@ -1462,6 +1462,9 @@ class Sales extends MX_Controller
 
         if ($this->input->post()) {
             $input = $this->input->post();
+            // echo "<pre>";
+            // print_r($input);
+            // exit;
             $net_total = $input['quotation']['net_total'];
             $data['company_details'] = $this->admin_model->get_company_details();
             $input['quotation']['notification_date'] = date('Y-m-d', strtotime($input['quotation']['notification_date']));

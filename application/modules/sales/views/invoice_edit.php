@@ -556,7 +556,7 @@ if (!empty($customers)) {
 
                             </td>
 
-                            <td><input type="text" tabindex="5" class="form-control required datepicker" name="quotation[created_date]" style="width:200px; display: inline" value="<?php echo $val['created_date']; ?> " />
+                            <td><input type="text" tabindex="5" class="form-control required datepicker" name="quotation[created_date]" style="width:200px; display: inline" value="<?php echo  date('d-m-Y', strtotime($val['created_date'])); ?> " />
 
                                 <span class="error_msg"></span>
 
@@ -583,9 +583,10 @@ if (!empty($customers)) {
                                     <?php
                                     if (isset($sales_man) && !empty($sales_man)) {
 
-                                        foreach ($sales_man as $val) {
-
-                                            if ($status == $val['sales_man']) {
+                                        foreach ($sales_man as $name) {
+                                            // print_r($name);
+                                            // echo 'sales_man_name' . $val['sales_man_name'];
+                                            if ($name['sales_man_name'] == $val['sales_man_name']) {
 
                                                 $selected = 'selected=selected';
                                             } else {
@@ -594,7 +595,7 @@ if (!empty($customers)) {
                                             }
                                     ?>
 
-                                            <option value='<?php echo $val['id'] ?>'><?php echo $val['sales_man_name'] ?></option>
+                                            <option <?php echo $selected; ?> value='<?php echo $val['id'] ?>'><?php echo $val['sales_man_name'] ?></option>
 
                                     <?php
                                         }

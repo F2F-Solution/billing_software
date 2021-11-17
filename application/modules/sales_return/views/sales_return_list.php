@@ -10,7 +10,7 @@
 
 <script src="<?php echo $theme_path; ?>/js/sweetalert.min.js" type="text/javascript"></script>
 
-<link rel="stylesheet" type="text/css" href="<?= $theme_path; ?>/css/fSelect.css"/>
+<link rel="stylesheet" type="text/css" href="<?= $theme_path; ?>/css/fSelect.css" />
 <script type='text/javascript' src='<?= $theme_path; ?>/js/fSelect.js'></script>
 
 <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
@@ -19,7 +19,6 @@
 
 
 <style type="text/css">
-
     #toast-container.toast-top-left>div {
         width: 300px;
         margin-left: auto;
@@ -28,6 +27,7 @@
         top: -43px;
         left: 200px;
     }
+
     .toast-top-left {
         top: -43px;
         left: 200px;
@@ -37,47 +37,67 @@
 
 
 
-    .bootstrap-tagsinput{
+    .bootstrap-tagsinput {
 
         height: 72px;
         overflow-y: auto;
     }
 
-    .box, .box-body, .content { padding:0; margin:0;border-radius: 0;}
+    .box,
+    .box-body,
+    .content {
+        padding: 0;
+        margin: 0;
+        border-radius: 0;
+    }
 
-    #top_heading_fix h3 {top: -57px;left: 6px;}
+    #top_heading_fix h3 {
+        top: -57px;
+        left: 6px;
+    }
 
-    #TB_overlay { z-index:20000 !important; }
+    #TB_overlay {
+        z-index: 20000 !important;
+    }
 
-    #TB_window { z-index:25000 !important; }
+    #TB_window {
+        z-index: 25000 !important;
+    }
 
-    .dialog_black{ z-index:30000 !important; }
+    .dialog_black {
+        z-index: 30000 !important;
+    }
 
-    #boxscroll22 {max-height: 291px;overflow: auto;cursor: inherit !important;}
+    #boxscroll22 {
+        max-height: 291px;
+        overflow: auto;
+        cursor: inherit !important;
+    }
 
-    .error_msg, em{color: rgb(255, 0, 0); font-size: 12px;font-weight: normal;}
+    .error_msg,
+    em {
+        color: rgb(255, 0, 0);
+        font-size: 12px;
+        font-weight: normal;
+    }
 
     .ui-datepicker td.ui-datepicker-today a {
 
-        background:#999999;
+        background: #999999;
 
     }
 
-    .auto-asset-search
+    .auto-asset-search {
 
-    {
-
-        position:absolute !important;
+        position: absolute !important;
 
     }
 
-    .auto-asset-search ul#country-list li
+    .auto-asset-search ul#country-list li {
 
-    {
+        margin-left: -40px !important;
 
-        margin-left:-40px !important;
-
-        width:297px;
+        width: 297px;
 
     }
 
@@ -90,6 +110,7 @@
 
 
     }
+
     .auto-asset-search ul#product-list li:hover {
 
         background: #c3c3c3;
@@ -120,7 +141,7 @@
 
         border-bottom: 1px solid #f3f3f3;
 
-        width:297px;
+        width: 297px;
 
     }
 
@@ -129,28 +150,44 @@
         list-style-type: none;
 
     }
+
     .btn-xs {
-        border-radius:0px !important;
+        border-radius: 0px !important;
     }
 
-    #suggesstion-box{
+    #suggesstion-box {
 
         z-index: 99;
 
     }
 
-    .fs-wrap, .multiple, .fs-default, .fs-dropdown{
+    .fs-wrap,
+    .multiple,
+    .fs-default,
+    .fs-dropdown {
         width: 100% !important;
     }
+
     .fs-dropdown {
         position: relative !important;
     }
-    .ui-autocomplete {z-index: 9999 !important;}
-    table tr td:nth-child(2) {text-align: left !important;}
-    table tr td:nth-child(3) {text-align: left !important;}
-    .table tr td:nth-child(2) a{
+
+    .ui-autocomplete {
+        z-index: 9999 !important;
+    }
+
+    table tr td:nth-child(2) {
+        text-align: left !important;
+    }
+
+    table tr td:nth-child(3) {
+        text-align: left !important;
+    }
+
+    .table tr td:nth-child(2) a {
         border: 0px solid #cbced4 !important;
     }
+
     .table tr td:nth-child(2) a:hover {
         border: 0px solid #ff4081 !important;
     }
@@ -170,12 +207,12 @@ $data['company_details'] = $this->admin_model->get_company_details();
 
             <td width="15%" style="vertical-align:middle;">
 
-                <div class="print_header_logo" ><img src="<?= $theme_path; ?>/images/logo.png" /></div>
+                <div class="print_header_logo"><img src="<?= $theme_path; ?>/images/logo.png" /></div>
 
             </td>
 
             <td width="85%">
-                <div class="print_header_tit" >
+                <div class="print_header_tit">
                     <h3><?= $this->config->item("company_name") ?></h3>
                     <p>
                         <?= $data['company_details'][0]['address1'] ?>,
@@ -205,7 +242,7 @@ $data['company_details'] = $this->admin_model->get_company_details();
     <div class="media mt--20">
 
         <h4>Sales Return
-            <p class="right">  <button class="btn btn-success topgen" title="Add Sales Return" onclick="sales_return_modal()" id="sal-inv" style="background-color:sal#ff5a92; color:#ffffff" data-toggle="modal" data-target="#sales_return_modal"><span class="glyphicon glyphicon-plus"></span>Make Return </button>&nbsp;
+            <p class="right"> <button class="btn btn-success topgen" title="Add Sales Return" onclick="sales_return_modal()" id="sal-inv" style="background-color:sal#ff5a92; color:#ffffff" data-toggle="modal" data-target="#sales_return_modal"><span class="glyphicon glyphicon-plus"></span>Make Return </button>&nbsp;
 
 
         </h4>
@@ -218,7 +255,7 @@ $data['company_details'] = $this->admin_model->get_company_details();
             <div class="modal-content" style="overflow-y:auto;">
                 <div class="modal-header bg-info ">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-                    <h3 class="modal-title" >Sales Return</h3>
+                    <h3 class="modal-title">Sales Return</h3>
                 </div>
                 <div class="modal-body">
                     <br>
@@ -240,7 +277,7 @@ $data['company_details'] = $this->admin_model->get_company_details();
                         <label class="col-sm-4 control-label">From Date</label>
                         <div class="col-sm-8 relative">
                             <div class="input-group">
-                                <input type="text" tabindex="2" name="from_date" id="from_date" placeholder="dd-mm-yyyy" value="" class='datepicker from_date '/>
+                                <input type="text" tabindex="2" name="from_date" id="from_date" placeholder="dd-mm-yyyy" value="" class='datepicker from_date ' />
                                 <div class="input-group-addon">
                                     <i class="fa fa-calendar"></i>
                                 </div>
@@ -252,7 +289,7 @@ $data['company_details'] = $this->admin_model->get_company_details();
                         <label class="col-sm-4 control-label">To Date</label>
                         <div class="col-sm-8 relative">
                             <div class="input-group">
-                                <input type="text" tabindex="3" name="to_date" id="to_date" placeholder="dd-mm-yyyy" value="" class=' datepicker to_date'  />
+                                <input type="text" tabindex="3" name="to_date" id="to_date" placeholder="dd-mm-yyyy" value="" class=' datepicker to_date' />
                                 <div class="input-group-addon">
                                     <i class="fa fa-calendar"></i>
                                 </div>
@@ -265,7 +302,7 @@ $data['company_details'] = $this->admin_model->get_company_details();
                         <div class="col-sm-8 ">
 
                             <div class="product_name_select">
-                                <select id='product_name' name="product_name" class="form-control multi_select wid100" multiple="multiple" >
+                                <select id='product_name' name="product_name" class="form-control multi_select wid100" multiple="multiple">
 
                                     <option>Select</option>
 
@@ -281,7 +318,7 @@ $data['company_details'] = $this->admin_model->get_company_details();
                 <div class="modal-footer">
                     <button type="button" name="submit" tabindex="5" id="submit_modal" class="btn btn-success">Submit</button>
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                    <input type="hidden" name="product_id_arr" value="" id="product_id_arr"/>
+                    <input type="hidden" name="product_id_arr" value="" id="product_id_arr" />
                 </div>
             </div>
         </div>
@@ -359,14 +396,16 @@ $data['company_details'] = $this->admin_model->get_company_details();
 
 
 <script type="text/javascript">
-
     var table;
 
-    jQuery(document).ready(function () {
+    jQuery(document).ready(function() {
 
         //datatables
         table = jQuery('#basicTable_call_back').DataTable({
-            "lengthMenu": [[50, 100, 150, -1], [50, 100, 150, "All"]],
+            "lengthMenu": [
+                [50, 100, 150, -1],
+                [50, 100, 150, "All"]
+            ],
             "pageLength": 50,
             "processing": true, //Feature control the processing indicator.
             "serverSide": true, //Feature control DataTables' server-side processing mode.
@@ -378,42 +417,47 @@ $data['company_details'] = $this->admin_model->get_company_details();
                 "type": "POST",
             },
             //Set column definition initialisation properties.
-            "columnDefs": [
-                {
+            "columnDefs": [{
                     "targets": [0, 7], //first column / numbering column
                     "orderable": false, //set not orderable
                 },
                 {
-                    "class": "text_right", "targets": [1]
+                    "class": "text_right",
+                    "targets": [1]
                 },
                 {
-                    "class": "action-btn-align", "targets": [4, 5, 6]
+                    "class": "action-btn-align",
+                    "targets": [4, 5, 6]
                 },
                 {
-                    "class": "hide_class", "targets": [7]
+                    "class": "hide_class",
+                    "targets": [7]
                 },
             ],
-            "footerCallback": function (row, data, start, end, display) {
-                var api = this.api(), data;
+            "footerCallback": function(row, data, start, end, display) {
+                var api = this.api(),
+                    data;
 
                 // Remove the formatting to get integer data for summation
-                var intVal = function (i) {
+                var intVal = function(i) {
                     return typeof i === 'string' ?
-                            i.replace(/[\$,]/g, '') * 1 :
-                            typeof i === 'number' ?
-                            i : 0;
+                        i.replace(/[\$,]/g, '') * 1 :
+                        typeof i === 'number' ?
+                        i : 0;
                 };
 
                 // Total over all pages
                 var cols = [3, 4, 5, 6];
                 var numFormat = $.fn.dataTable.render.number('\,', '.', 2).display;
                 for (x in cols) {
-                    total = api.column(cols[x]).data().reduce(function (a, b) {
+                    total = api.column(cols[x]).data().reduce(function(a, b) {
 
                         return intVal(a) + intVal(b);
                     }, 0);
                     // Total over this page
-                    pageTotal = api.column(cols[x], {page: 'current'}).data().reduce(function (a, b) {
+                    pageTotal = api.column(cols[x], {
+                        page: 'current'
+                    }).data().reduce(function(a, b) {
                         if (b.indexOf('--') !== -1) {
                             var test = b.split('--');
                             b = 0;
@@ -422,16 +466,15 @@ $data['company_details'] = $this->admin_model->get_company_details();
                             // }
                         }
                         return intVal(a) + intVal(b);
-                    }
-                    , 0);
+                    }, 0);
                     // Update footer
-//                    if (Math.floor(pageTotal) == pageTotal && $.isNumeric(pageTotal)) {
-//                        pageTotal = pageTotal;
-//
-//                    } else {
-//                        pageTotal = pageTotal.toFixed(2);/* float */
-//
-//                    }
+                    //                    if (Math.floor(pageTotal) == pageTotal && $.isNumeric(pageTotal)) {
+                    //                        pageTotal = pageTotal;
+                    //
+                    //                    } else {
+                    //                        pageTotal = pageTotal.toFixed(2);/* float */
+                    //
+                    //                    }
                     if (x == 0 || x == 2) {
                         $(api.column(cols[x]).footer()).html(pageTotal);
                     } else {
@@ -442,17 +485,17 @@ $data['company_details'] = $this->admin_model->get_company_details();
 
             },
             responsive: true,
-//            columnDefs: [
-//                {responsivePriority: 1, targets: 0},
-//                {responsivePriority: 2, targets: -2}
-//            ]
+            //            columnDefs: [
+            //                {responsivePriority: 1, targets: 0},
+            //                {responsivePriority: 2, targets: -2}
+            //            ]
         });
         new $.fn.dataTable.FixedHeader(table);
 
 
     });
 
-    $('#submit_modal').live('click', function () {
+    $('#submit_modal').live('click', function() {
 
 
         var customer_name = $('#customer_name').val();
@@ -541,7 +584,9 @@ $data['company_details'] = $this->admin_model->get_company_details();
 
     function encode(data) {
 
-        var Base64 = {_keyStr: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=", encode: function (e) {
+        var Base64 = {
+            _keyStr: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=",
+            encode: function(e) {
                 var t = "";
                 var n, r, i, s, o, u, a;
                 var f = 0;
@@ -562,8 +607,13 @@ $data['company_details'] = $this->admin_model->get_company_details();
                     t = t + this._keyStr.charAt(s) + this._keyStr.charAt(o) + this._keyStr.charAt(u) + this._keyStr.charAt(a)
                 }
                 return t
-            }, decode: function (e) {
-                var t = ""; var n, r, i; var s, o, u, a; var f = 0; e = e.replace(/++[++^A-Za-z0-9+/=]/g, ""); while (f < e.length){
+            },
+            decode: function(e) {
+                var t = "";
+                var n, r, i;
+                var s, o, u, a;
+                var f = 0;
+                while (f < e.length) {
                     s = this._keyStr.indexOf(e.charAt(f++));
                     o = this._keyStr.indexOf(e.charAt(f++));
                     u = this._keyStr.indexOf(e.charAt(f++));
@@ -581,7 +631,8 @@ $data['company_details'] = $this->admin_model->get_company_details();
                 }
                 t = Base64._utf8_decode(t);
                 return t
-            }, _utf8_encode: function (e) {
+            },
+            _utf8_encode: function(e) {
                 e = e.toString().replace(/\r\n/g, "n");
                 var t = "";
                 for (var n = 0; n < e.length; n++) {
@@ -598,7 +649,8 @@ $data['company_details'] = $this->admin_model->get_company_details();
                     }
                 }
                 return t
-            }, _utf8_decode: function (e) {
+            },
+            _utf8_decode: function(e) {
                 var t = "";
                 var n = 0;
                 var r = c1 = c2 = 0;
@@ -619,31 +671,34 @@ $data['company_details'] = $this->admin_model->get_company_details();
                     }
                 }
                 return t
-            }}
+            }
+        }
 
         return Base64.encode(data);
     }
 
-    $(document).ready(function () {
+    $(document).ready(function() {
 
         $('.multi_select').fSelect();
 
 
         $('.fs-label-wrap').find('.fs-label').text('Select Product Name');
 
-        $('.customer_auto').on('keydown', function () {
+        $('.customer_auto').on('keydown', function() {
 
             var _this = $(this).val();
 
 
             $('body').find(".customer_auto").autocomplete({
-                source: function (request, response) {
+                source: function(request, response) {
 
                     $.ajax({
                         type: 'POST',
-                        data: {customer_name: $('#customer_name').val()},
+                        data: {
+                            customer_name: $('#customer_name').val()
+                        },
                         url: "<?php echo $this->config->item('base_url'); ?>" + "sales_return/get_customer_name_bykey/",
-                        success: function (data) {
+                        success: function(data) {
 
 
                             data = JSON.parse(data);
@@ -683,7 +738,7 @@ $data['company_details'] = $this->admin_model->get_company_details();
                 minLength: 0,
                 delay: 0,
                 autoFocus: true,
-                select: function (event, ui) {
+                select: function(event, ui) {
 
                     cust_id = ui.item.id;
 
@@ -703,6 +758,7 @@ $data['company_details'] = $this->admin_model->get_company_details();
         });
 
     });
+
     function sales_return_modal() {
         $('#sales_return_modal').show();
 
@@ -722,7 +778,7 @@ $data['company_details'] = $this->admin_model->get_company_details();
         $('#sales_return_modal').hide();
     }
 
-    $("#to_date").on("change", function () {
+    $("#to_date").on("change", function() {
         var to_date = this.value;
         var from_date = $('#from_date').val();
         var cust_id = $('#customer_id').val();
@@ -741,7 +797,7 @@ $data['company_details'] = $this->admin_model->get_company_details();
 
     });
 
-    $("#from_date").on("change", function () {
+    $("#from_date").on("change", function() {
         var from_date = (this.value);
         var to_date = ($('#to_date').val());
         var cust_id = $('#customer_id').val();
@@ -765,9 +821,13 @@ $data['company_details'] = $this->admin_model->get_company_details();
 
         $.ajax({
             type: 'POST',
-            data: {cust_id: cust_id, from_date: from_date, to_date: to_date},
+            data: {
+                cust_id: cust_id,
+                from_date: from_date,
+                to_date: to_date
+            },
             url: "<?php echo $this->config->item('base_url'); ?>" + "sales_return/get_customer_product_list/",
-            success: function (data) {
+            success: function(data) {
 
                 var result = JSON.parse(data);
 
@@ -781,7 +841,7 @@ $data['company_details'] = $this->admin_model->get_company_details();
                     option_text += '<option value="">Select Product Name</option>';
 
 
-                    $.each(result, function (key, value) {
+                    $.each(result, function(key, value) {
 
                         selected = '';
 
@@ -824,13 +884,11 @@ $data['company_details'] = $this->admin_model->get_company_details();
         });
     }
 
-    $('.print_btn').click(function () {
+    $('.print_btn').click(function() {
 
         window.print();
 
     });
-
-
 </script>
 
 <link href="<?php echo $theme_path; ?>/plugin/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
