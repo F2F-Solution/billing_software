@@ -5,46 +5,79 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js"></script>
 <style type="text/css">
-    .text_right
-    {
-        text-align:right;
+    .text_right {
+        text-align: right;
     }
-    .box, .box-body, .content { padding:0; margin:0;border-radius: 0;}
-    #top_heading_fix h3 {top: -57px;left: 6px;}
-    #TB_overlay { z-index:20000 !important; }
-    #TB_window { z-index:25000 !important; }
-    .dialog_black{ z-index:30000 !important; }
-    #boxscroll22 {max-height: 291px;overflow: auto;cursor: inherit !important;}
+
+    .box,
+    .box-body,
+    .content {
+        padding: 0;
+        margin: 0;
+        border-radius: 0;
+    }
+
+    #top_heading_fix h3 {
+        top: -57px;
+        left: 6px;
+    }
+
+    #TB_overlay {
+        z-index: 20000 !important;
+    }
+
+    #TB_window {
+        z-index: 25000 !important;
+    }
+
+    .dialog_black {
+        z-index: 30000 !important;
+    }
+
+    #boxscroll22 {
+        max-height: 291px;
+        overflow: auto;
+        cursor: inherit !important;
+    }
+
     .auto-asset-search ul#country-list li:hover {
         background: #c3c3c3;
         cursor: pointer;
     }
+
     .auto-asset-search ul#country-list li {
         background: #dadada;
         margin: 0;
         padding: 5px;
         border-bottom: 1px solid #f3f3f3;
     }
+
     ul li {
         list-style-type: none;
     }
-    .dropdown-menu { min-width: 190px; }
-    .dataTable tbody tr td:last-child, .dataTable thead tr th:last-child { text-align:right;}
 
+    .dropdown-menu {
+        min-width: 190px;
+    }
+
+    .dataTable tbody tr td:last-child,
+    .dataTable thead tr th:last-child {
+        text-align: right;
+    }
 </style>
 <div class="print_header">
     <table width="100%">
         <tr>
             <td width="15%" style="vertical-align:middle;">
-                <div class="print_header_logo" ><img src="<?= $theme_path; ?>/images/logo.png" /></div>
+                <div class="print_header_logo"><img src="<?= $theme_path; ?>/images/logo.png" /></div>
             </td>
             <td width="85%">
-                <div class="print_header_tit" >
+                <div class="print_header_tit">
                     <h3><?= $this->config->item("company_name"); ?></h3>
                     <p></p>
-                    <p class="pf">  <?= $company_details[0]['address'] ?>, Pin Code : <?= $company_details[0]['pincode'] ?>.
+                    <p class="pf"> <?= $company_details[0]['address'] ?>, Pin Code : <?= $company_details[0]['pincode'] ?>.
                     </p>
-<!--                    <p></p>
+                    <!--                    <p></p>
                     <p class="pf"> </p>-->
                     <p></p>
                 </div>
@@ -60,7 +93,7 @@
         <?php
         if (isset($quotation) && !empty($quotation)) {
             foreach ($quotation as $val) {
-                ?>
+        ?>
                 <table class="table ptable" cellpadding="0" cellspacing="0">
                     <tr class="tbor">
                         <td>GSTIN NO : <?= $company_details[0]['gstin'] ?></td>
@@ -69,23 +102,23 @@
                     </tr>
                     <tr>
 
-                        <td style=""><span  class="tdhead">TO,</span>
+                        <td style=""><span class="tdhead">TO,</span>
                             <div><?php echo $val['store_name']; ?></div>
                             <div><?php echo $val['address1']; ?> </div>
                             <div>Mobile : <?php echo ($val['mobil_number']) ? $val['mobil_number'] : '-'; ?></div>
-                            <div>Email :  <?php echo ($val['email_id']) ? $val['email_id'] : '-'; ?></div>
+                            <div>Email : <?php echo ($val['email_id']) ? $val['email_id'] : '-'; ?></div>
                             <div>GSTIN : <?php echo ($val['tin']) ? $val['tin'] : '-'; ?></div>
                         </td>
                         <td align="center"></td>
-                        <td align="right" style="vertical-align:top;">Invoice No : <?php echo '' . $val['inv_id']; ?><br /> Reference No :  <?php echo $val['q_no']; ?><br /> Date : <?php echo ($val['created_date'] != '1970-01-01') ? date('d-M-Y', strtotime($val['created_date'])) : ''; ?><br />Sales Man : <?php
-                            $sales_man = (!empty($val['sales_man_name']) ? $val['sales_man_name'] : '-');
-                            echo $sales_man;
-                            ?>
+                        <td align="right" style="vertical-align:top;">Invoice No : <?php echo '' . $val['inv_id']; ?><br /> Reference No : <?php echo $val['q_no']; ?><br /> Date : <?php echo ($val['created_date'] != '1970-01-01') ? date('d-M-Y', strtotime($val['created_date'])) : ''; ?><br />Sales Man : <?php
+                                                                                                                                                                                                                                                                                                                    $sales_man = (!empty($val['sales_man_name']) ? $val['sales_man_name'] : '-');
+                                                                                                                                                                                                                                                                                                                    echo $sales_man;
+                                                                                                                                                                                                                                                                                                                    ?>
                         </td>
                     </tr>
 
                 </table>
-                <table class="table table-striped table-bordered responsive" id="add_quotation"  cellpadding="0" cellspacing="0">
+                <table class="table table-striped table-bordered responsive" id="add_quotation" cellpadding="0" cellspacing="0">
                     <thead>
                         <tr>
                             <td width="1%" class="first_td1 action-btn-align">S.No</td>
@@ -103,12 +136,12 @@
                             $gst_type = $quotation[0]['state_id'];
                             if ($gst_type != '') {
                                 if ($gst_type == 31) {
-                                    ?>
-                                    <td  width="6%" class="first_td1 action-btn-align proimg-wid" >SGST%</td>
+                            ?>
+                                    <td width="6%" class="first_td1 action-btn-align proimg-wid">SGST%</td>
                                 <?php } else { ?>
-                                    <td  width="6%" class="first_td1 action-btn-align proimg-wid" >IGST%</td>
+                                    <td width="6%" class="first_td1 action-btn-align proimg-wid">IGST%</td>
 
-                                    <?php
+                            <?php
                                 }
                             }
                             ?>
@@ -122,15 +155,15 @@
                         $sgst = 0;
                         if (isset($quotation_details) && !empty($quotation_details)) {
                             foreach ($quotation_details as $vals) {
-                                $cgst1 = ($vals['tax'] / 100 ) * ($vals['per_cost'] * $vals['quantity']);
+                                $cgst1 = ($vals['tax'] / 100) * ($vals['per_cost'] * $vals['quantity']);
 
                                 $gst_type = $quotation[0]['state_id'];
                                 if ($gst_type != '') {
                                     if ($gst_type == 31) {
 
-                                        $sgst1 = ($vals['gst'] / 100 ) * ($vals['per_cost'] * $vals['quantity']);
+                                        $sgst1 = ($vals['gst'] / 100) * ($vals['per_cost'] * $vals['quantity']);
                                     } else {
-                                        $sgst1 = ($vals['igst'] / 100 ) * ($vals['per_cost'] * $vals['quantity']);
+                                        $sgst1 = ($vals['igst'] / 100) * ($vals['per_cost'] * $vals['quantity']);
                                     }
                                 }
                                 $cgst += $cgst1;
@@ -148,28 +181,28 @@
                                         $round_off_minus = 0;
                                     }
                                 }
-//                                $net_total = ($val['subtotal_qty'] + $cgst + $sgst + $val['transport'] + $val['labour']) - $val['round_off'];
-//                                $net_total = $net_total;
+                                //                                $net_total = ($val['subtotal_qty'] + $cgst + $sgst + $val['transport'] + $val['labour']) - $val['round_off'];
+                                //                                $net_total = $net_total;
                                 $net_total = $val['net_total'];
                                 // if ($val['advance'] != '') {
                                 // $net_total = abs($val['net_total']) - abs($val['advance']);
                                 // }
-                                ?>
+                        ?>
                                 <tr>
                                     <td class="action-btn-align">
                                         <?php echo $i; ?>
                                     </td>
                                     <td class="">
-                                        <?php echo!empty($vals['hsn_sac_name']) ? $vals['hsn_sac_name'] : '-'; ?>
+                                        <?php echo !empty($vals['hsn_sac_name']) ? $vals['hsn_sac_name'] : '-'; ?>
                                     </td>
                                     <td class="hide_class">
-                                        <?php echo!empty($vals['categoryName']) ? $vals['categoryName'] : '-'; ?>
+                                        <?php echo !empty($vals['categoryName']) ? $vals['categoryName'] : '-'; ?>
                                     </td>
                                     <td class="hide_class">
-                                        <?php echo!empty($vals['brands']) ? $vals['brands'] : '-'; ?>
+                                        <?php echo !empty($vals['brands']) ? $vals['brands'] : '-'; ?>
                                     </td>
                                     <td class="hide_class">
-                                        <?php echo!empty($vals['unit']) ? $vals['unit'] : '-'; ?>
+                                        <?php echo !empty($vals['unit']) ? $vals['unit'] : '-'; ?>
                                     </td>
                                     <td>
                                         <?php echo $vals['product_name'] ?>
@@ -181,10 +214,12 @@
                                         <?php echo number_format($vals['per_cost'], 2); ?>
                                     </td>
                                     <!--<td class="text_right">-->
-                                    <?php //echo number_format(($vals['quantity'] * $vals['per_cost']), 2)  ?>
+                                    <?php //echo number_format(($vals['quantity'] * $vals['per_cost']), 2)
+                                    ?>
                                     <!--</td>-->
-                <!--                                    <td class="action-btn-align">
-                                    <?php //echo $vals['discount']  ?>
+                                    <!--                                    <td class="action-btn-align">
+                                    <?php //echo $vals['discount']
+                                    ?>
                                     </td>-->
                                     <td class="action-btn-align">
                                         <?php echo $vals['tax'] ?>
@@ -193,7 +228,7 @@
                                     $gst_type = $quotation[0]['state_id'];
                                     if ($gst_type != '') {
                                         if ($gst_type == 31) {
-                                            ?>
+                                    ?>
                                             <td class="action-btn-align">
                                                 <?php echo $vals['gst']; ?>
                                             </td>
@@ -202,7 +237,7 @@
                                                 <?php echo $vals['igst']; ?>
                                             </td>
 
-                                            <?php
+                                    <?php
                                         }
                                     }
                                     ?>
@@ -210,7 +245,7 @@
                                         <?php echo number_format($vals['sub_total'], 2) ?>
                                     </td>
                                 </tr>
-                                <?php
+                        <?php
                                 $i++;
                             }
                         }
@@ -224,7 +259,7 @@
                             <td colspan="3" style="text-align:right;">Sub Total : </td>
                             <td class="text_right"><?php echo number_format($val['subtotal_qty'], 2); ?></td>
                         </tr>
-        <!--                        <tr>
+                        <!--                        <tr>
                             <td colspan="3" class="hide_class" style="width:70px; text-align:right;"></td>
                             <td colspan="4" style="width:70px; text-align:right;" class="bor-tb0"></td>
                             <td colspan="3" style="text-align:right;" class="bor-tb0 bor-tr0">Advance Amount : </td>
@@ -232,15 +267,15 @@
                         </tr>-->
                         <?php if ($val['tax_label'] != '') { ?>
                             <tr>
-                                <td colspan = "3" class = "hide_class" style = "width:70px; text-align:right;"></td>
-                                <td colspan = "4" style = "width:70px; text-align:right;" class = "bor-tb0"></td>
-                                <td colspan = "3" style = "text-align:right;" class = "bor-tb0"><?php echo $val['tax_label'];
-                            ?> </td>
+                                <td colspan="3" class="hide_class" style="width:70px; text-align:right;"></td>
+                                <td colspan="4" style="width:70px; text-align:right;" class="bor-tb0"></td>
+                                <td colspan="3" style="text-align:right;" class="bor-tb0"><?php echo $val['tax_label'];
+                                                                                            ?> </td>
                                 <td class="text_right bor-tb0"><?php echo number_format($val['tax'], 2); ?></td>
                             </tr> <?php } ?>
                         <?php
                         foreach ($val['other_cost'] as $key) {
-                            ?>
+                        ?>
                             <tr>
                                 <td colspan="3" class="hide_class" style="width:70px; text-align:right;"></td>
                                 <td colspan="4" class="bor-tb0" style="width:70px; text-align:right;"></td>
@@ -252,7 +287,7 @@
 
                         <tr>
                             <td colspan="3" style="width:70px; text-align:right;" class="hide_class"></td>
-                            <td colspan="4" class="bor-tb0">	</td>
+                            <td colspan="4" class="bor-tb0"> </td>
                             <td colspan="3" style="text-align:right;" class="bor-tb0">CGST : </td>
                             <td class="text_right bor-tb0"><?php echo number_format($cgst, 2); ?></td>
                         </tr>
@@ -263,23 +298,23 @@
                             $gst_type = $quotation[0]['state_id'];
                             if ($gst_type != '') {
                                 if ($gst_type == 31) {
-                                    ?>
+                            ?>
                                     <td colspan="3" style="text-align:right;" class="bor-tb0">SGST : </td>
                                 <?php } else { ?>
                                     <td colspan="3" style="text-align:right;" class="bor-tb0">IGST : </td>
 
-                                    <?php
+                            <?php
                                 }
                             }
                             ?>
-                            <td class="text_right bor-tb0" ><?php echo number_format($sgst, 2); ?></td>
+                            <td class="text_right bor-tb0"><?php echo number_format($sgst, 2); ?></td>
 
                         </tr>
                         <tr>
                             <td colspan="3" style="width:70px; text-align:right;" class="hide_class"></td>
                             <td colspan="4" class="bor-tb0">ACC No : <?php echo $val['account_num']; ?></td>
-                            <td colspan="3"style="text-align:right;" class="bor-tb0">Transport Charge : </td>
-                            <td class="text_right bor-tb0" ><?php echo number_format($val['transport'], 2); ?></td>
+                            <td colspan="3" style="text-align:right;" class="bor-tb0">Transport Charge : </td>
+                            <td class="text_right bor-tb0"><?php echo number_format($val['transport'], 2); ?></td>
 
                         </tr>
                         <tr>
@@ -287,8 +322,8 @@
                             <td colspan="4" class="bor-tb0">
                                 IFSC Code : <?php echo $val['ifsc']; ?>
                             </td>
-                            <td colspan="3"style="text-align:right;" class="bor-tb0">Labour Charge : </td>
-                            <td class="text_right bor-tb0" ><?php echo number_format($val['labour'], 2); ?></td>
+                            <td colspan="3" style="text-align:right;" class="bor-tb0">Labour Charge : </td>
+                            <td class="text_right bor-tb0"><?php echo number_format($val['labour'], 2); ?></td>
 
                         </tr>
                         <tr>
@@ -299,7 +334,7 @@
                             <td colspan="3" style="text-align:right;" class="bor-tb0 bor-tr0">Round Off ( - ) :<br>
 
                             </td>
-                            <td class="text_right bor-tb0" ><?php echo number_format($val['round_off'], 2); ?></td>
+                            <td class="text_right bor-tb0"><?php echo number_format($val['round_off'], 2); ?></td>
 
                         </tr>
                         <tr>
@@ -312,12 +347,12 @@
 
                         </tr>
                         <tr>
-                            <td colspan="125"><span style="float:left; top:12px;">Remarks&nbsp;:&nbsp;</span> <?php echo $val['remarks']; ?>
+                            <td colspan="12"><span style="float:left; top:12px;">Remarks&nbsp;:&nbsp;</span> <?php echo $val['remarks']; ?>
                             </td>
                         </tr>
                     </tfoot>
                 </table>
-                <div  class="sign" style="margin-top:40px; display: none;">
+                <div class="sign" style="margin-top:40px; display: none;">
                     <table class="table" cellpadding="0" cellspacing="0">
                         <tr class="tbor">
                             <td>Customer's Signature</td>
@@ -327,9 +362,9 @@
                     </table>
                 </div>
                 <div class="hide_class action-btn-align">
-                    <a href="<?php echo $this->config->item('base_url') . 'sales/invoice_list/' ?>"class="btn btn-defaultback"><span class="glyphicon"></span> Back </a>
+                    <a href="<?php echo $this->config->item('base_url') . 'sales/invoice_list/' ?>" class="btn btn-defaultback"><span class="glyphicon"></span> Back </a>
                     <?php if ($quotation[0]['customer_type'] == 3) { ?>
-                        <button class="btn btn-defaultprint6" data-toggle="dropdown"><span class="glyphicon glyphicon-print" ></span> Print</button>
+                        <button class="btn btn-defaultprint6" data-toggle="dropdown"><span class="glyphicon glyphicon-print"></span> Print</button>
                         <ul class="dropdown-menu dropdown-menu-left" style="bottom: auto; top: 98%;margin-left: 630px;">
                             <li><a href="javascript:void(0);" class="print_cus" mode="1" sr_id="<?php echo $quotation[0]['id']; ?>"><i class="icon-copy3"></i> Customer Invoice</a></li>
                             <li><a href="javascript:void(0);" class="print_con" mode="2" sr_id="<?php echo $quotation[0]['id']; ?>"><i class="icon-copy4"></i> Contractor Invoice</a></li>
@@ -340,62 +375,61 @@
                     <?php if ((isset($_GET['notification']) && $_GET['notification'] != '') || ($user_info[0]['role'] == 1 && $quotation[0]['invoice_status'] == 'waiting')) { ?>
                         <button class="btn btn-defaultprint6" id="approve">Approve</button>
                     <?php } ?>
-                    <input type="button" class="btn btn-success" id='send_mail' style="float:right;top: 100%"  value="Send Email"/>
+                    <input type="button" class="btn btn-success" id='send_mail' style="float:right;top: 100%" value="Send Email" />
 
 
                 </div>
 
-                <?php
+        <?php
             }
         }
         ?>
     </div><!-- contentpanel -->
 </div><!-- mainpanel -->
 <script>
-    $(document).ready(function () {
-        window.print();
-        $('#send_mail').click(function () {
+    $(document).ready(function() {
+        // window.print();
+        $('#send_mail').click(function() {
             var s_html = $('.size_html');
             for_loading();
             $.ajax({
                 url: BASE_URL + "sales/send_email",
                 type: 'GET',
                 data: {
-                    id:<?= $quotation[0]['id'] ?>
+                    id: <?= $quotation[0]['id'] ?>
                 },
-                success: function (result) {
+                success: function(result) {
                     alert(result);
                     for_response();
                 }
             });
         });
-        $('.print_con').click(function () {
+        $('.print_con').click(function() {
             ConfirmDialog('Are you sure want to Print invoice ?');
 
         });
-        $('.print_cus').click(function () {
+        $('.print_cus').click(function() {
             var sr_id = $(this).attr('sr_id');
             var url = '<?php echo base_url(); ?>sales/customer_invoice_pdf/' + sr_id;
             window.open(url, '_blank');
         });
-        $('#approve').click(function () {
+        $('#approve').click(function() {
             var id = '<?php echo $quotation[0]['id'] ?>';
             var user = '<?php echo $user_info[0]['role'] ?>';
-            if (user == 1)
-            {
+            if (user == 1) {
                 $.ajax({
                     url: BASE_URL + "sales/approve_invoice",
                     type: 'POST',
                     data: {
                         id: id,
                     },
-                    success: function (result) {
+                    success: function(result) {
                         if (result == 'success') {
                             swal({
                                 title: "Success!",
                                 text: "Invoice Approved!",
                                 type: "success"
-                            }, function () {
+                            }, function() {
                                 window.location = BASE_URL + "sales/invoice_list";
                             });
                         }
@@ -406,34 +440,37 @@
                 return false;
             }
         });
-        $('.print_btn').click(function () {
+        $('.print_btn').click(function() {
             ConfirmDialog('Are you sure want to Print invoice ?');
         });
+
         function ConfirmDialog(message) {
             $('<div></div>').appendTo('body')
-                    .html('<div><h6><strong>' + message + '</strong></h6></div>')
-                    .dialog({
-                        modal: true, title: 'Print Confirm', zIndex: 10000, autoOpen: true,
-                        width: '300px', resizable: false,
-                        buttons: {
-                            Yes: function () {
-                                // $(obj).removeAttr('onclick');
-                                // $(obj).parents('.Parent').remove();
+                .html('<div><h6><strong>' + message + '</strong></h6></div>')
+                .dialog({
+                    modal: true,
+                    title: 'Print Confirm',
+                    zIndex: 10000,
+                    autoOpen: true,
+                    width: '300px',
+                    resizable: false,
+                    buttons: {
+                        Yes: function() {
+                            // $(obj).removeAttr('onclick');
+                            // $(obj).parents('.Parent').remove();
 
-                                window.print();
-                                $(this).dialog("close");
-                            },
-                            No: function () {
-                                $(this).dialog("close");
-                            }
+                            window.print();
+                            $(this).dialog("close");
                         },
-                        close: function (event, ui) {
-                            $(this).remove();
+                        No: function() {
+                            $(this).dialog("close");
                         }
-                    });
+                    },
+                    close: function(event, ui) {
+                        $(this).remove();
+                    }
+                });
         }
 
     });
-
 </script>
-

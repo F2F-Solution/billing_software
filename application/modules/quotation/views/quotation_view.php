@@ -115,14 +115,14 @@
                             <tr>
                                 <td width="2%" class="first_td1 action-btn-align ser-wid">S.No</td>
                                 <td width="10%" class="first_td1">HSN Code</td>
-                                <td width="10%" class=" first_td1 hide_class">Category</td>
+                                <td width="10%" class=" first_td1 ">Category</td>
                                 <td width="25%" class=" first_td1">Product Name</td>
-                                <td width="10%" class=" first_td1 hide_class">Brand</td>
-                                <td width="5%" class=" first_td1 hide_class">Unit</td>
+                                <td width="10%" class=" first_td1 ">Brand</td>
+                                <td width="5%" class=" first_td1 ">Unit</td>
                                 <td width="5%" class="first_td1 action-btn-align ser-wid">QTY</td>
                                 <td width="8%" class="first_td1 action-btn-align ser-wid">Unit&nbsp;Price</td>
                                 <!--<td  width="5%" class="first_td1 action-btn-align ser-wid">Total</td>-->
-                                <td width="7%" class="first_td1 action-btn-align proimg-wid hide_class">Discount%</td>
+                                <td width="7%" class="first_td1 action-btn-align proimg-wid">Discount%</td>
                                 <!-- <td  width="6%" class="first_td1 action-btn-align proimg-wid">CGST%</td> -->
                                 <?php
                                 $gst_type = $quotation[0]['state_id'];
@@ -154,16 +154,16 @@
                                         <td class="">
                                             <?php echo !empty($vals['hsn_sac_name']) ? $vals['hsn_sac_name'] : '-'; ?>
                                         </td>
-                                        <td class="hide_class">
+                                        <td class="">
                                             <?php echo $vals['categoryName'] ?>
                                         </td>
                                         <td class="">
                                             <?php echo $vals['product_name'] ?>
                                         </td>
-                                        <td class="hide_class">
+                                        <td class="">
                                             <?php echo !empty($vals['brands']) ? $vals['brands'] : '-' ?>
                                         </td>
-                                        <td class="hide_class">
+                                        <td class="">
                                             <?php echo !empty($vals['unit']) ? $vals['unit'] : '-' ?>
                                         </td>
                                         <td class="action-btn-align">
@@ -175,7 +175,7 @@
                                         <!--                                        <td class="text_right">
                                         <?php echo number_format(($vals['quantity'] * $vals['per_cost']), 2) ?>
                                         </td>-->
-                                        <td class="action-btn-align hide_class">
+                                        <td class="action-btn-align ">
                                             <?php echo $vals['discount'] ?>
                                         </td>
 
@@ -213,24 +213,24 @@
                         <tfoot>
                             <tr>
                                 <td colspan="2" style="width:70px; text-align:right;"></td>
-                                <td class="hide_class" style="width:70px; text-align:right;"></td>
-                                <td class="hide_class" style="width:70px; text-align:right;"></td>
-                                <td class="hide_class" style="width:70px; text-align:right;"></td>
+                                <td class="" style="width:70px; text-align:right;"></td>
+                                <td class="" style="width:70px; text-align:right;"></td>
+                                <td class="" style="width:70px; text-align:right;"></td>
                                 <td colspan="" style="width:70px; text-align:right;"><b>Total</b></td>
                                 <td style="text-align:center;"><?php echo $val['total_qty']; ?></td>
-                                <td class="hide_class" style="text-align:right;"></td>
+                                <td class="" style="text-align:right;"></td>
                                 <td style="text-align:right;"><b>Sub Total</b></td>
                                 <td class="text_right"><?php echo number_format($val['subtotal_qty'], 2); ?></td>
                             </tr>
                             <tr>
-                                <td colspan="2" class="hide_class" style="width:70px; text-align:right;"></td>
-                                <td colspan="2" class="hide_class" style="text-align:right;"></td>
+                                <td colspan="2" class="" style="width:70px; text-align:right;"></td>
+                                <td colspan="2" class="" style="text-align:right;"></td>
                                 <td colspan="5" style="text-align:right;"><strong><?php echo $val['tax_label']; ?></strong> </td>
                                 <td class="text_right"><?php echo number_format($val['tax'], 2); ?></td>
                             </tr>
                             <tr>
-                                <td colspan="2" class="hide_class" style="width:70px; text-align:right;"></td>
-                                <td colspan="2" class="hide_class" style="text-align:right;"></td>
+                                <td colspan="2" class="" style="width:70px; text-align:right;"></td>
+                                <td colspan="2" class="" style="text-align:right;"></td>
                                 <td colspan="5" style="text-align:right;"><strong>Net Total</strong></td>
                                 <td class="text_right"><?php echo number_format($val['net_total'], 2); ?></td>
                             </tr>
