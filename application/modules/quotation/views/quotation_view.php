@@ -120,7 +120,7 @@
                                 <td width="10%" class=" first_td1 hide_class">Brand</td>
                                 <td width="5%" class=" first_td1 hide_class">Unit</td>
                                 <td width="5%" class="first_td1 action-btn-align ser-wid">QTY</td>
-                                <td width="8%" class="first_td1 action-btn-align ser-wid">Unit Price</td>
+                                <td width="8%" class="first_td1 action-btn-align ser-wid">Unit&nbsp;Price</td>
                                 <!--<td  width="5%" class="first_td1 action-btn-align ser-wid">Total</td>-->
                                 <td width="7%" class="first_td1 action-btn-align proimg-wid hide_class">Discount%</td>
                                 <!-- <td  width="6%" class="first_td1 action-btn-align proimg-wid">CGST%</td> -->
@@ -212,25 +212,27 @@
 
                         <tfoot>
                             <tr>
-                                <td colspan="3" class="hide_class" style="width:70px; text-align:right;"></td>
-                                <td colspan="2" style="width:70px; text-align:right;"><b>Total</b></td>
+                                <td colspan="2" style="width:70px; text-align:right;"></td>
+                                <td class="hide_class" style="width:70px; text-align:right;"></td>
+                                <td class="hide_class" style="width:70px; text-align:right;"></td>
+                                <td class="hide_class" style="width:70px; text-align:right;"></td>
+                                <td colspan="" style="width:70px; text-align:right;"><b>Total</b></td>
                                 <td style="text-align:center;"><?php echo $val['total_qty']; ?></td>
-                                <td colspan="3" style="text-align:right;"><b>Sub Total</b></td>
+                                <td class="hide_class" style="text-align:right;"></td>
+                                <td style="text-align:right;"><b>Sub Total</b></td>
                                 <td class="text_right"><?php echo number_format($val['subtotal_qty'], 2); ?></td>
-
                             </tr>
                             <tr>
                                 <td colspan="2" class="hide_class" style="width:70px; text-align:right;"></td>
-                                <td colspan="7" style="text-align:right;"><strong><?php echo $val['tax_label']; ?></strong> </td>
-                                <td class="text_right">
-                                    <?php echo number_format($val['tax'], 2); ?></td>
-
+                                <td colspan="2" class="hide_class" style="text-align:right;"></td>
+                                <td colspan="5" style="text-align:right;"><strong><?php echo $val['tax_label']; ?></strong> </td>
+                                <td class="text_right"><?php echo number_format($val['tax'], 2); ?></td>
                             </tr>
                             <tr>
                                 <td colspan="2" class="hide_class" style="width:70px; text-align:right;"></td>
-                                <td colspan="7" style="text-align:right;"><strong>Net Total</strong></td>
+                                <td colspan="2" class="hide_class" style="text-align:right;"></td>
+                                <td colspan="5" style="text-align:right;"><strong>Net Total</strong></td>
                                 <td class="text_right"><?php echo number_format($val['net_total'], 2); ?></td>
-
                             </tr>
                             <tr>
                                 <td colspan="10"><span style="float:left;  top:12px;">Remarks&nbsp;&nbsp;&nbsp;</span>
