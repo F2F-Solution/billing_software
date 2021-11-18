@@ -185,14 +185,14 @@ if (!empty($customers)) {
                 <td>
                     <input type="text" tabindex="-1" name='discount[]' style="width:70px;" class="discount" />
                 </td>
-                <!-- <td class="action-btn-align cgst_td">
-                    <input type="text" tabindex="-1" name='tax[]' style="width:70px;" class="pertax" />
-                </td> -->
-                <!-- <td class="action-btn-align sgst_td">
-                    <input type="text" tabindex="-1" name='gst[]' style="width:70px;" class="gst" />
-                </td> -->
-                <td class="action-btn-align igst_td">
-                    <input type="text" tabindex="-1" name='igst[]' style="width:70px;" class="igst wid50" />
+                <td class="action-btn-align cgst_td" style="display: none;">
+                    <input type="text" tabindex="-1" style="display: none;" name='tax[]' style="width:70px;" class="pertax" />
+                </td>
+                <td class="action-btn-align sgst_td" style="display: none;">
+                    <input type="text" tabindex="-1" name='gst[]' style="display: none;" style="width:70px;" class="gst" />
+                </td>
+                <td class="action-btn-align igst_td" style="display: none;">
+                    <input type="text" tabindex="-1" style="display: none;" name='igst[]' style="width:70px;" class="igst wid50" />
                 </td>
                 <td>
                     <input type="text" tabindex="-1" style="width:70px;" name='sub_total[]' readonly="readonly" id="sub_toatl" class="subtotal text_right" />
@@ -467,9 +467,9 @@ if (!empty($customers)) {
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <td colspan="6" style="width:70px; text-align:right;"><b>Total</b></td>
+                                    <td colspan="5" style="width:70px; text-align:right;"><b>Total</b></td>
                                     <td><input type="text" tabindex="-1" name="quotation[total_qty]" readonly="readonly" value="<?php echo $val['total_qty']; ?>" class="total_qty" style="width:70px;" id="total" /></td>
-                                    <td colspan="2" style="text-align:right;"><b>Sub Total</b></td>
+                                    <td colspan="3" style="text-align:right;"><b>Sub Total</b></td>
                                     <td><input type="text" name="quotation[subtotal_qty]" tabindex="-1" readonly="readonly" value="<?php echo $val['subtotal_qty']; ?>" class="final_sub_total text_right" style="width:70px;" /></td>
                                     <td></td>
                                 </tr>
@@ -832,9 +832,11 @@ if (!empty($customers)) {
     });
 
     function calculate_function() {
+        var sub_total = 0;
         var final_qty = 0;
         var final_sub_total = 0;
         $('.qty').each(function() {
+
             var qty = $(this);
             var percost = $(this).closest('tr').find('.percost');
             var pertax = $(this).closest('tr').find('.pertax');
@@ -842,6 +844,7 @@ if (!empty($customers)) {
             var igst = $(this).closest('tr').find('.igst');
             var subtotal = $(this).closest('tr').find('.subtotal');
             var discount = $(this).closest('tr').find('.discount');
+
             if (Number(qty.val()) != 0) {
                 tot = Number(qty.val()) * Number(percost.val());
                 $(this).closest('tr').find('.gross').val(tot);
@@ -855,10 +858,11 @@ if (!empty($customers)) {
                 final_qty = final_qty + Number(qty.val());
                 final_sub_total = final_sub_total + sub_total;
             }
+            $('.total_qty').val(final_qty);
+            $('.final_sub_total').val(final_sub_total.toFixed(2));
+            $('.final_amt').val((final_sub_total + Number($('.totaltax').val())).toFixed(2));
         });
-        $('.total_qty').val(final_qty);
-        $('.final_sub_total').val(final_sub_total.toFixed(2));
-        $('.final_amt').val((final_sub_total + Number($('.totaltax').val())).toFixed(2));
+
     }
 
     $(".datepicker").datepicker({

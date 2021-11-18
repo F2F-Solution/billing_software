@@ -606,7 +606,7 @@ if (!empty($customers)) {
                         </tr>
                         <tr>
                             <td colspan="8" style="text-align:right;"><b>Advance Amount</b></td>
-                            <td class="action-btn-align"><input type="text" name="advance" tabindex="-1" id="advance" readonly="readonly" class="advance text_right" style="width:100px;" /></td>
+                            <td class="action-btn-align"><input type="text" name="advance" tabindex="-1" id="advance" class="advance text_right" style="width:100px;" /></td>
                             <td></td>
                         </tr>
                         <tr>
